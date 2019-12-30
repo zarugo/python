@@ -62,4 +62,4 @@ with open(input_file) as csvfile:
                     print("Created customer " + csv_lines["firstName"] + ' ' + csv_lines["lastName"])
         except Exception as e:
             print("Something went wrong, the error is " + str(e))
-print("The upload is done, please check on JMS that the customers are there. The log file is upload_results.log.")
+print("The upload is done, please check on JMS that the customers are there. The log file is create_customer_results.log.")

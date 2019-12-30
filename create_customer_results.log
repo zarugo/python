@@ -1,0 +1,7 @@
+2019-12-30 08:55:27  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":54,"customerName":"Kennedy Bob"}}} Response Code from JMS was: 200
+2019-12-30 08:57:23  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":55,"customerName":"Kennedy Bob"}}} Response Code from JMS was: 200
+2019-12-30 09:21:04  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":56,"customerName":"Kennedy Bob"}}} Response Code from JMS was: 200
+2019-12-30 09:28:27  Customer inserted:  Response Code from JMS was: 500
+2019-12-30 10:56:44  Customer inserted:  Response Code from JMS was: 500
+2019-12-30 11:00:15  Customer inserted:  Response Code from JMS was: 500
+2019-12-30 11:06:13  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":57,"customerName":"Kennedy Bob"}}} Response Code from JMS was: 200

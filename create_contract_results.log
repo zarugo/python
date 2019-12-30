@@ -1,0 +1,5 @@
+2019-12-30 11:11:42  Contract inserted:  Response Code from JMS was: 500
+2019-12-30 11:15:40  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":"Error during parameters creation"}]} Response Code from JMS was: 500
+2019-12-30 11:17:13  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":"Error during parameters creation"}]} Response Code from JMS was: 500
+2019-12-30 11:18:18  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":"Error during parameters creation"}]} Response Code from JMS was: 500
+2019-12-30 11:20:37  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":null}]} Response Code from JMS was: 500

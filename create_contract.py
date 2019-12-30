@@ -60,4 +60,4 @@ with open(input_file) as csvfile:
             print("Something went wrong, the error is " + str(e))
 
 
-print("The upload is done, please check on JMS that the customers are there. The log file is upload_results.log.")
+print("The upload is done, please check on JMS that the customers are there. The log file is create_contract_results.log.")
