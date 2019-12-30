@@ -1,2 +1,2 @@
-firstName,lastName
-Bob,Kennedy
+firstName,lastName,address,city,zipCode,country,isDefault,name,value,type,plate,color,model,year,state
+Bob,Kennedy,via Ciccarelli,Bologna,40100,Italy,true,Mobile,32123456,PHONE,AB123CD,Red,BMW X5,2013,good
