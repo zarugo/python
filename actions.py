@@ -21,6 +21,8 @@ except Exception as e:
     print("Something went wrong, the error is " + str(e))
     quit()
 
+
+
 class Device:
     def __init__(self, id, name):
     self.id = id
@@ -31,4 +33,6 @@ class AvailableActions:
         self.node = node
         self.device = device
         self.description = description
-def get_node_and_devices(url, token)
+def get_node_and_devices(url, token):
+    gnedurl = "http://" + jms + "8080/janus-integration/api"
+    gnodes = requests.get()
