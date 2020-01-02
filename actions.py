@@ -1,5 +1,18 @@
 import login, os, sys, csv, json, requests
 
+class Device:
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name
+        self.actions = []
+    def add_action(self, id, name):
+        self.actions.append((id, name))
+
+# class AvailableActions:
+#     def __init__(self, node, device, description):
+#         self.node = node
+#         self.device = device
+#         self.description = description
 
 jms = input("Type the ip of JMS:  ")
 username = input("Type the username of the third party:  ")
@@ -10,16 +23,71 @@ password = input("Type the password of the third party:  ")
 token = login.login(jms, username, password)
 
 
-class Device:
-    def __init__(self, id, name):
-    self.id = id
-    self.name = name
 
-class AvailableActions:
-    def __init__(self, node, device, description):
-        self.node = node
-        self.device = device
-        self.description = description
-def get_node_and_devices(url, token):
-    gnedurl = "http://" + jms + "8080/janus-integration/api"
-    gnodes = requests.get()
+def get_node_and_devices(token):
+    headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
+    url = "http://" + jms + ":8080/janus-integration/api/ext/parking/nodes/and/devices"
+    try:
+        nodes = requests.get(url, headers=headers, timeout=10.0)
+        data = (json.loads(nodes.text)["items"])
+        return data
+    except Exception as e:
+        print("Something went wrong during the Nodes and Devices call, the error is " + str(e))
+        quit()
+def get_all_actions(token):
+    headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
+    url = "http://" + jms + ":8080/janus-integration/api/ext/action/get/all"
+    try:
+        actions = requests.get(url, headers=headers, timeout=10.0)
+        data = (json.loads(actions.text)["items"])
+        return data
+    except Exception as e:
+        print("Something went wrong during the All Actions call, the error is " + str(e))
+        quit()
+def perform_action(deviceId, actionId, reason, token):
+    headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
+    actiondata = { "actionId": actionId , "deviceId": deviceId, "reason": reason}
+    url = "http://" + jms + ":8080/janus-integration/api/ext/action/perform"
+    try:
+        r = requests.post(url, json=actiondata, headers=headers, timeout=10.0)
+        print(actiondata)
+    except Exception as e:
+        print("Something went wrong, the error is " + str(e))
+        quit()
+
+
+
+nodes = get_node_and_devices(token)
+actions = get_all_actions(token)
+availabledevices = []
+availableactions = []
+for node in nodes:
+    availabledevices.append((node["node"]["id"], node["node"]["name"]))
+for action in actions:
+    availableactions.append((action["action"]["id"], action["action"]["deviceIds"], action["action"]["name"]))
+
+print("Available devices: ")
+print(availabledevices)
+deviceId = int(input("Please choose a device: "))
+print("Available actions: ")
+for action in availableactions:
+    if deviceId in action[1]:
+        print(str(action[0]) + " " + str(action[2]))
+actionId = int(input("Please choose an action: "))
+reason = input("Please write the reason: ")
+perform_action(deviceId,actionId, reason, token)
+
+
+#print(devices)
+
+# for device in availabledevices:
+#     for action in availableactions:
+#         if device[0] in action[1]:
+#             devices["id"] = device[0]
+#             devices["name"] = device[1]
+#             devices["actions"] = {"actionId": [action[1]], "actionName": [action[2]]}
+
+
+
+#print(availableactions[0])
+#print(devices)
