@@ -3,7 +3,7 @@
 # cardNumber,mediaType,start_validity,end_validity,enabled,accessPolicyId,customerFirstName,CustomerLastName,displayCardNumber
 # 123456,proximity,1559347200000,2556057600000,TRUE,9,Bob,Marley,
 
-import os, sys, csv, json, requests, datetime
+import login, os, sys, csv, json, requests, datetime
 
 #get the data we need
 now = datetime.datetime.now()
@@ -19,19 +19,7 @@ while True:
 
 # Do the login and store the token every time
 
-auth_url = "http://" + jms + ":8080/janus-integration/api/ext/login"
-log_headers = { "Content-Type": "application/json" , "Accept": "application/json"}
-logindata = { "username": username,	"password": password }
-try:
-    r = requests.post(auth_url, json=logindata, headers=log_headers, timeout=10.0)
-    if r.status_code == 401:
-        print("The user or password are not correct. Verify that the Third Party account is set up on JMS")
-        quit()
-    else:
-        token = (json.loads(r.text)["item"]["token"]["value"])
-except Exception as e:
-    print("Soething went wrong, the error is " + str(e))
-    quit()
+token = login.login(jms, username, password)
 
 #parse the csv and upload it to JMS as json
 
