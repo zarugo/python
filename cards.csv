@@ -1,2 +1,2 @@
-cardNumber,mediaType,start_validity,end_validity,enabled,accessPolicyId,customerFirstName,customerLastName,displayCardNumber
-123456,proximity,1559347200000,2556057600000,True,3,Bob,Marley,15
+displayCardNumber,cardNumber,mediaType,start_validity,customerId,customerFirstName,customerLastName,accessPolicyId,accountId,plates,end_validity,enabled
+17760,6001234563760,proximity,1559347200000,,ZARLY,ZAR,8,,AP123BP,2556057600000,TRUE

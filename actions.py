@@ -1,12 +1,13 @@
 import login, os, sys, csv, json, requests
 
 class Device:
-    def __init__(self, id, name):
+    def __init__(self, id, name, virtualParkingId):
         self.id = id
         self.name = name
-        self.actions = []
+        self.virtualParkingId = virtualParkingId
+        self.actions = {}
     def add_action(self, id, name):
-        self.actions.append((id, name))
+        self.actions.[id] = name
 
 # class AvailableActions:
 #     def __init__(self, node, device, description):
@@ -45,8 +46,10 @@ def get_all_actions(token):
         print("Something went wrong during the All Actions call, the error is " + str(e))
         quit()
 def perform_action(deviceId, actionId, reason, token):
+    url = "http://" + jms + ":8080/janus-integration/api/ext/parking/node?id=" + str(deviceId) + "&device=true"
     headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
-    actiondata = { "actionId": actionId , "deviceId": deviceId, "reason": reason}
+    virtualParkingId = (json.loads(requests.get(url, headers=headers).text)["item"]["node"]["virtualParkingId"])
+    actiondata = { "actionId": actionId , "deviceId": deviceId, "reason": reason, "virtualParkingId": virtualParkingId }
     url = "http://" + jms + ":8080/janus-integration/api/ext/action/perform"
     try:
         r = requests.post(url, json=actiondata, headers=headers, timeout=10.0)
@@ -76,18 +79,3 @@ for action in availableactions:
 actionId = int(input("Please choose an action: "))
 reason = input("Please write the reason: ")
 perform_action(deviceId,actionId, reason, token)
-
-
-#print(devices)
-
-# for device in availabledevices:
-#     for action in availableactions:
-#         if device[0] in action[1]:
-#             devices["id"] = device[0]
-#             devices["name"] = device[1]
-#             devices["actions"] = {"actionId": [action[1]], "actionName": [action[2]]}
-
-
-
-#print(availableactions[0])
-#print(devices)

@@ -43,7 +43,7 @@ with open(input_file) as csvfile:
                 if r.status_code != 200:
                     print("An error occurred creating the contract for " + csv_lines["customerFirstName"] + ' ' + csv_lines["customerLastName"] + ", please check the log file")
                 else:
-                    print("Created contract for " + csv_lines["customerFirstName"] + csv_lines["customerLastName"])
+                    print("Created contract for " + csv_lines["customerFirstName"] + " " + csv_lines["customerLastName"])
         except Exception as e:
             print("Something went wrong, the error is " + str(e))
 
