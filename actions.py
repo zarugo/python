@@ -1,53 +1,17 @@
-import login, os, sys, csv, json, requests, pprint
+import jms
 
 
-jms = input("Type the ip of JMS:  ")
+
+jmsip = input("Type the ip of JMS:  ")
 username = input("Type the username of the third party:  ")
 password = input("Type the password of the third party:  ")
 
 # Do the login and get the token every time
 
-token = login.login(jms, username, password)
+token = jms.login(jmsip, username, password)
+nodes = jms.get_node_and_devices(jmsip, token)
+actions = jms.get_all_actions(jmsip, token)
 
-
-
-def get_node_and_devices(token):
-    headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
-    url = "http://" + jms + ":8080/janus-integration/api/ext/parking/nodes/and/devices"
-    try:
-        nodes = requests.get(url, headers=headers, timeout=10.0)
-        data = (json.loads(nodes.text)["items"])
-        return data
-    except Exception as e:
-        print("Something went wrong during the Nodes and Devices call, the error is " + str(e))
-        quit()
-def get_all_actions(token):
-    headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
-    url = "http://" + jms + ":8080/janus-integration/api/ext/action/get/all"
-    try:
-        actions = requests.get(url, headers=headers, timeout=10.0)
-        data = (json.loads(actions.text)["items"])
-        return data
-    except Exception as e:
-        print("Something went wrong during the All Actions call, the error is " + str(e))
-        quit()
-def perform_action(deviceId, actionId, reason, token):
-    url = "http://" + jms + ":8080/janus-integration/api/ext/parking/node?id=" + str(deviceId) + "&device=true"
-    headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
-    virtualParkingId = (json.loads(requests.get(url, headers=headers).text)["item"]["node"]["virtualParkingId"])
-    actiondata = { "actionId": actionId , "deviceId": deviceId, "reason": reason, "virtualParkingId": virtualParkingId }
-    url = "http://" + jms + ":8080/janus-integration/api/ext/action/perform"
-    try:
-        r = requests.post(url, json=actiondata, headers=headers, timeout=10.0)
-        print(actiondata)
-    except Exception as e:
-        print("Something went wrong, the error is " + str(e))
-        quit()
-
-
-
-nodes = get_node_and_devices(token)
-actions = get_all_actions(token)
 availabledevices = []
 availableactions = []
 for node in nodes:
@@ -71,4 +35,4 @@ while True:
             pass
         else:
             reason = input("Please write the reason: ")
-            perform_action(int(deviceId),int(actionId), reason, token)
+            jms.perform_action(jmsip, int(deviceId), int(actionId), reason, token)
