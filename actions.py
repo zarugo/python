@@ -1,19 +1,14 @@
-import login, os, sys, csv, json, requests
+import login, os, sys, csv, json, requests, pprint
 
-class Device:
-    def __init__(self, id, name, virtualParkingId):
-        self.id = id
-        self.name = name
-        self.virtualParkingId = virtualParkingId
-        self.actions = {}
-    def add_action(self, id, name):
-        self.actions.[id] = name
+# class Device:
+#     def __init__(self, id, name, virtualParkingId):
+#         self.id = id
+#         self.name = name
+#         self.virtualParkingId = virtualParkingId
+#         self.actions = {}
+#     def add_action(self, id, name):
+#         self.actions.[id] = name
 
-# class AvailableActions:
-#     def __init__(self, node, device, description):
-#         self.node = node
-#         self.device = device
-#         self.description = description
 
 jms = input("Type the ip of JMS:  ")
 username = input("Type the username of the third party:  ")
@@ -68,14 +63,21 @@ for node in nodes:
     availabledevices.append((node["node"]["id"], node["node"]["name"]))
 for action in actions:
     availableactions.append((action["action"]["id"], action["action"]["deviceIds"], action["action"]["name"]))
-
-print("Available devices: ")
-print(availabledevices)
-deviceId = int(input("Please choose a device: "))
-print("Available actions: ")
-for action in availableactions:
-    if deviceId in action[1]:
-        print(str(action[0]) + " " + str(action[2]))
-actionId = int(input("Please choose an action: "))
-reason = input("Please write the reason: ")
-perform_action(deviceId,actionId, reason, token)
+while True:
+    print("Available devices: ")
+    for tuple in availabledevices:
+        print("ID:   %s \nNAME: %s" % tuple)
+    deviceId = input("Please choose a device(\"q\" to exit): ")
+    if deviceId == "q":
+        exit()
+    else:
+        print("Available actions: ")
+        for action in availableactions:
+            if int(deviceId) in action[1]:
+                print(str(action[0]) + " " + str(action[2]))
+        actionId = input("Please choose an action(\"q\" to go back to device list): ")
+        if actionId == "q":
+            pass
+        else:
+            reason = input("Please write the reason: ")
+            perform_action(int(deviceId),int(actionId), reason, token)
