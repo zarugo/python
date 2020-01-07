@@ -1,14 +1,5 @@
 import login, os, sys, csv, json, requests, pprint
 
-# class Device:
-#     def __init__(self, id, name, virtualParkingId):
-#         self.id = id
-#         self.name = name
-#         self.virtualParkingId = virtualParkingId
-#         self.actions = {}
-#     def add_action(self, id, name):
-#         self.actions.[id] = name
-
 
 jms = input("Type the ip of JMS:  ")
 username = input("Type the username of the third party:  ")
