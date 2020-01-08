@@ -46,7 +46,7 @@ def perform_action(jmsip, deviceId, actionId, reason, token):
     url = "http://" + jmsip + ":8080/janus-integration/api/ext/action/perform"
     try:
         r = requests.post(url, json=actiondata, headers=headers, timeout=10.0)
-        print(actiondata)
+        print(json.loads(r.text)["status"])
     except Exception as e:
         print("Something went wrong, the error is " + str(e))
         quit()

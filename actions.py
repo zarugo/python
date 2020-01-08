@@ -28,13 +28,13 @@ while True:
     if deviceId == "q":
         exit()
     else:
-        print("Available actions: ")
+        print("\nAvailable actions: ")
         for action in availableactions:
             if int(deviceId) in action[1]:
-                print(str(action[0]) + " " + str(action[2]))
-        actionId = input("Please choose an action(\"q\" to go back to device list): ")
+                print("\n ---ID: " + str(action[0]) + " NAME: " + str(action[2]) + "\n\n")
+        actionId = input("Please choose an action ID (\"q\" to go back to device list): ")
         if actionId == "q":
             pass
         else:
-            reason = input("Please write the reason: ")
+            reason = input("Please write a reason: ")
             jms.perform_action(jmsip, int(deviceId), int(actionId), reason, token)
