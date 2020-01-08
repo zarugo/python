@@ -3,11 +3,11 @@
 # cardNumber,mediaType,start_validity,end_validity,enabled,accessPolicyId,customerFirstName,CustomerLastName,displayCardNumber
 # 123456,proximity,1559347200000,2556057600000,TRUE,9,Bob,Marley,
 
-import login, os, sys, csv, json, requests, datetime
+import jms, os, csv, json, requests, datetime
 
 #get the data we need
 now = datetime.datetime.now()
-jms = input("Type the ip of JMS:  ")
+jmsip = input("Type the ip of JMS:  ")
 username = input("Type the username of the third party:  ")
 password = input("Type the password of the third party:  ")
 while True:
@@ -19,7 +19,7 @@ while True:
 
 # Do the login and store the token every time
 
-token = login.login(jms, username, password)
+token = jms.login(jmsip, username, password)
 
 #parse the csv and upload it to JMS as json
 

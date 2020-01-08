@@ -1,6 +1,6 @@
-def login(jms, username, password):
+def login(jmsip, username, password):
     import json, requests
-    auth_url = "http://" + jms + ":8080/janus-integration/api/ext/login"
+    auth_url = "http://" + jmsip + ":8080/janus-integration/api/ext/login"
     log_headers = { "Content-Type": "application/json" , "Accept": "application/json"}
     logindata = { "username": username,	"password": password }
     try:

@@ -3,11 +3,11 @@
 # firstName,lastName
 # pippo,pluto
 
-import login, os, sys, csv, json, requests, datetime
+import jms, os, csv, json, requests, datetime
 
 
 now = datetime.datetime.now()
-jms = input("Type the ip of JMS:  ")
+jmsip = input("Type the ip of JMS:  ")
 username = input("Type the username of the third party:  ")
 password = input("Type the password of the third party:  ")
 while True:
@@ -19,7 +19,7 @@ while True:
 
 # Do the login and get the token every time
 
-token = login.login(jms, username, password)
+token = jms.login(jmsip, username, password)
 
 #parse the csv and upload it to JMS as json
 
@@ -36,7 +36,7 @@ with open(input_file) as csvfile:
         csv_lines["addresses"] = [{k: v for k, v in line.items() if k in addresses}]
         csv_lines["contacts"] = [{k: v for k, v in line.items() if k in contacts}]
         csv_lines["vehicles"] = [{k: v for k, v in line.items() if k in vehicles}]
-        create_url = "http://" + jms + ":8080/janus-integration/api/ext/customer/create"
+        create_url = "http://" + jmsip + ":8080/janus-integration/api/ext/customer/create"
         headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token }
         data = (json.dumps(csv_lines, sort_keys=False, indent=4, separators=(",",": "), ensure_ascii=False))
         #print(data)
