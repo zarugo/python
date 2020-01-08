@@ -15,14 +15,16 @@ actions = jms.get_all_actions(jmsip, token)
 availabledevices = []
 availableactions = []
 for node in nodes:
-    availabledevices.append((node["node"]["id"], node["node"]["name"]))
+    if node["node"]["device"] is True:
+        availabledevices.append((node["node"]["id"], node["node"]["name"]))
 for action in actions:
     availableactions.append((action["action"]["id"], action["action"]["deviceIds"], action["action"]["name"]))
+print(availabledevices)
 while True:
-    print("Available devices: ")
+    print("\nAvailable devices: ")
     for tuple in availabledevices:
-        print("ID:   %s \nNAME: %s" % tuple)
-    deviceId = input("Please choose a device(\"q\" to exit): ")
+        print("\n ---ID: %s NAME: %s\n\n" % tuple)
+    deviceId = input("Please choose a device ID (\"q\" to exit): ")
     if deviceId == "q":
         exit()
     else:
