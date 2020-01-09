@@ -19,7 +19,7 @@ for node in nodes:
         availabledevices.append((node["node"]["id"], node["node"]["name"]))
 for action in actions:
     availableactions.append((action["action"]["id"], action["action"]["deviceIds"], action["action"]["name"]))
-print(availabledevices)
+#print(availabledevices)
 while True:
     print("\nAvailable devices: ")
     for tuple in availabledevices:
