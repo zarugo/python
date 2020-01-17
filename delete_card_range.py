@@ -11,5 +11,4 @@ last = input("Type the first Card ID of the range: ")
 # Do the login and store the token every time
 
 token = jms.login(jmsip, username, password)
-data = jms.delete_cards(jmsip, first, last, token)
-print(data)
+jms.delete_cards(jmsip, first, last, token)
