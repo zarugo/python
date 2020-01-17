@@ -22,7 +22,7 @@ def delete_cards(jmsip, first, last, token):
             try:
                 r = requests.put(url, headers=headers, timeout=5.0)
                 if r.status_code == 200:
-                    print("Deleted contract whith ID: " + i + "(Response: " + r.text)
+                    print("Deleted contract whith ID: " + str(i) + "(Response: " + r.text)
                 else:
                     print("Error: " + str(r.status_code) + r.text)
             except Exception as e:
