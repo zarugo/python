@@ -14,6 +14,16 @@ def login(jmsip, username, password):
     except Exception as e:
         print("Something went wrong, the error is " + str(e))
         quit()
+# def delete_cards(jmsip, first, last, token):
+#         headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
+#         for i in range(int(first), int(last)):
+#             url = "http://" + jmsip + ":8080/janus-integration/api/ext/card/delete?cardId=" + str(i)
+#             try:
+#                 r = requests.put(url, headers=headers, timeout=5.0)
+#                 data = r.text
+#                 return data
+#             except Exception as e:
+#                 pass
 
 def get_node_and_devices(jmsip, token):
     import json, requests

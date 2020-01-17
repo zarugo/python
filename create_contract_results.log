@@ -20,3 +20,19 @@
 2020-01-15 14:55:58  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":"Error during parameters creation"}]} Response Code from JMS was: 500
 2020-01-15 14:55:58  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":"Error during parameters creation"}]} Response Code from JMS was: 500
 2020-01-15 14:57:38  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":null}]} Response Code from JMS was: 500
+2020-01-17 08:37:08  Contract inserted:  Response Code from JMS was: 500
+2020-01-17 08:43:21  Contract inserted:  Response Code from JMS was: 500
+2020-01-17 08:44:14  Contract inserted:  Response Code from JMS was: 500
+2020-01-17 08:50:22  Contract inserted:  Response Code from JMS was: 500
+2020-01-17 09:00:05  Contract inserted:  Response Code from JMS was: 500
+2020-01-17 09:01:15  Contract inserted:  Response Code from JMS was: 500
+2020-01-17 09:45:19  Contract inserted:  Response Code from JMS was: 500
+2020-01-17 10:15:29  Contract inserted:  Response Code from JMS was: 500
+2020-01-17 10:41:29  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":null}]} Response Code from JMS was: 500
+2020-01-17 10:41:29  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":null}]} Response Code from JMS was: 500
+2020-01-17 10:41:29  Contract inserted: {"status":"ok","item":{"externalcard":{"cardId":4088,"cardNumber":"2201761069","mediaType":"proximity","cardParameters":[{"type":"start_validity","value":"1540339200000"},{"type":"end_validity","value":"1597449600000"},{"type":"enabled","value":"TRUE"}],"businessUnitId":null,"accessPolicyId":14,"accountId":null,"customerId":2699,"customerFirstName":"ABDALLAH","customerLastName":"MAYSA","plates":["AM281ZS"],"enabled":true}}} Response Code from JMS was: 200
+2020-01-17 10:41:29  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":null}]} Response Code from JMS was: 500
+2020-01-17 10:41:29  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":null}]} Response Code from JMS was: 500
+2020-01-17 10:41:29  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":null}]} Response Code from JMS was: 500
+2020-01-17 10:41:29  Contract inserted: {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":null}]} Response Code from JMS was: 500
+2020-01-17 10:41:29  Contract inserted: {"status":"ok","item":{"externalcard":{"cardId":4089,"cardNumber":"132861634","mediaType":"proximity","cardParameters":[{"type":"start_validity","value":"1540944000000"},{"type":"end_validity","value":"2083536000000"},{"type":"enabled","value":"TRUE"}],"businessUnitId":null,"accessPolicyId":14,"accountId":null,"customerId":2700,"customerFirstName":"ABREO","customerLastName":"GHISLAINE","plates":["DT197TJ"],"enabled":true}}} Response Code from JMS was: 200

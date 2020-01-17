@@ -23,15 +23,15 @@ token = jms.login(jmsip, username, password)
 
 #parse the csv and upload it to JMS as json
 
-with open(input_file) as csvfile:
+with open(input_file, encoding="utf-8") as csvfile:
     reader = csv.DictReader(csvfile)
     for line in reader:
         csv_lines = {}
-        nested = ["start_validity" , "end_validity" , "enabled"]
+        nested = ["start_validity" , "end_validity", "enabled"]
         plates = ["plates"]
         csv_lines = {k: v for k, v in line.items() if k not in nested and k not in plates}
         csv_lines["cardParameters"] = [{'type': k, 'value': v} for k, v in line.items() if k in nested]
-        csv_lines["plates"] = [v for k, v in line.items() if k in plates]
+        csv_lines["plates"] = [v for k, v in line.items() if k in plates and v]
         create_url = "http://" + jmsip + ":8080/janus-integration/api/ext/card/create"
         headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token }
         data = (json.dumps(csv_lines, sort_keys=False, indent=4, separators=(",",": "), ensure_ascii=False))
