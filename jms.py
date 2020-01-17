@@ -17,7 +17,7 @@ def login(jmsip, username, password):
 def delete_cards(jmsip, first, last, token):
         import requests
         headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
-        for i in range(first last):
+        for i in range(first, last):
             url = "http://" + str(jmsip) + ":8080/janus-integration/api/ext/card/delete?cardId=" + str(i)
             try:
                 r = requests.put(url, headers=headers, timeout=5.0)
