@@ -50,7 +50,6 @@ with open(input_file, encoding="utf-8") as csvfile:
 
 print("The upload is done, please check on JMS that the customers are there. The log file is create_contract_results.log.")
 
-while True:
-    a = input('Press a key to exit')
-    if a:
+a = input('Press a key to exit')
+if a:
     exit(0)
