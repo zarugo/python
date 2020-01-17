@@ -10,7 +10,7 @@ last = int(input("Type the first Card ID of the range: "))
 
 token = jms.login(jmsip, username, password)
 
-while true:
+while True:
     jms.delete_cards(jmsip, first, last, token)
     a = input('Press a key to exit')
     if a:
