@@ -1,6 +1,6 @@
 def login(jmsip, username, password):
     import json, requests
-    auth_url = "http://" + jmsip + ":8080/janus-integration/api/ext/login"
+    auth_url = "http://" + str(jmsip) + ":8080/janus-integration/api/ext/login"
     log_headers = { "Content-Type": "application/json" , "Accept": "application/json"}
     logindata = { "username": username,	"password": password }
     try:
@@ -31,12 +31,12 @@ def delete_cards(jmsip, first, last, token):
 def delete_customers(jmsip, first, last, token):
         import requests
         headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
-        for i in range(int(first), int(last)):
-            url = "http://" + jmsip + ":8080/janus-integration/api/ext/customer/delete?customerId=" + str(i)
+        for i in range(first, last):
+            url = "http://" + str(jmsip) + ":8080/janus-integration/api/ext/customer/delete?customerId=" + str(i)
             try:
                 r = requests.delete(url, headers=headers, timeout=5.0)
                 if r.status_code == 200:
-                    print("Deleted customer whith ID: " + i + "(Response: " + r.text)
+                    print("Deleted customer whith ID: " + str(i) + "(Response: " + r.text)
                 else:
                     print("Error: " + str(r.status_code) + r.text)
             except Exception as e:
@@ -46,7 +46,7 @@ def delete_customers(jmsip, first, last, token):
 def get_node_and_devices(jmsip, token):
     import json, requests
     headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
-    url = "http://" + jmsip + ":8080/janus-integration/api/ext/parking/nodes/and/devices"
+    url = "http://" + str(jmsip) + ":8080/janus-integration/api/ext/parking/nodes/and/devices"
     try:
         nodes = requests.get(url, headers=headers, timeout=10.0)
         data = (json.loads(nodes.text)["items"])
@@ -57,7 +57,7 @@ def get_node_and_devices(jmsip, token):
 def get_all_actions(jmsip, token):
     import json, requests
     headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
-    url = "http://" + jmsip + ":8080/janus-integration/api/ext/action/get/all"
+    url = "http://" + str(jmsip) + ":8080/janus-integration/api/ext/action/get/all"
     try:
         actions = requests.get(url, headers=headers, timeout=10.0)
         data = (json.loads(actions.text)["items"])
@@ -67,11 +67,11 @@ def get_all_actions(jmsip, token):
         quit()
 def perform_action(jmsip, deviceId, actionId, reason, token):
     import json, requests
-    url = "http://" + jmsip + ":8080/janus-integration/api/ext/parking/node?id=" + str(deviceId) + "&device=true"
+    url = "http://" + str(jmsip) + ":8080/janus-integration/api/ext/parking/node?id=" + str(deviceId) + "&device=true"
     headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
     virtualParkingId = (json.loads(requests.get(url, headers=headers).text)["item"]["node"]["virtualParkingId"])
     actiondata = { "actionId": actionId , "deviceId": deviceId, "reason": reason, "virtualParkingId": virtualParkingId }
-    url = "http://" + jmsip + ":8080/janus-integration/api/ext/action/perform"
+    url = "http://" + str(jmsip) + ":8080/janus-integration/api/ext/action/perform"
     try:
         r = requests.post(url, json=actiondata, headers=headers, timeout=10.0)
         print(json.loads(r.text)["status"])
