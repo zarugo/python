@@ -1,5 +1,5 @@
 def login(jmsip, username, password):
-    import json, requests
+    import json, requests, sys
     auth_url = "http://" + str(jmsip) + ":8080/janus-integration/api/ext/login"
     log_headers = { "Content-Type": "application/json" , "Accept": "application/json"}
     logindata = { "username": username,	"password": password }
@@ -7,13 +7,13 @@ def login(jmsip, username, password):
         r = requests.post(auth_url, json=logindata, headers=log_headers, timeout=10.0)
         if r.status_code == 401:
             print("The user or password are not correct. Verify that the Third Party account is set up on JMS")
-            exit()
+            sys.exit(1)
         else:
             token = (json.loads(r.text)["item"]["token"]["value"])
             return token
     except Exception as e:
         print("Something went wrong, the error is " + str(e))
-        quit()
+        sys.exit(1)
 def delete_cards(jmsip, first, last, token):
         import requests
         headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
@@ -44,7 +44,7 @@ def delete_customers(jmsip, first, last, token):
 
 
 def get_node_and_devices(jmsip, token):
-    import json, requests
+    import json, requests, sys
     headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
     url = "http://" + str(jmsip) + ":8080/janus-integration/api/ext/parking/nodes/and/devices"
     try:
@@ -53,9 +53,9 @@ def get_node_and_devices(jmsip, token):
         return data
     except Exception as e:
         print("Something went wrong during the Nodes and Devices call, the error is " + str(e))
-        quit()
+        sys.exit(1)
 def get_all_actions(jmsip, token):
-    import json, requests
+    import json, requests, sys
     headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
     url = "http://" + str(jmsip) + ":8080/janus-integration/api/ext/action/get/all"
     try:
@@ -64,9 +64,9 @@ def get_all_actions(jmsip, token):
         return data
     except Exception as e:
         print("Something went wrong during the All Actions call, the error is " + str(e))
-        quit()
+        sys.exit(1)
 def perform_action(jmsip, deviceId, actionId, reason, token):
-    import json, requests
+    import json, requests, sys
     url = "http://" + str(jmsip) + ":8080/janus-integration/api/ext/parking/node?id=" + str(deviceId) + "&device=true"
     headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
     virtualParkingId = (json.loads(requests.get(url, headers=headers).text)["item"]["node"]["virtualParkingId"])
@@ -77,4 +77,4 @@ def perform_action(jmsip, deviceId, actionId, reason, token):
         print(json.loads(r.text)["status"])
     except Exception as e:
         print("Something went wrong, the error is " + str(e))
-        quit()
+        sys.exit(1)

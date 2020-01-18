@@ -51,4 +51,4 @@ print("The upload is done, please check on JMS that the customers are there. The
 
 a = input('Press a key to exit')
 if a:
-    exit(0)
+    sys.exit(0)

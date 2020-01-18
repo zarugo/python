@@ -1,4 +1,4 @@
-import jms
+import jms, sys
 
 jmsip = input("Type the ip of JMS:  ")
 username = input("Type the username of the third party:  ")
@@ -13,4 +13,4 @@ jms.delete_customers(jmsip, first, last, token)
 
 a = input('Press a key to exit')
 if a:
-    exit(0)
+    sys.exit(0)

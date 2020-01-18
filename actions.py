@@ -1,4 +1,4 @@
-import jms
+import jms, sys
 
 
 
@@ -26,7 +26,7 @@ while True:
         print("\n ---ID: %s NAME: %s\n\n" % tuple)
     deviceId = input("Please choose a device ID (\"q\" to exit): ")
     if deviceId == "q":
-        exit()
+        sys.exit(0)
     else:
         print("\nAvailable actions: ")
         for action in availableactions:
