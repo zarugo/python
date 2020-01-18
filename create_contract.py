@@ -35,7 +35,6 @@ with open(input_file, encoding="utf-8") as csvfile:
         create_url = "http://" + jmsip + ":8080/janus-integration/api/ext/card/create"
         headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token }
         data = (json.dumps(csv_lines, sort_keys=False, indent=4, separators=(",",": "), ensure_ascii=False))
-        print(data)
         try:
             r = requests.post(create_url, headers=headers, data=data, timeout=10.0)
             with open("create_contract_results.log", "a") as log:
