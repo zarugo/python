@@ -38,7 +38,7 @@ with open(input_file, encoding="utf-8") as csvfile:
         try:
             r = requests.post(create_url, headers=headers, data=data, timeout=10.0)
             with open("create_contract_results.log", "a") as log:
-                log.write( now.strftime("%Y-%m-%d %H:%M:%S") + "  Contract inserted: " + r.text + ' ' + "Response Code from JMS was: " + str(r.status_code) + "\n" )
+                log.write( now.strftime("%Y-%m-%d %H:%M:%S") + "  Contract inserted: " + csv_lines["customerFirstName"] + " " + csv_lines["customerLastName"] + r.text + ' ' + "Response Code from JMS was: " + str(r.status_code) + "\n" )
                 if r.status_code != 200:
                     print("An error occurred creating the contract for " + csv_lines["customerFirstName"] + ' ' + csv_lines["customerLastName"] + ", please check the log file")
                 else:
