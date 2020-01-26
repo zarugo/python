@@ -1,8 +1,16 @@
+import sys
+import json
+import requests
+import paramiko
+import shutil
+import os
+import re
+from glob import glob
+
 def usage():
     print("You must provide the IP address of the device you want to update" )
 
 def get_type(ip):
-    import json, requests
     url = "http://" + ip + ":65000/jps/api/status"
     try:
         r = requests.get(url, timeout=10.0)
@@ -66,17 +74,19 @@ def get_type(ip):
         return info
     except requests.exceptions.Timeout:
         print("The device type is unknown...make sure the JPSApplication is running on the device and the IP address is correct")
+        sys.exit(1)
     except requests.exceptions.ConnectionError:
          print("The device type is unknown...make sure the JPSApplication is running on the device and the IP address is correct")
+         sys.exit(1)
 
 def get_config(hw, appfld, webfld, script, login, device, workdir):
-    import paramiko
-    import shutil
-    #from contextlib import suppress
-    json_new = "./JPSApps_" + hw + "/JPSApplication/Resources/www/webcfgtool/" + webfld + "/ConfigData.json"
+    shutil.copytree("./JPSApps_" + hw, "./JPSApps")
+    json_new = "./JPSApps/JPSApplication/Resources/www/webcfgtool/" + webfld + "/ConfigData.json"
     json_orig = workdir + "/JPSApps/JPSApplication/Resources/www/webcfgtool/" + webfld + appfld + "/ConfigData.json"
+    scriptfile = "./JPSApps/JPSApplication/" + script + ".sh"
+    webfolders = [f.path for f in os.scandir("./JPSApps/JPSApplication/Resources/www/webcfgtool") if f.is_dir()]
+    webfolder = "./JPSApps/JPSApplication/Resources" + webfld
     shutil.copyfile(json_new, "./ConfigData_NEW.json")
-    print(json_orig)
     try:
         client = paramiko.SSHClient()
         client.load_system_host_keys()
@@ -87,8 +97,16 @@ def get_config(hw, appfld, webfld, script, login, device, workdir):
     finally:
         client.close()
 
-
-
+    for file in glob("./JPSApps/JPSApplication/*AppRun.sh"):
+        if file != scriptfile:
+            os.remove(file)
+    for file in glob("./JPSApps/JPSApplication/Resources/AdditionalData.json_*"):
+        os.remove(file)
+    for file in glob("./JPSApps/JPSApplication/Resources/www/webcfgtool/" + webfld + "/ConfigData.json_*"):
+        os.remove(file)
+    for folder in webfolders:
+        if re.match(r".*app", folder) and not re.match(r".*" + webfld, folder):
+            shutil.rmtree(folder)
 
 
 def update_script(appfld, webfld, workdir):
