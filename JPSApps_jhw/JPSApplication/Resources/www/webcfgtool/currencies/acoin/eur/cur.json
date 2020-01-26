@@ -1,0 +1,70 @@
+{
+  "CUR": {
+    "denominations": [
+      {
+        "_idx_": 0,
+        "id": 0,
+        "enabled": true,
+        "currency": "EUR",
+        "value": 2,
+        "moneycode": "EU200A"
+      },
+      {
+        "_idx_": 1,
+        "id": 1,
+        "enabled": true,
+        "currency": "EUR",
+        "value": 1,
+        "moneycode": "EU100A"
+      },
+      {
+        "_idx_": 2,
+        "id": 2,
+        "enabled": true,
+        "currency": "EUR",
+        "value": 0.5,
+        "moneycode": "EU050A"
+      },
+      {
+        "_idx_": 3,
+        "id": 3,
+        "enabled": true,
+        "currency": "EUR",
+        "value": 0.2,
+        "moneycode": "EU020A"
+      },
+      {
+        "_idx_": 4,
+        "id": 4,
+        "enabled": true,
+        "currency": "EUR",
+        "value": 0.1,
+        "moneycode": "EU010A"
+      },
+      {
+        "_idx_": 5,
+        "id": 5,
+        "enabled": false,
+        "currency": "EUR",
+        "value": 0.05,
+        "moneycode": "EU005A"
+      },
+      {
+        "_idx_": 6,
+        "id": 6,
+        "enabled": false,
+        "currency": "EUR",
+        "value": 0.02,
+        "moneycode": "EU002A"
+      },
+      {
+        "_idx_": 7,
+        "id": 7,
+        "enabled": false,
+        "currency": "EUR",
+        "value": 0.01,
+        "moneycode": "EU001A"
+      }
+    ]
+  }
+}

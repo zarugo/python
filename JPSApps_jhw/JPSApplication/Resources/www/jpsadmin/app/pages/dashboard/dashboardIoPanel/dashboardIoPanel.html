@@ -1,0 +1,152 @@
+<div class="buttons" ng-show="hasCrtclOpPerm()" style="padding-top:10px;padding-bottom:10px">
+	{{'SomT:'+somtmprt+'&deg;C, ConT:'+contmprt+'&deg;C, ConH:'+conhumid+'%, HalV:'+halversion}}
+</div>
+<uib-tabset>
+	<!-- ------------------------------------------------------- STATUS TAB -------------------------------------------------- -->		
+	<uib-tab heading="{{'_MAIN_DSHBRD_IOP_INPUTS_' | translate}}"  title="{{'_MAIN_DSHBRD_IOP_CLK2RFSH_' | translate}}" ng-click="refreshIOData()">
+		<div class="vertical-scroll">
+			<table class="table table-striped">
+			 <thead>
+			  <tr>
+				<th><strong>{{'_GENERIC_DESCR_'  | translate}}</strong></th>
+				<th><strong>{{'_MAIN_DSHBRD_IOP_FUNCTS_' | translate}}</strong></th>
+				<th><strong>{{'_GENERIC_IDX_'    | translate}}</strong></th>
+				<th><strong>{{'_GENERIC_STATUS_' | translate}}</strong></th>
+			  </tr>
+			 </thead>
+			 <tbody>
+			  <tr  ng-repeat="input in inputs | orderBy:'id'" ng-style="input.functions.indexOf('Undefined') == -1 ? {'color':'black'} : {'color':'grey'}">
+				<td>{{ input.description }}</td>
+				<td>{{ input.functions }}</td>
+				<td>{{ input.id }}</td>
+				<td>{{ input.status }}</td>
+			  </tr>
+			 </tbody>
+			</table>
+		</div>
+	</uib-tab>
+	<!-- ------------------------------------------------------- CONTROL TAB -------------------------------------------------- -->		
+	<uib-tab heading="{{'_MAIN_DSHBRD_IOP_OUTPUTS_' | translate}}"  title="{{'_MAIN_DSHBRD_IOP_CLK2RFSH_' | translate}}" ng-click="refreshIOData()">
+		<div class="vertical-scroll">
+			<table class="table table-striped">
+			 <thead>
+			  <tr>
+				<th><strong>{{'_GENERIC_DESCR_' | translate}}</strong></th>
+				<th><strong>{{'_MAIN_DSHBRD_IOP_FUNCTS_' | translate}}</strong></th>
+				<th><strong>{{'_GENERIC_IDX_' | translate}}</strong></th>
+				<th><strong>{{'_GENERIC_STATUS_' | translate}}</strong></th>
+				<th ng-show="hasCrtclOpPerm()"><strong>{{'_GENERIC_ACTIONS_' | translate}}</strong></th>
+			  </tr>
+			 </thead>
+			 <tbody>
+			  <tr  ng-repeat="output in outputs | orderBy:'id'" ng-style="output.functions.indexOf('Undefined') == -1 ? {'color':'black'} : {'color':'grey'}">
+				<td>{{ output.description }}</td>
+				<td>{{ output.functions }}</td>
+				<td>{{ output.id }}</td>
+				<td>{{ output.status }}</td>
+				<td ng-show="hasCrtclOpPerm()">
+				  <form editable-form name="rowform" class="form-buttons form-inline">
+					<button  ng-repeat="action in output.actions" title={{action}} type="button"  class="btn" ng-click="execAction(action)">
+					  <i class="ion-play"></i>
+					</button>
+				  </form>
+				</td>
+			  </tr>
+			 </tbody>
+			</table>
+		</div>
+	</uib-tab>
+	<!-- ------------------------------------------------------- OUT SCHED TAB -------------------------------------------------- -->		
+	<uib-tab heading="{{ '_MAIN_DSHBRD_IOP_SCHED_' | translate }}">
+		<uib-tabset type="pills">
+			<uib-tab id="{{activity.func}}" ng-repeat="activity in activities | orderBy:'entryid'" heading="{{activity.func}}" select="levTabSlctd(0, activity.func)">
+				<uib-tabset  vertical="true" type="pills">
+					<!-- ------------------------------------------------------- WHEN LIST TAB -------------------------------------------------- -->		
+					<uib-tab id="{{activity.func+'WhenList'}}" heading="{{ '_MAIN_DSHBRD_IOP_SCHED_WHNLST_' | translate }}"  select="levTabSlctd(1, (activity.func+'WhenList'))">
+						<div class="buttons" ng-show="hasCrtclOpPerm()" style="padding-top:10px;padding-bottom:10px">						
+							<button class="btn btn-warning" ng-click="onWhenSaveAllBtn($index, 0, setmodes.RstAll)">{{'_GENERIC_RESETALL_' | translate}}</button>
+							<button class="btn btn-danger" ng-click="onWhenSaveAllBtn($index, 0, setmodes.ClnAll)">{{'_GENERIC_CLEANALL_' | translate}}</button>
+							<button class="btn btn-success" ng-click="onWhenSaveAllBtn($index, 0, setmodes.CkAll)">{{'_GENERIC_CHECKALL_' | translate}}</button>
+						</div>
+						<table class="table table-bordered table-condensed">
+						 <thead>
+						  <tr>
+							<th><strong>{{'_GENERIC_IDX_' | translate}}</strong></th>
+							<th><strong>{{'_GENERIC_DAY_' | translate}}</strong></th>
+							<th><strong>{{'_GENERIC_TIME_' | translate}}</strong></th>
+							<th><strong>{{'_GENERIC_ENABLED_' | translate}}</strong></th>
+							<th ng-show="hasCrtclOpPerm()"><strong>{{'_GENERIC_ACTIONS_' | translate}}</strong></th>
+						  </tr>
+						 </thead>
+						 <tbody>
+						  <tr  ng-repeat="when in activity.whenlist | orderBy:'idx'" class="editable-row">
+							<td><span e-name="idx" e-form="rowform" edit-disabled="true">{{ when.idx }}</span></td>
+							<td><span editable-select="when.day" e-name="day" e-form="rowform" e-selectpicker e-ng-options="v as v for v in days">{{ getDayFrmIdx(when.day) || 'None' }}</span></td>
+							<td>
+								<span editable-text="when.time" e-name="time" e-form="rowform" e-required>{{ when.time || 'empty' }}</span>
+								<div class="error" ng-show="((rowform.$visible) && ( checkTime(rowform.$data.time) != ''))">{{ checkTime(rowform.$data.time) }}</div>
+							</td>
+							<td><span editable-select="when.enab" e-name="enab" e-form="rowform" e-selectpicker e-ng-options="v as v for v in [false,true]">{{ when.enab }}</span></td>
+							<td ng-show="hasCrtclOpPerm()">
+							  <form editable-form name="rowform" class="form-buttons form-inline">
+								<button type="button" ng-show="rowform.$visible" ng-disabled="(checkTime(rowform.$data.time) != '')" class="btn btn-danger editable-table-button btn-xs" ng-click="onWhenSaveBtn($parent.$index, $index, rowform, setmodes.SetSingle)">{{'_GENERIC_SAVE_' | translate}}</button>
+								<button type="button" ng-show="rowform.$visible" ng-click="rowform.$cancel()" class="btn btn-default editable-table-button btn-xs">{{'_GENERIC_CANCEL_' | translate}}</button>
+							  </form>
+							  <div class="buttons" ng-show="!rowform.$visible">
+								<button class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.$show()">{{'_GENERIC_EDIT_' | translate}}</button>
+								<button class="btn btn-warning editable-table-button btn-xs" ng-click="onWhenSaveBtn($parent.$index, $index, rowform, setmodes.RstSingle)">{{'_GENERIC_RESET_' | translate}}</button>
+								<button class="btn btn-danger editable-table-button btn-xs" ng-click="onWhenSaveBtn($parent.$index, $index, rowform, setmodes.ClnSingle)">{{'_GENERIC_CLEAN_' | translate}}</button>
+								<button class="btn btn-success editable-table-button btn-xs" ng-click="onWhenSaveBtn($parent.$index, $index, rowform, setmodes.CkSingle)">{{'_GENERIC_CHECK_' | translate}}</button>
+							  </div>
+							</td>
+						  </tr>
+						 </tbody>
+						</table>
+					</uib-tab>
+					<!-- ------------------------------------------------------- SPEC DAY LIST TAB -------------------------------------------------- -->		
+					<uib-tab id="{{activity.func+'SpecialDayList'}}" heading="{{ '_MAIN_DSHBRD_IOP_SCHED_SPCDAYLST_' | translate }}"  select="levTabSlctd(1, (activity.func+'SpecialDayList'))">
+						<div class="buttons" ng-show="hasCrtclOpPerm()" style="padding-top:10px;padding-bottom:10px">						
+							<button class="btn btn-warning" ng-click="onSpecDaySaveAllBtn($index, 0, setmodes.RstAll)">{{'_GENERIC_RESETALL_' | translate}}</button>
+							<button class="btn btn-danger" ng-click="onSpecDaySaveAllBtn($index, 0, setmodes.ClnAll)">{{'_GENERIC_CLEANALL_' | translate}}</button>
+						</div>
+						<table class="table table-bordered table-condensed">
+						 <thead>
+						  <tr>
+							<th><strong>{{'_GENERIC_IDX_' | translate}}</strong></th>
+							<th><strong>{{'_GENERIC_DATE_' | translate}}</strong></th>
+							<th><strong>{{'_GENERIC_DESCR_' | translate}}</strong></th>
+							<th><strong>{{'_GENERIC_ENABLED_' | translate}}</strong></th>
+							<th><strong>{{'_GENERIC_PERIODIC_' | translate}}</strong></th>
+							<th ng-show="hasCrtclOpPerm()"><strong>{{'_GENERIC_ACTIONS_' | translate}}</strong></th>
+						  </tr>
+						 </thead>
+						 <tbody>
+						  <tr  ng-repeat="specday in activity.specdaylist | orderBy:'idx'" class="editable-row">
+							<td><span e-name="idx" e-form="rowform" edit-disabled="true">{{ specday.idx }}</span></td>
+							<td>
+								<span editable-text="specday.date" e-name="date" e-form="rowform" e-required>{{ specday.date || 'empty' }}</span>
+								<div class="error" ng-show="((rowform.$visible) && ( checkDate(rowform.$data.date) != ''))">{{ checkDate(rowform.$data.date) }}</div>
+							</td>
+							<td><span editable-text="specday.descr" e-name="descr" e-form="rowform" e-required>{{ specday.descr || 'empty' }}</span></div></td>
+							<td><span editable-select="specday.enab" e-name="enab" e-form="rowform" e-selectpicker e-ng-options="v as v for v in [false,true]">{{ specday.enab }}</span></td>
+							<td><span editable-select="specday.periodic" e-name="periodic" e-form="rowform" e-selectpicker e-ng-options="v as v for v in [false,true]">{{ specday.periodic }}</span></td>
+							<td ng-show="hasCrtclOpPerm()">
+							  <form editable-form name="rowform" class="form-buttons form-inline">
+								<button type="button" ng-show="rowform.$visible" ng-disabled="(checkDate(rowform.$data.date) != '')" class="btn btn-danger editable-table-button btn-xs" ng-click="onSpecDaySaveBtn($parent.$index, $index, rowform, setmodes.SetSingle)">{{'_GENERIC_SAVE_' | translate}}</button>
+								<button type="button" ng-show="rowform.$visible" ng-click="rowform.$cancel()" class="btn btn-default editable-table-button btn-xs">{{'_GENERIC_CANCEL_' | translate}}</button>
+							  </form>
+							  <div class="buttons" ng-show="!rowform.$visible">
+								<button class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.$show()">{{'_GENERIC_EDIT_' | translate}}</button>
+								<button class="btn btn-warning editable-table-button btn-xs" ng-click="onSpecDaySaveBtn($parent.$index, $index, rowform, setmodes.RstSingle)">{{'_GENERIC_RESET_' | translate}}</button>
+								<button class="btn btn-danger editable-table-button btn-xs" ng-click="onSpecDaySaveBtn($parent.$index, $index, rowform, setmodes.ClnSingle)">{{'_GENERIC_CANCEL_' | translate}}</button>
+							  </div>
+							</td>
+						  </tr>
+						 </tbody>
+						</table>
+					</uib-tab>
+				</uib-tabset>
+			</uib-tab>
+		</uib-tabset>
+	</uib-tab>
+</uib-tabset>

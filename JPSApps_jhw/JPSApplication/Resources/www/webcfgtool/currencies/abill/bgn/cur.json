@@ -1,0 +1,62 @@
+{
+    "CUR": {
+        "denominations": [{
+                "_idx_": 0,
+                "id": 0,
+                "enabled": true,
+                "currency": "BGN",
+                "value": 2,
+                "moneycode": "1"
+            }, {
+                "_idx_": 1,
+                "id": 1,
+                "enabled": true,
+                "currency": "BGN",
+                "value": 5,
+                "moneycode": "2"
+            }, {
+                "_idx_": 2,
+                "id": 2,
+                "enabled": true,
+                "currency": "BGN",
+                "value": 10,
+                "moneycode": "3"
+            }, {
+                "_idx_": 3,
+                "id": 3,
+                "enabled": true,
+                "currency": "BGN",
+                "value": 20,
+                "moneycode": "4"
+            }, {
+                "_idx_": 4,
+                "id": 4,
+                "enabled": false,
+                "currency": "BGN",
+                "value": 50,
+                "moneycode": "5"
+            }, {
+                "_idx_": 5,
+                "id": 5,
+                "enabled": false,
+                "currency": "BGN",
+                "value": 100,
+                "moneycode": "6"
+            }, {
+                "_idx_": 6,
+                "id": 6,
+                "enabled": false,
+                "currency": "BGN",
+                "value": 200,
+                "moneycode": "7"
+            }, {
+                "_idx_": 7,
+                "id": 7,
+                "enabled": false,
+                "currency": "BGN",
+                "value": 0,
+                "moneycode": "8"
+            }
+        ]
+    }
+}

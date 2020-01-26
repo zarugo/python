@@ -1,0 +1,218 @@
+{
+	"schemauid":"oscc",
+	"title": "Scheduler Configurations",
+	"type": "object",
+	"options": { "disable_collapse":true},
+	"definitions": {
+		"weekdays": {
+			"type": "string",
+			"enum": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Bsn", "All", "None"],
+			"readonly": false
+		},
+		"functs": {
+			"type": "string",
+			"readonly": false
+		},
+		"communication": {
+			"title": "Communication",
+			"type": "object",
+			"properties": {
+				"spectype": {
+					"title": "Communication Spec. Type",
+					"type": "string",
+					"enum": ["SERIAL", "NETWORK"]
+				},
+				"url": {
+					"title": "Com URL",
+					"type": "string"
+				}
+			}
+		},
+		"gpioctrl": {
+			"title": "GpioCtrl",
+			"type": "object",
+			"properties": {
+				"spectype": {
+					"title": "Specific Type",
+					"type": "integer",
+					"minimum": 1,
+					"maximum": 4
+				},
+				"sharedpath": {
+					"title": "Module Shared Path",
+					"type": "string"
+				},
+				"pollingtimems": {
+					"title": "Polling Time (ms)",
+					"type": "integer",
+					"minimum": 50,
+					"maximum": 100
+				},
+				"cfgmasks": {
+					"title": "Config Raw Masks",
+					"type": "array", "format": "table",
+					"items": {
+						"type": "object",
+						"properties": {
+							"_idx_":     { "type":"integer", "readonly": true},									
+							"maskid": {
+								"title": "Maks Identifier",
+								"type": "string",
+								"enum": ["EnableMask", "InOutMask", "OutStatMask", "RiseEvtMask", "FallEvtMask"],
+								"readonly": false
+							},
+							"maskval": {
+								"title": "Hex Mask Value",
+								"type": "string",
+								"pattern": "^0x[A-Fa-f0-9]{8}$"
+							}
+						}
+					},
+					"minItems": 5,
+					"maxItems": 5
+				},
+				"communication": {
+					"$ref": "#/definitions/communication"
+				}
+			}
+		},
+		"ctrlpins": {
+			"type": "array", "format": "table",
+			"items": {
+				"type": "object",
+				"properties": {
+					"_idx_":     { "type":"integer", "readonly": true},
+					"funct": {
+						"title": "Function",
+						"$ref": "#/definitions/functs"
+					},
+					"id": {
+						"title": "Pin ID",
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255
+					},
+					"activest": {
+						"title": "StartMode",
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 1
+					},
+					"lowperiodms": {
+						"title": "LowTime(ms)",
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 10000
+					},
+					"highperiodms": {
+						"title": "HighTime(ms)",
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 10000
+					},
+					"pulseno": {
+						"title": "PulsesNo",
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 10000
+					}
+				}
+			},
+			"minItems": 0,
+			"maxItems": 50
+		}
+	},
+	"properties": {
+		"outscdservice": {
+			"title": "Scheduler",
+			"type": "object",
+			"properties": {
+				"spectype": {
+					"title": "Specific Type",
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 1
+				},
+				"checkinterval": {
+					"title": "Check Interval (ms)",
+					"type": "integer",
+					"minimum": 1000,
+					"maximum": 59000
+				},
+				"gpioctrl": {
+					"$ref": "#/definitions/gpioctrl"
+				},
+				"functsdescr": {
+					"title": "Functions Description",
+					"type": "object",
+					"properties": {
+						"ctrlpins": {
+							"$ref": "#/definitions/ctrlpins"
+						}
+					}
+				},
+				"scheddescr": {
+					"title": "Scheduler Activities",
+					"type": "object",
+					"properties": {
+						"activities": {
+							"type": "array", "format": "table",
+							"items": {
+								"type": "object",
+								"properties": {
+									"_idx_":     { "type":"integer", "readonly": true},
+									"funct": {
+										"$ref": "#/definitions/functs"
+									},
+									"when": {
+										"type": "array", "format": "table",
+										"items": {
+											"type": "object",
+											"properties": {
+												"_idx_":     { "type":"integer", "readonly": true},
+												"day": {
+													"$ref": "#/definitions/weekdays"
+												},
+												"time": {
+													"type": "string",
+													"pattern":"^([0-9]|0[0-9]|1[0-9]|2[0-3]){2}:[0-5][0-9]$"
+												},
+												"enabled": {
+													"type": "boolean"
+												}
+											}
+										}
+									},
+									"specdays": {
+										"type": "array", "format": "table",
+										"items": {
+											"type": "object",
+											"properties": {											
+												"_idx_":     { "type":"integer", "readonly": true, "default": "{{i}}"},
+												"date": {
+													"type": "string",
+													"pattern":"^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{2}$"
+												},
+												"descr": {
+													"type": "string"
+												},
+												"periodic": {
+													"type": "boolean"
+												},
+												"enabled": {
+													"type": "boolean"
+												}
+											}
+										}
+									}
+								}
+							},
+							"minimum": 1,
+							"maximum": 10
+						}
+					}
+				}
+			}
+		}
+	}
+}

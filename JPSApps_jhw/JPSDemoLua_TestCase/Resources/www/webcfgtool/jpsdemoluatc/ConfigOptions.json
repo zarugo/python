@@ -1,0 +1,265 @@
+{
+	"form":{
+		"attributes":{
+			"action":"/webcfgtool",
+			"method":"post"
+		},
+		"buttons":{
+			"validate":{
+				"title": "Validate",
+				"click": function() {
+					var val = this.getValue();
+					if (this.isValid(true)) {
+						alert("The data model is valid!");
+					} else {
+						var errors = "";
+						$(".alpaca-invalid").each(function(){
+							errors = errors +";\n"+$(this).attr("data-alpaca-field-path");
+						});
+						alert("Invalid value in: " + errors);
+					}
+				}
+			},
+			"submit":{
+				"title": "Send Configuration",
+				"click": function() {
+					var val = this.getValue();
+					if (this.isValid(true)) {
+						var myjson= JSON.stringify(val, null, "  ");
+						var blob = new Blob([myjson], {type: "application/json"});
+						var filename = 'ConfigData.json.def';
+						var formData = new FormData();
+						formData.append('file', new File([blob], filename));
+						var request = new XMLHttpRequest();
+						request.open("POST", "/webcfgtool");
+						request.send(formData);
+					} else {
+						alert("Invalid value: " + JSON.stringify(val, null, "  "));
+					}
+				}
+			}
+		}
+	},
+	"fields":
+	{
+		"application":
+		{
+			"fields":
+			{	
+				"logmaxage":{"helper":"The maximum log files retention in days in [1,365]."},
+				"modules" :
+				{
+					"fields":
+					{
+						"gpioctrl":
+						{
+							"collapsible":true,
+							"collapsed":true,
+							"helper": "Here you can set the properties of the currently used GPIO controller",
+							"fields":
+							{
+								"spectype":{ "helper": "Options: '0' =  Gpio Ctrl Not Present, '1' =  KeyBoard, '2' =  RaspberryPi, '3' =  EbbSimulator, '4' = EbbConnector" },
+								"pollingtimems":{ "helper": "min 50 ms, max 100" },
+								"cfgmasks":{"helper": "Here you can configure the basic GPIO controller masks","toolbarSticky":true,"type":"table","showActionsColumn":true},
+								"communication":{"collapsible":true,"collapsed":true,"fields":{"spectype":{"disabled":false},"url":{"helper":"IP:PORT"}}}
+							},
+						},
+						"httpserver": {"collapsible":true, "collapsed":true, "fields": { "communication": { "collapsible":true, "collapsed":true, "fields": {"spectype":{"type":"hidden"}, "url":{"helper": "IP:PORT"}}}}},
+						"httpclient": {"collapsible":true, "collapsed":true, "fields": { "communication": { "collapsible":true, "collapsed":true, "fields": {"spectype":{"type":"hidden"}, "url":{"helper": "IP:PORT"}}}}},
+						"display":
+						{
+							"collapsible":true,
+							"collapsed":true,
+							"fields":
+							{
+								"spectype":{"helper": "Options: '0' =  Display Not Present, '1' =  EGU, '2' =  ZEGU"},
+								"periphmode":{"helper": "Options: '0' = DispModeLe, '1' = DispModeLx, '2' = DispModeAps, '3' = DispModeApl"},
+								"dateformat":{"helper": "Options: '0' =  EU, '1' =  US"},
+								"runmodests": {"collapsible":true, "collapsed":true, "type":"table","showActionsColumn":true},
+								"communication": { "collapsible":true, "collapsed":true, "fields": { "url":{"helper": "SERIAL=COMNAME[:BOUDRATE][:DATABITS][:PARITY][:STOPBITS][:FLOWCTRL], NETWORK=IP:PORT"} } }
+							}
+						},
+						"usrpassservice":
+						{
+							"collapsible":true,
+							"collapsed":true,
+							"fields":
+							{
+								"spectype":{"helper": "Options: '0' =  UsrPass Service Not Present, '1' = UsrPass Service Present"},
+								"proxyreaders":
+								{
+									"collapsible":true,
+									"collapsed":true,
+									"helper": "Here you can set the properties of each Proxy Reader",
+									"toolbarSticky":true,
+									"fields":
+									{
+										"item" :
+										{
+											"fields":
+											{
+												"spectype":{"helper": "Options: '0' =  Not Present, '1' =  ZeagHub, '2' =  UhfAt4"},
+												"communication": { "collapsible":true, "collapsed":true, "fields": { "url":{"helper": "SERIAL=COMNAME[:BOUDRATE][:DATABITS][:PARITY][:STOPBITS][:FLOWCTRL], NETWORK=IP:PORT"} } }
+											}
+										}
+									}
+								},													
+								"bcreader":
+								{
+									"collapsible":true,
+									"collapsed":true,
+									"fields":
+									{
+										"spectype":{"helper": "Options: '0' =  Not Present, '1' =  GryphonGFS4400, '2' =  KeyBrdEmu"},
+										"communication": { "collapsible":true, "collapsed":true, "fields": { "url":{"helper": "SERIAL=COMNAME[:BOUDRATE][:DATABITS][:PARITY][:STOPBITS][:FLOWCTRL], NETWORK=IP:PORT"} } }
+									}
+								},
+								"ble":
+								{
+									"collapsible":true,
+									"collapsed":true,
+									"fields":
+									{
+										"spectype":{"helper": "Options: '0' =  Not Present, '1' =  Present"},
+										"parkbrand":{"helper": "Options: '0' =  FAAC, '1' =  ZEAG, '2' =  DATAPARK"},
+										"periphmode":{"helper": "Options: '0' =  ENTRANCE, '1' =  EXIT, '2' =  APM_QR_ON_SMARTPHONE, '3' = APM_QR_ON_APM, '4' = APM_ON_PURE_BLE, '5' = APM_ON_NFC"},
+										"runmodests": { "collapsible":true, "collapsed":true, "fields": { "item" : { "fields": { "runmode":{ "disabled":true }, } } } },
+										"communication": { "collapsible":true, "collapsed":true, "fields": { "url":{"helper": "SERIAL=COMNAME[:BOUDRATE][:DATABITS][:PARITY][:STOPBITS][:FLOWCTRL], NETWORK=IP:PORT"} } }
+									}
+								},
+								"printer":
+								{
+									"collapsible":true,
+									"collapsed":true,
+									"fields":
+									{
+										"spectype":{"helper": "Options: '0' =  Not Present, '1' =  HengstlerX56"},
+										"communication": { "collapsible":true, "collapsed":true, "fields": { "url":{"helper": "SERIAL=COMNAME[:BOUDRATE][:DATABITS][:PARITY][:STOPBITS][:FLOWCTRL], NETWORK=IP:PORT"} } }
+									}
+								},
+								"otb2":
+								{
+									"collapsible":true,
+									"collapsed":true,
+									"fields":
+									{
+										"spectype":{"helper": "Options: '0' =  Not Present, '1' =  Present"},
+										"deepinit":{"helper": "Options: '0' =  Full Data Load Disabled, '1' =  Full Data Load Enabled"},
+										"ejectmode":{"helper": "Options: '0' =  Front Partial, '1' =  Front Full, '2' =  Rear, '3' =  Bottom"},
+										"communication": { "collapsible":true, "collapsed":true, "fields": { "url":{"helper": "SERIAL=COMNAME[:BOUDRATE][:DATABITS][:PARITY][:STOPBITS][:FLOWCTRL], NETWORK=IP:PORT"} } },
+										"fonts":{"collapsible":true, "collapsed":true, "type":"table","showActionsColumn":true, "toolbarSticky":true},
+										"logos":{"collapsible":true, "collapsed":true, "type":"table","showActionsColumn":true, "toolbarSticky":true},
+										"rois":{"collapsible":true, "collapsed":true, "type":"table", "showActionsColumn":true, "toolbarSticky":true}
+									}
+								}
+							}
+						},
+						"paymentservice":
+						{
+							"collapsible":true,
+							"collapsed":true,
+							"fields":
+							{
+								"spectype":{"helper": "Options: '0' =  Not Present, '1' = Present"},
+								"pymtmode": {"helper": "Options: '0' =  Cash, '1' = Pos, '2' = Cash&Pos"},
+								"cngalgo":  {"helper": "Options: '0' =  Minimize Pieces, '1' = Balanced Pieces"},
+								"devices":
+								{
+									"collapsible":true,
+									"collapsed":true, 
+									"fields": 
+									{ 
+										"cpgw": 
+										{
+											"collapsible":true,
+											"collapsed":true,
+											"fields":
+											{
+												"spectype":{"helper": "Options: '0' =  Not Present, '1' = Present"},
+												"src":{"helper": "The user friendly name of the CPGW"},
+												"dst":{"helper": "The user friendly name of the target treminal"},
+												"communication": { "collapsible":true, "collapsed":true, "fields": { "url":{"helper": "NETWORK=IP:PORT"} } }
+											}
+										},											
+										"sgp":
+										{
+											"collapsible":true,
+											"collapsed":true,
+											"fields":
+											{
+												"spectype":{"helper": "Options: '0' =  Not Present, '1' =  Present"},
+												"core":
+												{
+													"collapsible":true,"collapsed":true,
+													"fields":
+													{
+														"gpioctrl":
+														{
+															"collapsible":true,
+															"collapsed":true,
+															"helper": "Here you can set the properties of the curently used GPIO controller",
+															"fields":
+															{
+																"spectype":{ "helper": "Options: '0' =  Gpio Ctrl Not Present, '1' =  KeyBoard, '2' =  RaspberryPi, '3' =  EbbSimulator, '4' = EbbConnector" },
+																"pollingtimems":{ "helper": "min 50 ms, max 100" },
+																"cfgmasks":{"collapsible":true,"collapsed":true,"helper": "Here you can configure the basic GPIO controller masks","toolbarSticky":true,"type":"table","showActionsColumn":false},
+																"communication": { "collapsible":true, "collapsed":true, "fields": {"spectype":{"disabled":false}, "url":{"helper": "IP:PORT"}}}
+															}
+														},
+														"statpins": { "collapsible":true, "collapsed":true,  "type":"table", "showActionsColumn":true},
+														"ctrlpins": { "collapsible":true, "collapsed":true,  "type":"table", "showActionsColumn":true}
+													}
+												},
+												"acoin":{"collapsible":true,"collapsed":true,
+														 "fields":{"spectype":{"helper": "Options: '0' =  Not Present, '1' = Mei(Plus Matic Cfg), '2' = EagleV2(Plus Matic Cfg), '3' = EagleV2(EBB Cfg)"},"denominations":{"collapsible":true,"collapsed":true,"type":"table","showActionsColumn":false},"communication": { "collapsible":true, "collapsed":true, "fields": { "url":{"helper": "SERIAL=COMNAME[:BOUDRATE][:DATABITS][:PARITY][:STOPBITS][:FLOWCTRL], NETWORK=IP:PORT"}}}}},
+												"abill":{"collapsible":true,"collapsed":true,
+														 "fields":{"spectype":{"helper": "Options: '0' =  Not Present, '2' = Mei SC83"},"denominations":{"collapsible":true,"collapsed":true,"type":"table","showActionsColumn":false},"communication": { "collapsible":true, "collapsed":true, "fields": { "url":{"helper": "SERIAL=COMNAME[:BOUDRATE][:DATABITS][:PARITY][:STOPBITS][:FLOWCTRL], NETWORK=IP:PORT"}}}}},
+												"dcoin":{"collapsible":true,"collapsed":true,
+														 "fields":{"spectype":{"helper": "Options: '0' =  Not Present, '1' = Old (Plus Matic Cfg), '2' = Microard X5 (EBB Cfg)"},"denominations":{"collapsible":true,"collapsed":true,"type":"table","showActionsColumn":false},"communication": { "collapsible":true, "collapsed":true, "fields": { "url":{"helper": "SERIAL=COMNAME[:BOUDRATE][:DATABITS][:PARITY][:STOPBITS][:FLOWCTRL], NETWORK=IP:PORT"}}}}},
+												"dbill":{"collapsible":true,"collapsed":true,
+														 "fields":{"spectype":{"helper": "Options: '0' =  Not Present"},"denominations":{"collapsible":true,"collapsed":true,"type":"table","showActionsColumn":false},"communication": { "collapsible":true, "collapsed":true, "fields": { "url":{"helper": "SERIAL=COMNAME[:BOUDRATE][:DATABITS][:PARITY][:STOPBITS][:FLOWCTRL], NETWORK=IP:PORT"}}}}},
+												"cashmngr":{"collapsible":true,"collapsed":true,
+															"fields":{
+															"persistentdata":{"collapsible":true, "collapsed":true, "fields": {"dbfilesizekb": {"type":"hidden"}, "dbtables": {"collapsible":true, "collapsed":true, "type":"table","showActionsColumn":true}}},
+															"coins":{"collapsible":true,"collapsed":true,"type":"table","showActionsColumn":false, "fields":{"srcs":{"collapsible":true,"collapsed":true,"type":"table","showActionsColumn":true}}},
+															"bills":{"collapsible":true,"collapsed":true,"type":"table","showActionsColumn":false, "fields":{"srcs":{"collapsible":true,"collapsed":true,"type":"table","showActionsColumn":true}}}}}
+											}
+										}
+									}
+								}
+							}
+						},
+						"tariffsservice":
+						{
+							"collapsible":true, 
+							"collapsed":true,
+							"fields": { "httpserver": {"collapsible":true, "collapsed":true, "fields": { "communication": { "collapsible":true, "collapsed":true, "fields": {"spectype":{"type":"hidden"}, "url":{"helper": "IP:PORT"}}}}}},
+						},
+						"outschedservice":
+						{
+							"collapsible":true, 
+							"collapsed":true,
+							"fields": {
+								"gpioctrl":
+								{
+									"collapsible":true,
+									"collapsed":true,
+									"helper": "Here you can set the properties of the curently used GPIO controller",
+									"fields":
+									{
+										"spectype":{ "helper": "Options: '0' =  Gpio Ctrl Not Present, '1' =  KeyBoard, '2' =  RaspberryPi, '3' =  EbbSimulator, '4' = EbbConnector" },
+										"pollingtimems":{ "helper": "min 50 ms, max 100" },
+										"cfgmasks":{"collapsible":true,"collapsed":true,"helper": "Here you can configure the basic GPIO controller masks","toolbarSticky":true,"type":"table","showActionsColumn":false},
+										"communication": { "collapsible":true, "collapsed":true, "fields": {"spectype":{"disabled":false}, "url":{"helper": "IP:PORT"}}}
+									}
+								},
+								"ctrlpins":   {"collapsible":true, "collapsed":true,  "type":"table", "showActionsColumn":true},
+								"activities": {"collapsible":true, "collapsed":true,  "type":"table", "showActionsColumn":true}
+							}
+						}
+					}
+				}									
+			}
+		}
+	}
+}

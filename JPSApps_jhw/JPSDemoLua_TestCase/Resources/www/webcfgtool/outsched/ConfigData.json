@@ -1,0 +1,328 @@
+{
+	"outscdservice": {
+		"spectype": 0,
+		"checkinterval": 37000,
+		"gpioctrl": {
+			"spectype": 4,
+			"sharedpath": "application/modules/gpioctrl",
+			"pollingtimems": 50,
+			"cfgmasks": [{
+					"maskid": "EnableMask",
+					"maskval": "0x00FF00FF"
+				}, {
+					"maskid": "InOutMask",
+					"maskval": "0x000000FF"
+				}, {
+					"maskid": "OutStatMask",
+					"maskval": "0x000000FF"
+				}, {
+					"maskid": "RiseEvtMask",
+					"maskval": "0x00FF0000"
+				}, {
+					"maskid": "FallEvtMask",
+					"maskval": "0x00FF0000"
+				}
+			],
+			"communication": {
+				"spectype": "NETWORK",
+				"url": "192.168.0.0:2:2:6"
+			}
+		},
+		"functsdescr": {
+			"ctrlpins": [{
+					"funct": "OpenMainDoor",
+					"id": 0,
+					"activest": 1,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"funct": "CloseMainDoor",
+					"id": 0,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"funct": "AllLightsOn",
+					"id": 1,
+					"activest": 1,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"funct": "AllLightsOff",
+					"id": 1,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"funct": "@OccFull@",
+					"id": 255,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"funct": "#OccFull#",
+					"id": 255,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"funct": "@Full@",
+					"id": 255,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"funct": "#Full#",
+					"id": 255,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}
+			]
+		},
+		"scheddescr": {
+			"activities": [{
+					"funct": "OpenMainDoor",
+					"when": [{
+							"day": "Sun",
+							"time": "06:30",
+							"enabled": false
+						}, {
+							"day": "Mon",
+							"time": "06:30",
+							"enabled": true
+						}, {
+							"day": "Tue",
+							"time": "06:30",
+							"enabled": true
+						}, {
+							"day": "Wed",
+							"time": "06:30",
+							"enabled": true
+						}, {
+							"day": "Thu",
+							"time": "06:30",
+							"enabled": true
+						}, {
+							"day": "Fri",
+							"time": "06:30",
+							"enabled": true
+						}, {
+							"day": "Sat",
+							"time": "06:30",
+							"enabled": false
+						}
+					],
+					"specdays": [{
+							"date": "01/01/18",
+							"descr": "Capodanno",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "06/01/18",
+							"descr": "Befana",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "01/04/18",
+							"descr": "Pasqua",
+							"periodic": false,
+							"enabled": true
+						}, {
+							"date": "02/04/18",
+							"descr": "Pasquetta",
+							"periodic": false,
+							"enabled": true
+						}, {
+							"date": "01/05/18",
+							"descr": "1Maggio",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "02/06/18",
+							"descr": "Repubblica",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "15/08/18",
+							"descr": "Ferragosto",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "01/11/18",
+							"descr": "Ognissanti",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "08/12/18",
+							"descr": "Immacolata",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "25/12/18",
+							"descr": "Natale",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "26/12/18",
+							"descr": "SantoStefano",
+							"periodic": true,
+							"enabled": true
+						}
+					]
+				}, {
+					"funct": "CloseMainDoor",
+					"when": [{
+							"day": "Sun",
+							"time": "18:30",
+							"enabled": false
+						}, {
+							"day": "Mon",
+							"time": "18:30",
+							"enabled": true
+						}, {
+							"day": "Tue",
+							"time": "18:30",
+							"enabled": true
+						}, {
+							"day": "Wed",
+							"time": "18:30",
+							"enabled": true
+						}, {
+							"day": "Thu",
+							"time": "18:30",
+							"enabled": true
+						}, {
+							"day": "Fri",
+							"time": "18:30",
+							"enabled": true
+						}, {
+							"day": "Sat",
+							"time": "18:30",
+							"enabled": false
+						}
+					],
+					"specdays": [{
+							"date": "01/01/18",
+							"descr": "Capodanno",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "06/01/18",
+							"descr": "Befana",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "01/04/18",
+							"descr": "Pasqua",
+							"periodic": false,
+							"enabled": true
+						}, {
+							"date": "02/04/18",
+							"descr": "Pasquetta",
+							"periodic": false,
+							"enabled": true
+						}, {
+							"date": "01/05/18",
+							"descr": "1Maggio",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "02/06/18",
+							"descr": "Repubblica",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "15/08/18",
+							"descr": "Ferragosto",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "01/11/18",
+							"descr": "Ognissanti",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "08/12/18",
+							"descr": "Immacolata",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "25/12/18",
+							"descr": "Natale",
+							"periodic": true,
+							"enabled": true
+						}, {
+							"date": "26/12/18",
+							"descr": "SantoStefano",
+							"periodic": true,
+							"enabled": true
+						}
+					]
+				}, {
+					"funct": "AllLightsOn",
+					"when": [{
+							"day": "All",
+							"time": "18:30",
+							"enabled": true
+						}
+					],
+					"specdays": []
+				}, {
+					"funct": "AllLightsOff",
+					"when": [{
+							"day": "All",
+							"time": "08:30",
+							"enabled": true
+						}
+					],
+					"specdays": []
+				}, {
+					"funct": "@OccFull@",
+					"when": [{
+							"day": "All",
+							"time": "20:30",
+							"enabled": true
+						}
+					],
+					"specdays": []
+				}, {
+					"funct": "#OccFull#",
+					"when": [{
+							"day": "All",
+							"time": "07:30",
+							"enabled": true
+						}
+					],
+					"specdays": []
+				}, {
+					"funct": "@Full@",
+					"when": [{
+							"day": "All",
+							"time": "08:30",
+							"enabled": true
+						}
+					],
+					"specdays": []
+				}, {
+					"funct": "#Full#",
+					"when": [{
+							"day": "All",
+							"time": "09:30",
+							"enabled": true
+						}
+					],
+					"specdays": []
+				}
+			]
+		}
+	}
+}

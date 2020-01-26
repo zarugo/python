@@ -1,0 +1,79 @@
+<uib-tabset>
+	<!-- ------------------------------------------------------- STATUS TAB -------------------------------------------------- -->		
+	<uib-tab ng-click="refreshBillData()" heading="{{ '_GENERIC_STATUS_' | translate }}">
+		<div class="row pie-charts">
+		  <div class="pie-chart-item-container" ng-repeat="billchart in billcharts">
+			<div class="pie-chart-item">
+				  <div class="description">
+					  <br><em><b><span ng-show="billchart.value == ''">{{ '_MAIN_CASHIER_GENERIC_SAFE_BOX_' | translate }} - </span><span ng-show="billchart.value != ''">H</span>{{ billchart.descr }} <strong>{{ billchart.value }}</strong> {{ billchart.currency }}</b></em></br>
+					  <br>{{ '_GENERIC_TOT_' | translate }}: <b>{{ billchart.total }}</b> {{ billchart.currency }}
+						  <span ng-show="(billchart.details.length > 0)">
+								<a href="" title="{{ '_GENERIC_DETAILS_' | translate }}" ng-click="details(billchart.details, billchart.currency)">
+									<i class="ion-search"></i>
+								</a>
+						  </span>
+					  </br>
+					  <br>{{ '_GENERIC_PCS_' | translate }}: {{ billchart.pieces }} </br>
+					  <br>{{ '_GENERIC_MAX_' | translate }}: {{ billchart.capacity }}</br>
+					  <br><div class="chart" rel="{{ billchart.color }}" data-percent="50" ng-click="refreshBillData()"><span class="percent"></span></div></br>
+				  </div>
+				  <i class="chart-icon i-{{ chart.icon }}"></i>
+			</div>
+		  </div>
+		</div>
+		<div ng-show="b2b">
+		<button  title="Get diagnostic information for the Bill2Bill device" type="button"  class="btn" ng-click="getB2BInfo()">GET BILL2BILL INFO</button>
+		</div>
+	</uib-tab>
+	<!-- ------------------------------------------------------- CONTROL TAB -------------------------------------------------- -->		
+	<uib-tab ng-click="refreshBillData()" heading="{{ '_GENERIC_CONTROL_' | translate }}">
+	<div ng-show="b2b">
+		<button  title="Start Loading" type="button"  class="btn" ng-click="enable(1)">START LOADING</button>
+		<button  title="Stop Loading"  type="button"  class="btn" ng-click="enable(0)">STOP LOADING</button>
+	</div>
+	<table class="table table-bordered table-hover table-condensed">
+	  <tr>
+		<td>{{'_GENERIC_IDX_' | translate}}</td>
+		<td>{{'_GENERIC_NAME_' | translate}}</td>
+		<td>{{'_GENERIC_PIECES_' | translate}}</td>
+		<td>{{'_GENERIC_ACTIONS_' | translate}}</td>
+	  </tr>
+	  <tr  ng-repeat="billchart in billcharts" class="editable-row">
+		<td>{{ billchart.id }}</td>
+		<td><span ng-show="billchart.value == ''">{{ '_MAIN_CASHIER_GENERIC_SAFE_BOX_' | translate }} - </span><span ng-show="billchart.value != ''">H</span>{{ billchart.descr }}<strong>{{ billchart.value }}</strong> {{ billchart.currency }}</td>
+		<td>
+			<span e-name="pcs" editable-number="billchart.pieces" e-form="rowform" edit-disabled="false">{{ billchart.pieces }}</span>
+			<div class="error" ng-show="(rowform.$data.pcs < 0)">negative</div>
+			<div class="error" ng-show="(rowform.$data.pcs == null)">null</div>
+			<div class="error" ng-show="(checkIntVal(rowform.$data.pcs))" >invalid value</div>
+		</td>
+		<td>
+		  <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == operator">
+			<div class="btn-group">
+				<button  title="{{ '_MAIN_CASHIER_GENERIC_DISPENSE_' | translate }}" type="button"  class="btn" ng-click="dispense($index,rowform.$data)" ng-disabled="(({{ billchart.value == ''}}) || (rowform.$data.pcs == null) || (rowform.$data.pcs <= 0) || checkIntVal(rowform.$data.pcs))">
+				  <i class="ion-ios-upload ion-2x"></i><br>D</br>
+				</button>
+				<button title="{{ '_MAIN_CASHIER_GENERIC_LOAD_' | translate }}" type="button"  class="btn" ng-click="reload($index,rowform.$data)" ng-disabled="(({{ billchart.value == ''}}) || (rowform.$data.pcs == null) || (rowform.$data.pcs <= 0) || checkIntVal(rowform.$data.pcs) || billchart.b2b)">
+				  <i class="ion-ios-download ion-2x"></i><br>L</br>
+				</button>
+			</div>
+			<div class="btn-group">
+				<button title="{{ '_MAIN_CASHIER_GENERIC_REPLACE_' | translate }}" type="button"  class="btn" ng-click="replace($index,rowform.$data)" ng-disabled="(({{ billchart.value == ''}}) || (rowform.$data.pcs == null) || (rowform.$data.pcs < 0) || checkIntVal(rowform.$data.pcs) || billchart.b2b)">
+				  <i class="ion-ios-loop-strong ion-2x"></i><br>R</br>
+				</button>
+				<button title="{{ '_MAIN_CASHIER_GENERIC_EMPTY_' | translate }}" type="button"  class="btn" ng-click="empty($index,rowform.$data)" ng-disabled="((rowform.$data.pcs == null) || (rowform.$data.pcs < 0) || checkIntVal(rowform.$data.pcs) || (billchart.b2b && ({{ billchart.value != ''}})))">
+				  <i class="ion-log-out ion-2x"></i><br>E</br>
+				</button>
+			</div>
+			<div class="btn-group" ng-show="billchart.b2b">
+				<button title="{{ '_MAIN_CASHIER_GENERIC_UNLOAD_' | translate }}" type="button"  class="btn" ng-click="unload($index,rowform.$data)" ng-disabled="(({{ billchart.value == ''}}) || (rowform.$data.pcs == null) || (rowform.$data.pcs < 0) || checkIntVal(rowform.$data.pcs) || !billchart.b2b)">
+				<i class="ion-ios-download"></i><br>U</br>
+				</button>
+			</div>
+		  </form>
+		</td>
+	  </tr>
+	</table>
+	</uib-tab>
+</uib-tabset>
+

@@ -1,0 +1,1134 @@
+<JPSDataSignature>
+  <!-- Data Signature Code Description -->
+  <DataSignatureFormat>
+    <Field name = "Applications"  bit_mask="0xF8000000" bit_idx="27" bit_size="5">
+      <Opt name="*"                                       value = "0"     jblclass="true"/>
+      <Opt name="AppLe"                                   value = "1"     jblclass="true"/>
+      <Opt name="AppDbLe"                                 value = "2"     jblclass="true"/>
+      <Opt name="AppLx"                                   value = "3"     jblclass="true"/>
+      <Opt name="AppDbLx"                                 value = "4"     jblclass="true"/>
+      <Opt name="AppLs"                                   value = "5"     jblclass="true"/>
+      <Opt name="AppAps"                                  value = "6"     jblclass="true"/>
+      <Opt name="AppApc"                                  value = "7"     jblclass="true"/>
+      <Opt name="AppApl"                                  value = "8"     jblclass="true"/>
+      <Opt name="AppDr"                                   value = "9"     jblclass="true"/>
+      <Opt name="AppOc"                                   value = "10"    jblclass="true"/>
+      <Opt name="AppFc"                                   value = "11"    jblclass="true"/>
+      <Opt name="AppLxPos"                                value = "12"    jblclass="true"/>
+      <Opt name="AppLxCash"                               value = "13"    jblclass="true"/>
+      <Opt name="AppOv"                                   value = "14"    jblclass="true"/>
+    </Field>
+
+    <Field name = "Services"     bit_mask="0x07C00000" bit_idx="22" bit_size="5">
+      <Opt name="*"                                       value = "0"     jblclass="false"/>
+      <Opt name="SrvLane"                                 value = "1"     jblclass="false"/>
+      <Opt name="SrvPayment"                              value = "2"     jblclass="false"/>
+      <Opt name="SrvUsrPass"                              value = "3"     jblclass="false"/>
+      <Opt name="SrvTariffs"                              value = "4"     jblclass="false"/>
+      <Opt name="SrvJBL"                                  value = "5"     jblclass="false"/>
+      <Opt name="SrvHttpServer"                           value = "6"     jblclass="false"/>
+      <Opt name="SrvHttpClient"                           value = "7"     jblclass="false"/>
+      <Opt name="SrvLocalDB"                              value = "8"     jblclass="false"/>
+      <Opt name="SrvJPSAdmin"                             value = "9"     jblclass="false"/>
+      <Opt name="SrvOutSched"                             value = "10"    jblclass="false"/>
+      <Opt name="SrvUi"                                   value = "11"    jblclass="false"/>
+      <Opt name="SrvLogging"                              value = "12"    jblclass="false"/>
+      <Opt name="SrvConfiguration"                        value = "13"    jblclass="false"/>
+      <Opt name="SrvAccessControl"                        value = "14"    jblclass="false"/>
+    </Field>
+
+    <Field name = "Devices"      bit_mask="0x003FC000" bit_idx="14" bit_size="8">
+      <Opt name="*"                                       value = "0"     jblclass="false"/>
+      <Opt name="DevPrinter"                              value = "1"     jblclass="false"/>
+      <Opt name="DevBCReader"                             value = "2"     jblclass="false"/>
+      <Opt name="DevDisplay"                              value = "3"     jblclass="false"/>
+      <Opt name="DevBarrier"                              value = "4"     jblclass="false"/>
+      <Opt name="DevACoin"                                value = "5"     jblclass="false"/>
+      <Opt name="DevDCoin"                                value = "6"     jblclass="false"/>
+      <Opt name="DevABill"                                value = "7"     jblclass="false"/>
+      <Opt name="DevDBill"                                value = "8"     jblclass="false"/>
+      <Opt name="DevBLE"                                  value = "9"     jblclass="false"/>
+      <Opt name="DevOTB2"                                 value = "10"    jblclass="false"/>
+      <Opt name="DevGpioCtrl"                             value = "11"    jblclass="false"/>
+      <Opt name="DevCPGW"                                 value = "12"    jblclass="false"/>
+      <Opt name="DevSGP"                                  value = "13"    jblclass="false"/>
+      <Opt name="DevProxyReader"                          value = "14"    jblclass="false"/>
+      <Opt name="DevProxyRdrWrtr"                         value = "15"    jblclass="false"/>
+      <Opt name="DevFiscPrinter"                          value = "16"    jblclass="false"/>
+      <Opt name="DevBill2Bill"                            value = "17"    jblclass="false"/>
+    </Field>
+
+    <Field name = "Types"        bit_mask="0x00003000"  bit_idx="12"  bit_size="2">
+      <Opt  name = "*"                                    value = "0"/>
+      <Opt  name = "Event"                                value = "1"     jblclass="false"/>
+      <Opt  name = "Response"                             value = "2"/>
+      <Opt  name = "Command"                              value = "3"/>
+    </Field>
+
+    <Field name = "SubTypes"     bit_mask="0x00000F80"  bit_idx="7"  bit_size="5">
+      <Opt  name = "*"                                    value = "0"/>
+      <!-- ***********************************  Common  *********************************** -->
+
+      <!-- ################################### Common Command/Response ################################### -->
+      <Opt  name = "CmdSetConfig"                         value = "31"                        specific = "*.*.*.Command"/>
+      <Opt  name = "CmdGetConfig"                         value = "30"                        specific = "*.*.*.Command"/>
+      <Opt  name = "CmdGetStatus"                         value = "29"                        specific = "*.*.*.Command"/>
+      <Opt  name = "CmdDispose"                           value = "28"                        specific = "*.*.*.Command"/>
+      <!-- ################################### Common Command/Response ################################### -->
+      <Opt  name = "RspSetConfig"                         value = "31"                        specific = "*.*.*.Response"/>
+      <Opt  name = "RspGetConfig"                         value = "30"                        specific = "*.*.*.Response"/>
+      <Opt  name = "RspStatus"                            value = "29"                        specific = "*.*.*.Response"/>
+      <Opt  name = "RspDispose"                           value = "28"                        specific = "*.*.*.Response"/>
+      <!-- ###################################  Common Event  ################################### -->
+      <Opt  name = "EvtAlarm"                             value = "31"    jblclass="true"     specific = "*.*.*.Event"/>
+      <Opt  name = "EvtLog"                               value = "30"    jblclass="false"    specific = "*.*.*.Event"/>
+      <Opt  name = "EvtOperation"                         value = "29"    jblclass="false"    specific = "*.*.*.Event"/>
+
+      <!-- ***********************************  Applications Specific   *********************************** -->
+      <!-- Le @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Command  #################################### -->
+      <!-- ################################### Specific Response  ################################### -->
+      <!-- ################################### Specific Event  ###################################### -->
+
+      <!-- Aps @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Command  #################################### -->
+      <!-- ################################### Specific Response  ################################### -->
+      <!-- ################################### Specific Event  ###################################### -->
+
+      <!-- Lx @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Command  #################################### -->
+      <!-- ################################### Specific Response  ################################### -->
+      <!-- ################################### Specific Event  ###################################### -->
+
+      <!-- ***********************************  Services Specific *********************************** -->
+
+      <!-- Lane @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Command  ################################### -->
+      <Opt  name = "SrvLaneCmdSetSem"                     value = "1"                         specific = "*.SrvLane.*.Command"/>
+      <Opt  name = "SrvLaneCmdGetSem"                     value = "2"                         specific = "*.SrvLane.*.Command"/>
+      <Opt  name = "SrvLaneCmdSetBar"                     value = "3"                         specific = "*.SrvLane.*.Command"/>
+      <Opt  name = "SrvLaneCmdGetBar"                     value = "4"                         specific = "*.SrvLane.*.Command"/>
+      <Opt  name = "SrvLaneCmdGetLoop"                    value = "5"                         specific = "*.SrvLane.*.Command"/>
+      <Opt  name = "SrvLaneCmdSetButton"                  value = "6"                         specific = "*.SrvLane.*.Command"/>
+      <Opt  name = "SrvLaneCmdGetButton"                  value = "7"                         specific = "*.SrvLane.*.Command"/>
+      <Opt  name = "SrvLaneCmdGetVCS"                     value = "8"                         specific = "*.SrvLane.*.Command"/>
+      <Opt  name = "SrvLaneCmdGetExtVal"                  value = "9"                         specific = "*.SrvLane.*.Command"/>
+      <!-- ################################### Specific Response  ################################### -->
+      <Opt  name = "SrvLaneRspSetSem"                     value = "1"                         specific = "*.SrvLane.*.Response"/>
+      <Opt  name = "SrvLaneRspGetSem"                     value = "2"                         specific = "*.SrvLane.*.Response"/>
+      <Opt  name = "SrvLaneRspSetBar"                     value = "3"                         specific = "*.SrvLane.*.Response"/>
+      <Opt  name = "SrvLaneRspGetBar"                     value = "4"                         specific = "*.SrvLane.*.Response"/>
+      <Opt  name = "SrvLaneRspGetLoop"                    value = "5"                         specific = "*.SrvLane.*.Response"/>
+      <Opt  name = "SrvLaneRspSetButton"                  value = "6"                         specific = "*.SrvLane.*.Response"/>
+      <Opt  name = "SrvLaneRspGetButton"                  value = "7"                         specific = "*.SrvLane.*.Response"/>
+      <Opt  name = "SrvLaneRspGetVCS"                     value = "8"                         specific = "*.SrvLane.*.Response"/>
+      <Opt  name = "SrvLaneRspGetExtVal"                  value = "9"                         specific = "*.SrvLane.*.Response"/>
+      <!-- ################################### Specific Event  ################################### -->
+      <Opt  name = "SrvLaneEvtBarAct"                     value = "1"                         specific = "*.SrvLane.*.Event"/>
+      <Opt  name = "SrvLaneEvtLoopAct"                    value = "2"                         specific = "*.SrvLane.*.Event"/>
+      <Opt  name = "SrvLaneEvtButtonAct"                  value = "3"                         specific = "*.SrvLane.*.Event"/>
+      <Opt  name = "SrvLaneEvtVCSAct"                     value = "4"                         specific = "*.SrvLane.*.Event"/>
+      <Opt  name = "SrvLaneEvtVehicle"                    value = "5"                         specific = "*.SrvLane.*.Event"/>
+      <Opt  name = "SrvLaneEvtExtValAct"                  value = "6"                         specific = "*.SrvLane.*.Event"/>
+
+      <!-- Payment @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvPaymentCmdStartPay"                value = "1"                         specific = "*.SrvPayment.*.Command"/>
+      <Opt  name = "SrvPaymentCmdChngAmnt"                value = "2"                         specific = "*.SrvPayment.*.Command"/>
+      <Opt  name = "SrvPaymentCmdStopPay"                 value = "3"                         specific = "*.SrvPayment.*.Command"/>
+      <Opt  name = "SrvPaymentCmdGiveChng"                value = "4"                         specific = "*.SrvPayment.*.Command"/>
+      <Opt  name = "SrvPaymentCmdEncPay"                  value = "5"                         specific = "*.SrvPayment.*.Command"/>
+      <Opt  name = "SrvPaymentCmdRefndPay"                value = "6"                         specific = "*.SrvPayment.*.Command"/>
+      <Opt  name = "SrvPaymentCmdUpdtSess"                value = "7"                         specific = "*.SrvPayment.*.Command"/>
+      <Opt  name = "SrvPaymentCmdExecDenOp"               value = "8"                         specific = "*.SrvPayment.*.Command"/>
+      <Opt  name = "SrvPaymentCmdEnableBill2Bill"         value = "9"                         specific = "*.SrvPayment.*.Command"/>
+      <Opt  name = "SrvPaymentCmdGetInfoBill2Bill"        value = "10"                        specific = "*.SrvPayment.*.Command"/>
+	  <Opt  name = "SrvPaymentCmdUnloadBill2Bill"         value = "11"                        specific = "*.SrvPayment.*.Command"/>
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvPaymentRspStartPay"                value = "1"                         specific = "*.SrvPayment.*.Response"/>
+      <Opt  name = "SrvPaymentRspChngAmnt"                value = "2"                         specific = "*.SrvPayment.*.Response"/>
+      <Opt  name = "SrvPaymentRspStopPay"                 value = "3"                         specific = "*.SrvPayment.*.Response"/>
+      <Opt  name = "SrvPaymentRspGiveChng"                value = "4"                         specific = "*.SrvPayment.*.Response"/>
+      <Opt  name = "SrvPaymentRspEncPay"                  value = "5"                         specific = "*.SrvPayment.*.Response"/>
+      <Opt  name = "SrvPaymentRspRefndPay"                value = "6"                         specific = "*.SrvPayment.*.Response"/>
+      <Opt  name = "SrvPaymentRspUpdtSess"                value = "7"                         specific = "*.SrvPayment.*.Response"/>
+      <Opt  name = "SrvPaymentRspExecDenOp"               value = "8"                         specific = "*.SrvPayment.*.Response"/>
+      <Opt  name = "SrvPaymentRspEnableBill2Bill"         value = "9"                         specific = "*.SrvPayment.*.Response"/>
+      <Opt  name = "SrvPaymentRspGetInfoBill2Bill"        value = "10"                        specific = "*.SrvPayment.*.Response"/>
+	  <Opt  name = "SrvPaymentRspUnloadBill2Bill"         value = "11"                        specific = "*.SrvPayment.*.Response"/>
+      <!-- ################################### Specific Event  ################################### -->
+      <Opt  name = "SrvPaymentEvtPeriphAct"               value = "1"                         specific = "*.SrvPayment.*.Event"/>
+      <Opt  name = "SrvPaymentEvtPayCompl"                value = "2"                         specific = "*.SrvPayment.*.Event"/>
+      <Opt  name = "SrvPaymentEvtChngCompl"               value = "3"                         specific = "*.SrvPayment.*.Event"/>
+      <Opt  name = "SrvPaymentEvtUsrSessUpd"              value = "4"                         specific = "*.SrvPayment.*.Event"/>
+
+      <!-- HttpServer @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvHttpSerCmdSendHttpResp"            value = "1"                         specific = "*.SrvHttpServer.*.Command"/>
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvHttpSerRspSendHttpResp"            value = "1"                         specific = "*.SrvHttpServer.*.Response"/>
+      <!-- ################################### Specific Event  ################################### -->
+      <Opt  name = "SrvHttpSerEvtHttpAct"                 value = "1"                         specific = "*.SrvHttpServer.*.Event"/>
+
+      <!-- HttpClient @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvHttpCliCmdSendHttpReq"             value = "1"                         specific = "*.SrvHttpClient.*.Command"/>
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvHttpCliRspSendHttpReq"             value = "1"                         specific = "*.SrvHttpClient.*.Response"/>
+      <!-- ################################### Specific Event  ################################### -->
+      <Opt  name = "SrvHttpCliEvtHttpAct"                 value = "1"                         specific = "*.SrvHttpClient.*.Event"/>
+
+      <!-- JBL @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvJBLCmdGrantJPSStatRsrc"            value = "1"                         specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdDemandAuthRsrc"              value = "2"                         specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdDemandUsrPassValidatRsrc"    value = "3"                         specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushAlarmRsrc"               value = "4"                         specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushOpTransitRsrc"           value = "5"                         specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushMsgUsrPassRsrc"          value = "6"                         specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushLogLaneRsrc"             value = "7"                         specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushPayComplRsrc"            value = "8"                         specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdGrantCmdResultRsrc"          value = "9"                         specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushLogRebootRsrc"           value = "10"                        specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushCardInsRsrc"             value = "11"                        specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushMnyInsRsrc"              value = "12"                        specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushCngGvnRsrc"              value = "13"                        specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushOptorLoginRsrc"          value = "14"                        specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushOptorCashSnapRsrc"       value = "15"                        specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushCashierActRsrc"          value = "16"                        specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushCrdNtGvnRsrc"            value = "17"                        specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdDemandUsrPassPinCkRsrc"      value = "18"                        specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdDemandProdsListRsrc"         value = "19"                        specific = "*.SrvJBL.*.Command"/>
+      <Opt  name = "SrvJBLCmdPushLogFloorCounterRsrc"     value = "20"                        specific = "*.SrvJBL.*.Command"/>
+
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvJBLRspGrantJPSStatRsrc"            value = "1"                         specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspDemandAuthRsrc"              value = "2"                         specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspDemandUsrPassValidatRsrc"    value = "3"                         specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushAlarmRsrc"               value = "4"                         specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushOpTransitRsrc"           value = "5"                         specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushMsgUsrPassRsrc"          value = "6"                         specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushLogLaneRsrc"             value = "7"                         specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushPayComplRsrc"            value = "8"                         specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspGrantCmdResultRsrc"          value = "9"                         specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushLogRebootRsrc"           value = "10"                        specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushCardInsRsrc"             value = "11"                        specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushMnyInsRsrc"              value = "12"                        specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushCngGvnRsrc"              value = "13"                        specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushOptorLoginRsrc"          value = "14"                        specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushOptorCashSnapRsrc"       value = "15"                        specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushCashierActRsrc"          value = "16"                        specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushCrdNtGvnRsrc"            value = "17"                        specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspDemandUsrPassPinCkRsrc"      value = "18"                        specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspDemandProdsListRsrc"         value = "19"                        specific = "*.SrvJBL.*.Response"/>
+      <Opt  name = "SrvJBLRspPushFloorCounterRsrc"        value = "20"                        specific = "*.SrvJBL.*.Response"/>
+
+      <!-- ################################### Specific Event  ################################### -->
+      <Opt  name = "SrvJBLEvtDemandJPSStatRscr"           value = "1"                         specific = "*.SrvJBL.*.Event"/>
+      <Opt  name = "SrvJBLEvtGrantAuthRscr"               value = "2"                         specific = "*.SrvJBL.*.Event"/>
+      <Opt  name = "SrvJBLEvtDemandCmdExecRscr"           value = "3"                         specific = "*.SrvJBL.*.Event"/>
+      <Opt  name = "SrvJBLEvtGrantUsrPassValidatRscr"     value = "4"                         specific = "*.SrvJBL.*.Event"/>
+      <Opt  name = "SrvJBLEvtGrantUsrPassPinCkRscr"       value = "5"                         specific = "*.SrvJBL.*.Event"/>
+      <Opt  name = "SrvJBLEvtGrantProdsListRscr"          value = "6"                         specific = "*.SrvJBL.*.Event"/>
+
+      <!-- Tariffs @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvTariffsCmdTarCalc"                 value = "1"                         specific = "*.SrvTariffs.*.Command"/>
+      <Opt  name = "SrvTariffsCmdEncVpxtData"             value = "2"                         specific = "*.SrvTariffs.*.Command"/>
+      <Opt  name = "SrvTariffsCmdDecVpxtData"             value = "3"                         specific = "*.SrvTariffs.*.Command"/>
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvTariffsRspTarCalc"                 value = "1"                         specific = "*.SrvTariffs.*.Response"/>
+      <Opt  name = "SrvTariffsRspEncVpxtData"             value = "2"                         specific = "*.SrvTariffs.*.Response"/>
+      <Opt  name = "SrvTariffsRspDecVpxtData"             value = "3"                         specific = "*.SrvTariffs.*.Response"/>
+      <!-- ################################### Specific Event  ################################### -->
+
+      <!-- UsrPass @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvUsrPassCmdOpnSess"                 value = "1"                         specific = "*.SrvUsrPass.*.Command"/>
+      <Opt  name = "SrvUsrPassCmdClsSess"                 value = "2"                         specific = "*.SrvUsrPass.*.Command"/>
+      <Opt  name = "SrvUsrPassCmdPrint"                   value = "3"                         specific = "*.SrvUsrPass.*.Command"/>
+      <Opt  name = "SrvUsrPassCmdEmit"                    value = "4"                         specific = "*.SrvUsrPass.*.Command"/>
+      <Opt  name = "SrvUsrPassCmdSwallow"                 value = "5"                         specific = "*.SrvUsrPass.*.Command"/>
+      <Opt  name = "SrvUsrPassCmdPrepCashSnapshot"        value = "6"                         specific = "*.SrvUsrPass.*.Command"/>
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvUsrPassRspOpnSess"                 value = "1"                         specific = "*.SrvUsrPass.*.Response"/>
+      <Opt  name = "SrvUsrPassRspClsSess"                 value = "2"                         specific = "*.SrvUsrPass.*.Response"/>
+      <Opt  name = "SrvUsrPassRspPrint"                   value = "3"                         specific = "*.SrvUsrPass.*.Response"/>
+      <Opt  name = "SrvUsrPassRspEmit"                    value = "4"                         specific = "*.SrvUsrPass.*.Response"/>
+      <Opt  name = "SrvUsrPassRspSwallow"                 value = "5"                         specific = "*.SrvUsrPass.*.Response"/>
+      <Opt  name = "SrvUsrPassRspPrepCashSnapshot"        value = "6"                         specific = "*.SrvUsrPass.*.Response"/>
+      <!-- ################################### Specific Event  ################################### -->
+      <Opt  name = "SrvUsrPassEvtUPassAct"                value = "1"                         specific = "*.SrvUsrPass.*.Event"/>
+      <Opt  name = "SrvUsrPassEvt2ndUPassAct"             value = "2"                         specific = "*.SrvUsrPass.*.Event"/>
+      <Opt  name = "SrvUsrPassEvtDummyTktTkn"             value = "3"                         specific = "*.SrvUsrPass.*.Event"/>
+
+      <!-- LocalDB @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvLocalDBCmdDBFileUpdt"              value = "1"                         specific = "*.SrvLocalDB.*.Command"/>
+      <Opt  name = "SrvLocalDBCmdOpOperator"              value = "2"                         specific = "*.SrvLocalDB.*.Command"/>
+      <Opt  name = "SrvLocalDBCmdOpDenom"                 value = "3"                         specific = "*.SrvLocalDB.*.Command"/>
+      <Opt  name = "SrvLocalDBCmdOpUsrPass"               value = "4"                         specific = "*.SrvLocalDB.*.Command"/>
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvLocalDBRspDBFileUpdt"              value = "1"                         specific = "*.SrvLocalDB.*.Response"/>
+      <Opt  name = "SrvLocalDBRspOpOperator"              value = "2"                         specific = "*.SrvLocalDB.*.Response"/>
+      <Opt  name = "SrvLocalDBRspOpDenom"                 value = "3"                         specific = "*.SrvLocalDB.*.Response"/>
+      <Opt  name = "SrvLocalDBRspOpUsrPass"               value = "4"                         specific = "*.SrvLocalDB.*.Response"/>
+      <!-- ################################### Specific Event  ################################### -->
+
+      <!-- JPSAdmin @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvJPSAdminCmdUpdtSess"               value = "1"                         specific = "*.SrvJPSAdmin.*.Command"/>
+      <Opt  name = "SrvJPSAdminCmdGrantCmdRes"            value = "2"                         specific = "*.SrvJPSAdmin.*.Command"/>
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvJPSAdminRspUpdtSess"               value = "1"                         specific = "*.SrvJPSAdmin.*.Response"/>
+      <Opt  name = "SrvJPSAdminRspGrantCmdRes"            value = "2"                         specific = "*.SrvJPSAdmin.*.Response"/>
+      <!-- ################################### Specific Event  ################################### -->
+      <Opt  name = "SrvJPSAdminEvtOperator"               value = "1"                         specific = "*.SrvJPSAdmin.*.Event"/>
+      <Opt  name = "SrvJPSAdminEvtDemandCmdExec"          value = "2"                         specific = "*.SrvJPSAdmin.*.Event"/>
+
+      <!-- OutSched @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <Opt  name = "SrvOutSchedCmdSetWhenAct"             value = "1"                         specific = "*.SrvOutSched.*.Command"/>
+      <Opt  name = "SrvOutSchedCmdSetSpecDayAct"          value = "2"                         specific = "*.SrvOutSched.*.Command"/>
+      <!-- ################################### Specific Command/Response  ################################### -->
+      <Opt  name = "SrvOutSchedRspSetWhenAct"             value = "1"                         specific = "*.SrvOutSched.*.Response"/>
+      <Opt  name = "SrvOutSchedRspSetSpecDayAct"          value = "2"                         specific = "*.SrvOutSched.*.Response"/>
+      <!-- ################################### Specific Event  ################################### -->
+      <Opt  name = "SrvOutSchedEvtActivity"               value = "1"                         specific = "*.SrvOutSched.*.Event"/>
+
+      <!-- ***********************************  Devices Specific *********************************** -->
+
+      <!-- BCReader @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevBCReaderCmdEnDiScan"               value = "1"                         specific = "*.*.DevBCReader.Command"/>
+      <!-- ###################################  Specific Response  ################################### -->
+      <Opt  name = "DevBCReaderRspEnDiScan"               value = "1"                         specific = "*.*.DevBCReader.Response"/>
+      <!-- ###################################  Specific BCReader Event  ################################### -->
+      <Opt  name = "DevBCReaderEvtData"                   value = "1"                         specific = "*.*.DevBCReader.Event"/>
+      <Opt  name = "DevBCReaderEvtTktTkn"                 value = "2"                         specific = "*.*.DevBCReader.Event"/>
+
+      <!-- BLE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevBLECmdReset"                       value = "1"                         specific = "*.*.DevBLE.Command"/>
+      <Opt  name = "DevBLECmdTrigApm"                     value = "2"                         specific = "*.*.DevBLE.Command"/>
+      <Opt  name = "DevBLECmdEndTrnsct"                   value = "3"                         specific = "*.*.DevBLE.Command"/>
+      <Opt  name = "DevBLECmdVerifyResult"                value = "4"                         specific = "*.*.DevBLE.Command"/>
+      <Opt  name = "DevBLECmdStartTransit"                value = "5"                         specific = "*.*.DevBLE.Command"/>
+      <Opt  name = "DevBLECmdEndTransit"                  value = "6"                         specific = "*.*.DevBLE.Command"/>
+      <Opt  name = "DevBLECmdTicketEmiss"                 value = "7"                         specific = "*.*.DevBLE.Command"/>
+      <!-- ###################################  Specific Response  ################################### -->
+      <Opt  name = "DevBLERspReset"                       value = "1"                         specific = "*.*.DevBLE.Response"/>
+      <Opt  name = "DevBLERspTrigApm"                     value = "2"                         specific = "*.*.DevBLE.Response"/>
+      <Opt  name = "DevBLERspEndTrnsct"                   value = "3"                         specific = "*.*.DevBLE.Response"/>
+      <Opt  name = "DevBLERspVerifyResult"                value = "4"                         specific = "*.*.DevBLE.Response"/>
+      <Opt  name = "DevBLERspStartTransit"                value = "5"                         specific = "*.*.DevBLE.Response"/>
+      <Opt  name = "DevBLERspEndTransit"                  value = "6"                         specific = "*.*.DevBLE.Response"/>
+      <Opt  name = "DevBLERspTicketEmiss"                 value = "7"                         specific = "*.*.DevBLE.Response"/>
+      <!-- ###################################  Specific Event  ################################### -->
+      <Opt  name = "DevBLEEvtSessEnd"                     value = "1"                         specific = "*.*.DevBLE.Event"/>
+      <Opt  name = "DevBLEEvtStartPay"                    value = "2"                         specific = "*.*.DevBLE.Event"/>
+      <Opt  name = "DevBLEEvtReqTkt"                      value = "3"                         specific = "*.*.DevBLE.Event"/>
+      <Opt  name = "DevBLEEvtIdentifyCust"                value = "4"                         specific = "*.*.DevBLE.Event"/>
+      <Opt  name = "DevBLEEvtVerifyTkt"                   value = "5"                         specific = "*.*.DevBLE.Event"/>
+      <Opt  name = "DevBLEEvtCheckTkt"                    value = "6"                         specific = "*.*.DevBLE.Event"/>
+      <Opt  name = "DevBLEEvtTktTkn"                      value = "7"                         specific = "*.*.DevBLE.Event"/>
+
+      <!-- CPGW @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevCPGWCmdCardDetect"                 value = "1"                         specific = "*.*.DevCPGW.Command"/>
+      <Opt  name = "DevCPGWCmdSetLang"                    value = "2"                         specific = "*.*.DevCPGW.Command"/>
+      <Opt  name = "DevCPGWCmdStartTrnsct"                value = "3"                         specific = "*.*.DevCPGW.Command"/>
+      <Opt  name = "DevCPGWCmdConfTrnsct"                 value = "4"                         specific = "*.*.DevCPGW.Command"/>
+      <Opt  name = "DevCPGWCmdVoidTrnsct"                 value = "5"                         specific = "*.*.DevCPGW.Command"/>
+      <Opt  name = "DevCPGWCmdEndTrnsct"                  value = "6"                         specific = "*.*.DevCPGW.Command"/>
+      <Opt  name = "DevCPGWCmdRefundTrnsct"               value = "7"                         specific = "*.*.DevCPGW.Command"/>
+      <Opt  name = "DevCPGWCmdChngPaymtAmnt"              value = "8"                         specific = "*.*.DevCPGW.Command"/>
+      <!-- ################################### Specific Response  ################################### -->
+      <Opt  name = "DevCPGWRspCardDetect"                 value = "1"                         specific = "*.*.DevCPGW.Response"/>
+      <Opt  name = "DevCPGWRspSetLang"                    value = "2"                         specific = "*.*.DevCPGW.Response"/>
+      <Opt  name = "DevCPGWRspStartTrnsct"                value = "3"                         specific = "*.*.DevCPGW.Response"/>
+      <Opt  name = "DevCPGWRspConfTrnsct"                 value = "4"                         specific = "*.*.DevCPGW.Response"/>
+      <Opt  name = "DevCPGWRspVoidTrnsct"                 value = "5"                         specific = "*.*.DevCPGW.Response"/>
+      <Opt  name = "DevCPGWRspEndTrnsct"                  value = "6"                         specific = "*.*.DevCPGW.Response"/>
+      <Opt  name = "DevCPGWRspRefundTrnsct"               value = "7"                         specific = "*.*.DevCPGW.Response"/>
+      <Opt  name = "DevCPGWRspChngPaymtAmnt"              value = "8"                         specific = "*.*.DevCPGW.Response"/>
+      <!-- ###################################  Specific Event  ################################### -->
+      <Opt  name = "DevCPGWEvtCardRead"                   value = "1"                         specific = "*.*.DevCPGW.Event"/>
+      <Opt  name = "DevCPGWEvtTrnsctUpdt"                 value = "2"                         specific = "*.*.DevCPGW.Event"/>
+      <Opt  name = "DevCPGWEvtCustDispUpdt"               value = "3"                         specific = "*.*.DevCPGW.Event"/>
+      <Opt  name = "DevCPGWEvtTrnsctCompletion"           value = "4"                         specific = "*.*.DevCPGW.Event"/>
+
+      <!-- Display @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevDisplayCmdSetScreen"               value = "1"                         specific = "*.*.DevDisplay.Command"/>
+      <Opt  name = "DevDisplayCmdSetButton"               value = "2"                         specific = "*.*.DevDisplay.Command"/>
+      <Opt  name = "DevDisplayCmdSetButtXt"               value = "3"                         specific = "*.*.DevDisplay.Command"/>
+      <Opt  name = "DevDisplayCmdShwHidPayView"           value = "4"                         specific = "*.*.DevDisplay.Command"/>
+      <Opt  name = "DevDisplayCmdUpdPayCrncy"             value = "5"                         specific = "*.*.DevDisplay.Command"/>
+      <Opt  name = "DevDisplayCmdShwHidKeyPad"            value = "6"                         specific = "*.*.DevDisplay.Command"/>
+      <Opt  name = "DevDisplayCmdSetCurrLang"             value = "7"                         specific = "*.*.DevDisplay.Command"/>
+      <Opt  name = "DevDisplayCmdShwHidSelDlg"            value = "8"                         specific = "*.*.DevDisplay.Command"/>
+      <!-- ###################################  Specific Command/Response  ################################### -->
+      <Opt  name = "DevDisplayRspSetScreen"               value = "1"                         specific = "*.*.DevDisplay.Response"/>
+      <Opt  name = "DevDisplayRspSetButton"               value = "2"                         specific = "*.*.DevDisplay.Response"/>
+      <Opt  name = "DevDisplayRspSetButtXt"               value = "3"                         specific = "*.*.DevDisplay.Response"/>
+      <Opt  name = "DevDisplayRspShwHidPayView"           value = "4"                         specific = "*.*.DevDisplay.Response"/>
+      <Opt  name = "DevDisplayRspUpdPayCrncy"             value = "5"                         specific = "*.*.DevDisplay.Response"/>
+      <Opt  name = "DevDisplayRspShwHidKeyPad"            value = "6"                         specific = "*.*.DevDisplay.Response"/>
+      <Opt  name = "DevDisplayRspSetCurrLang"             value = "7"                         specific = "*.*.DevDisplay.Response"/>
+      <Opt  name = "DevDisplayRspShwHidSelDlg"            value = "8"                         specific = "*.*.DevDisplay.Response"/>
+      <!-- ###################################  Specific Event  ################################### -->
+      <Opt  name = "DevDisplayEvtData"                    value = "1"                         specific = "*.*.DevDisplay.Event"/>
+
+      <!-- GpioCtrl @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevGpioCtrlCmdGetLH"                  value = "1"                         specific = "*.*.DevGpioCtrl.Command"/>
+      <Opt  name = "DevGpioCtrlCmdSetLH"                  value = "2"                         specific = "*.*.DevGpioCtrl.Command"/>
+      <Opt  name = "DevGpioCtrlCmdPulse"                  value = "3"                         specific = "*.*.DevGpioCtrl.Command"/>
+      <Opt  name = "DevGpioCtrlCmdSetOutMask"             value = "4"                         specific = "*.*.DevGpioCtrl.Command"/>
+      <Opt  name = "DevGpioCtrlCmdExecCtrlFunc"           value = "5"                         specific = "*.*.DevGpioCtrl.Command"/>
+      <!-- ###################################  Specific Response  ################################### -->
+      <Opt  name = "DevGpioCtrlRspGetLH"                  value = "1"                         specific = "*.*.DevGpioCtrl.Response"/>
+      <Opt  name = "DevGpioCtrlRspSetLH"                  value = "2"                         specific = "*.*.DevGpioCtrl.Response"/>
+      <Opt  name = "DevGpioCtrlRspPulse"                  value = "3"                         specific = "*.*.DevGpioCtrl.Response"/>
+      <Opt  name = "DevGpioCtrlRspSetOutMask"             value = "4"                         specific = "*.*.DevGpioCtrl.Response"/>
+      <Opt  name = "DevGpioCtrlRspExecCtrlFunc"           value = "5"                         specific = "*.*.DevGpioCtrl.Response"/>
+      <!-- ###################################  Specific Event  ################################### -->
+      <Opt  name = "DevGpioCtrlEvtActivity"               value = "1"                         specific = "*.*.DevGpioCtrl.Event"/>
+
+      <!-- OTB2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevOTB2CmdReset"                      value = "1"                         specific = "*.*.DevOTB2.Command"/>
+      <Opt  name = "DevOTB2CmdEject"                      value = "2"                         specific = "*.*.DevOTB2.Command"/>
+      <Opt  name = "DevOTB2CmdFeed"                       value = "3"                         specific = "*.*.DevOTB2.Command"/>
+      <Opt  name = "DevOTB2CmdPark"                       value = "4"                         specific = "*.*.DevOTB2.Command"/>
+      <Opt  name = "DevOTB2CmdResume"                     value = "5"                         specific = "*.*.DevOTB2.Command"/>
+      <Opt  name = "DevOTB2CmdFrontLd"                    value = "6"                         specific = "*.*.DevOTB2.Command"/>
+      <Opt  name = "DevOTB2CmdScanAllRois"                value = "7"                         specific = "*.*.DevOTB2.Command"/>
+      <Opt  name = "DevOTB2CmdScanAllRoixBCs"             value = "8"                         specific = "*.*.DevOTB2.Command"/>
+      <Opt  name = "DevOTB2CmdPrint"                      value = "9"                         specific = "*.*.DevOTB2.Command"/>
+      <Opt  name = "DevOTB2CmdCustDataAcc"                value = "10"                        specific = "*.*.DevOTB2.Command"/>
+      <!-- ###################################  Specific Response  ################################### -->
+      <Opt  name = "DevOTB2RspReset"                      value = "1"                         specific = "*.*.DevOTB2.Response"/>
+      <Opt  name = "DevOTB2RspEject"                      value = "2"                         specific = "*.*.DevOTB2.Response"/>
+      <Opt  name = "DevOTB2RspFeed"                       value = "3"                         specific = "*.*.DevOTB2.Response"/>
+      <Opt  name = "DevOTB2RspPark"                       value = "4"                         specific = "*.*.DevOTB2.Response"/>
+      <Opt  name = "DevOTB2RspResume"                     value = "5"                         specific = "*.*.DevOTB2.Response"/>
+      <Opt  name = "DevOTB2RspFrontLd"                    value = "6"                         specific = "*.*.DevOTB2.Response"/>
+      <Opt  name = "DevOTB2RspScanAllRois"                value = "7"                         specific = "*.*.DevOTB2.Response"/>
+      <Opt  name = "DevOTB2RspScanAllRoixBCs"             value = "8"                         specific = "*.*.DevOTB2.Response"/>
+      <Opt  name = "DevOTB2RspPrint"                      value = "9"                         specific = "*.*.DevOTB2.Response"/>
+      <Opt  name = "DevOTB2RspCustDataAcc"                value = "10"                        specific = "*.*.DevOTB2.Response"/>
+      <!-- ###################################  Specific Event  ################################### -->
+      <Opt  name = "DevOTB2EvtSysAct"                     value = "1"                         specific = "*.*.DevOTB2.Event"/>
+
+      <!-- Printer @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevPrinterCmdPrint"                   value = "1"                         specific = "*.*.DevPrinter.Command"/>
+      <Opt  name = "DevPrinterCmdPrintBrCd"               value = "2"                         specific = "*.*.DevPrinter.Command"/>
+      <Opt  name = "DevPrinterCmdSetBlkRotat"             value = "3"                         specific = "*.*.DevPrinter.Command"/>
+      <Opt  name = "DevPrinterCmdSetPosition"             value = "4"                         specific = "*.*.DevPrinter.Command"/>
+      <Opt  name = "DevPrinterCmdCut"                     value = "5"                         specific = "*.*.DevPrinter.Command"/>
+      <Opt  name = "DevPrinterCmdEndOfPage"               value = "6"                         specific = "*.*.DevPrinter.Command"/>
+      <!-- ###################################  Specific Response  ################################### -->
+      <Opt  name = "DevPrinterRspPrint"                   value = "1"                         specific = "*.*.DevPrinter.Response"/>
+      <Opt  name = "DevPrinterRspPrintBrCd"               value = "2"                         specific = "*.*.DevPrinter.Response"/>
+      <Opt  name = "DevPrinterRspSetBlkRotat"             value = "3"                         specific = "*.*.DevPrinter.Response"/>
+      <Opt  name = "DevPrinterRspSetPosition"             value = "4"                         specific = "*.*.DevPrinter.Response"/>
+      <Opt  name = "DevPrinterRspCut"                     value = "5"                         specific = "*.*.DevPrinter.Response"/>
+      <Opt  name = "DevPrinterRspEndOfPage"               value = "6"                         specific = "*.*.DevPrinter.Response"/>
+      <!-- ###################################  Specific Event  ################################### -->
+      <Opt  name = "DevPrinterEvtAct"                     value = "1"                         specific = "*.*.DevPrinter.Event"/>
+
+      <!-- SGP @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command   ################################### -->
+      <Opt  name = "DevSGPCmdStartPaymt"                  value = "1"                         specific = "*.*.DevSGP.Command"/>
+      <Opt  name = "DevSGPCmdStopPaymt"                   value = "2"                         specific = "*.*.DevSGP.Command"/>
+      <Opt  name = "DevSGPCmdGiveChng"                    value = "3"                         specific = "*.*.DevSGP.Command"/>
+      <Opt  name = "DevSGPCmdChngPaymtAmnt"               value = "4"                         specific = "*.*.DevSGP.Command"/>
+      <Opt  name = "DevSGPCmdExecCtrlFunc"                value = "5"                         specific = "*.*.DevSGP.Command"/>
+      <Opt  name = "DevSGPCmdSetDenomQty"                 value = "6"                         specific = "*.*.DevSGP.Command"/>
+      <Opt  name = "DevSGPCmdEnableBill2Bill"             value = "7"                         specific = "*.*.DevSGP.Command"/>
+      <Opt  name = "DevSGPCmdUnloadBill2Bill"             value = "8"                         specific = "*.*.DevSGP.Command"/>
+      <Opt  name = "DevSGPCmdGetInfoBill2Bill"            value = "9"                         specific = "*.*.DevSGP.Command"/>
+      <!-- ###################################  Specific Response  ################################### -->
+      <Opt  name = "DevSGPRspStartPaymt"                  value = "1"                         specific = "*.*.DevSGP.Response"/>
+      <Opt  name = "DevSGPRspStopPaymt"                   value = "2"                         specific = "*.*.DevSGP.Response"/>
+      <Opt  name = "DevSGPRspGiveChng"                    value = "3"                         specific = "*.*.DevSGP.Response"/>
+      <Opt  name = "DevSGPRspChngPaymtAmnt"               value = "4"                         specific = "*.*.DevSGP.Response"/>
+      <Opt  name = "DevSGPRspExecCtrlFunc"                value = "5"                         specific = "*.*.DevSGP.Response"/>
+      <Opt  name = "DevSGPRspSetDenomQty"                 value = "6"                         specific = "*.*.DevSGP.Response"/>
+      <Opt  name = "DevSGPRspEnableBill2Bill"             value = "7"                         specific = "*.*.DevSGP.Response"/>
+      <Opt  name = "DevSGPRspUnloadBill2Bill"             value = "8"                         specific = "*.*.DevSGP.Response"/>
+      <Opt  name = "DevSGPRspGetInfoBill2Bill"            value = "9"                         specific = "*.*.DevSGP.Response"/>
+      <!-- ###################################  Specific Event     ################################### -->
+      <Opt  name = "DevSGPEvtMoneyAcq"                    value = "1"                         specific = "*.*.DevSGP.Event"/>
+      <Opt  name = "DevSGPEvtPaymtCompl"                  value = "2"                         specific = "*.*.DevSGP.Event"/>
+      <Opt  name = "DevSGPEvtGiveChngCompl"               value = "3"                         specific = "*.*.DevSGP.Event"/>
+      <Opt  name = "DevSGPEvtArmedPaymt"                  value = "4"                         specific = "*.*.DevSGP.Event"/>
+
+      <!-- ProxyReader @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevProxyReaderCmdEnDiScan"            value = "1"                         specific = "*.*.DevProxyReader.Command"/>
+      <!-- ###################################  Specific Response  ################################### -->
+      <Opt  name = "DevProxyReaderRspEnDiScan"            value = "1"                         specific = "*.*.DevProxyReader.Response"/>
+      <!-- ###################################  Specific ProxyReader Event  ################################### -->
+      <Opt  name = "DevProxyReaderEvtData"                value = "1"                         specific = "*.*.DevProxyReader.Event"/>
+      <Opt  name = "DevProxyReaderEvtTktTkn"              value = "2"                         specific = "*.*.DevProxyReader.Event"/>
+ 
+      <!-- ProxyRdrWrtr @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevProxyRdrWrtrCmdWriteData"          svalue = "1"                        specific = "*.*.DevProxyRdrWrtr.Command"/>
+      <!-- ###################################  Specific Response  ################################### -->
+      <Opt  name = "DevProxyRdrWrtrRspWriteData"          value = "1"                         specific = "*.*.DevProxyRdrWrtr.Response"/>
+      <!-- ###################################  Specific ProxyReader Event  ################################### -->
+      <Opt  name = "DevProxyRdrWrtrEvtData"               value = "1"                         specific = "*.*.DevProxyRdrWrtr.Event"/>
+      <Opt  name = "DevProxyRdrWrtrEvtTktTkn"             value = "2"                         specific = "*.*.DevProxyRdrWrtr.Event"/>
+
+      <!-- DevDBill @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevDBillCmdDispAmount"                value = "1"                         specific = "*.*.DevDBill.Command"/>
+      <Opt  name = "DevDBillCmdCountBills"                value = "2"                         specific = "*.*.DevDBill.Command"/>
+      <!-- ###################################  Specific Response  ################################### -->
+      <Opt  name = "DevDBillRspDispAmount"                value = "1"                         specific = "*.*.DevDBill.Response"/>
+      <Opt  name = "DevDBillRspCountBills"                value = "2"                         specific = "*.*.DevDBill.Response"/>
+      <!-- ###################################  Specific Bill Event  ################################### -->
+      <Opt  name = "DevDBillEvtCountBillsCompl"           value = "1"                         specific = "*.*.DevDBill.Event"/>
+
+      <!-- DevBarrier @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevBarrierCmdOpen"                   value = "1"                         specific = "*.*.DevBarrier.Command"/>
+      <Opt  name = "DevBarrierCmdClose"                  value = "2"                         specific = "*.*.DevBarrier.Command"/>
+      <Opt  name = "DevBarrierCmdOpenHighPriority"       value = "3"                         specific = "*.*.DevBarrier.Command"/>
+      <Opt  name = "DevBarrierCmdDel"                    value = "4"                         specific = "*.*.DevBarrier.Command"/>
+      <!-- ################################### Specific Response  ################################### -->
+      <Opt  name = "DevBarrierRspOpen"                   value = "1"                         specific = "*.*.DevBarrier.Response"/>
+      <Opt  name = "DevBarrierRspClose"                  value = "2"                         specific = "*.*.DevBarrier.Response"/>
+      <Opt  name = "DevBarrierRspOpenHighPriority"       value = "3"                         specific = "*.*.DevBarrier.Response"/>
+      <Opt  name = "DevBarrierRspDel"                    value = "4"                         specific = "*.*.DevBarrier.Response"/>
+      <!-- ###################################  Specific Event  ################################### -->
+      <Opt  name = "DevBarrierEvtActivity"               value = "1"                         specific = "*.*.DevBarrier.Event"/>
+
+      <!-- DevFiscPrinter @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevFiscPrinterCmdPrintInfo"          value = "1"                         specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdGetDateTime"        value = "2"                         specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdSetDateTime"        value = "3"                         specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdPrintReceipt"       value = "4"                         specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdDailyXreport"       value = "5"                         specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdDailyZreport"       value = "6"                         specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdMonthlyReport"      value = "7"                         specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdYearlyReport"       value = "8"                        specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdDuplicateLastRcp"   value = "9"                        specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdFeedLine"           value = "10"                        specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdGetFreeFiscMem"     value = "11"                        specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdGetMoneyInCash"     value = "12"                        specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdAdjustMoney"        value = "13"                        specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdPrintBarcode"       value = "14"                        specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdPrintTextLine"      value = "15"                        specific = "*.*.DevFiscPrinter.Command"/>
+      <Opt  name = "DevFiscPrinterCmdPrintNonFiscRcpt"   value = "16"                        specific = "*.*.DevFiscPrinter.Command"/>
+      <!-- ################################### Specific Response  ################################### -->
+      <Opt  name = "DevFiscPrinterRspPrintInfo"          value = "1"                         specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspGetDateTime"        value = "2"                         specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspSetDateTime"        value = "3"                         specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspPrintReceipt"       value = "4"                         specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspDailyXreport"       value = "5"                         specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspDailyZreport"       value = "6"                         specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspMonthlyReport"      value = "7"                         specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspYearlyReport"       value = "8"                        specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspDuplicateLastRcp"   value = "9"                        specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspFeedLine"           value = "10"                        specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspGetFreeFiscMem"     value = "11"                        specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspGetMoneyInCash"     value = "12"                        specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspAdjustMoney"        value = "13"                        specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspPrintBarcode"       value = "14"                        specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspPrintTextLine"      value = "15"                        specific = "*.*.DevFiscPrinter.Response"/>
+      <Opt  name = "DevFiscPrinterRspPrintNonFiscRcpt"   value = "16"                        specific = "*.*.DevFiscPrinter.Response"/> 
+      <!-- ###################################  Specific Event  ################################### -->    
+      
+      <!-- Bill2Bill @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ###################################  Specific Command  ################################### -->
+      <Opt  name = "DevBill2BillCmdReset"                value = "1"                         specific = "*.*.DevBill2Bill.Command"/>
+      <Opt  name = "DevBill2BillCmdPoll"                 value = "2"                         specific = "*.*.DevBill2Bill.Command"/>
+      <Opt  name = "DevBill2BillCmdGetBillTable"         value = "3"                         specific = "*.*.DevBill2Bill.Command"/>
+      <Opt  name = "DevBill2BillCmdEnableBillTypes"      value = "4"                         specific = "*.*.DevBill2Bill.Command"/>
+      <Opt  name = "DevBill2BillCmdDispense"             value = "5"                         specific = "*.*.DevBill2Bill.Command"/>
+      <Opt  name = "DevBill2BillCmdCassStatus"           value = "6"                         specific = "*.*.DevBill2Bill.Command"/>
+      <Opt  name = "DevBill2BillCmdUnload"               value = "7"                         specific = "*.*.DevBill2Bill.Command"/>
+      <Opt  name = "DevBill2BillCmdGetInfo"              value = "8"                         specific = "*.*.DevBill2Bill.Command"/>
+      <!-- ###################################  Specific Response  ################################### -->
+      <Opt  name = "DevBill2BillRspReset"                value = "1"                         specific = "*.*.DevBill2Bill.Response"/>
+      <Opt  name = "DevBill2BillRspPoll"                 value = "2"                         specific = "*.*.DevBill2Bill.Response"/>
+      <Opt  name = "DevBill2BillRspGetBillTable"         value = "3"                         specific = "*.*.DevBill2Bill.Response"/>
+      <Opt  name = "DevBill2BillRspEnableBillTypes"      value = "4"                         specific = "*.*.DevBill2Bill.Response"/>
+      <Opt  name = "DevBill2BillRspDispense"             value = "5"                         specific = "*.*.DevBill2Bill.Response"/>
+      <Opt  name = "DevBill2BillRspCassStatus"           value = "6"                         specific = "*.*.DevBill2Bill.Response"/>
+      <Opt  name = "DevBill2BillRspUnload"               value = "7"                         specific = "*.*.DevBill2Bill.Response"/>
+      <Opt  name = "DevBill2BillRspGetInfo"              value = "8"                         specific = "*.*.DevBill2Bill.Response"/>
+      <!-- ###################################  Specific Event  ################################### -->
+      <Opt  name = "DevBill2BillEvtAct"                  value = "1"                         specific = "*.*.DevBill2Bill.Event"/>
+    </Field>
+
+    <Field name = "SpecCodes"        bit_mask="0x0000007F"  bit_valuex="0"  bit_size="7">
+      <Opt  name = "*"                      value = "0"/>
+      <!-- ***********************************  Common  *********************************** -->
+      <!-- ###################################  Common Operations Codes  ##################################### -->
+      <Opt  name = "OpUsrTransit"                         value = "127"    jblclass="true"    specific = "*.*.*.Event.EvtOperation"/>
+      <Opt  name = "OpUsrPayCompl"                        value = "126"    jblclass="true"    specific = "*.*.*.Event.EvtOperation"/>
+      <Opt  name = "OpUsrCardIns"                         value = "125"    jblclass="true"    specific = "*.*.*.Event.EvtOperation"/>
+      <Opt  name = "OpUsrMoneyIns"                        value = "124"    jblclass="true"    specific = "*.*.*.Event.EvtOperation"/>
+      <Opt  name = "OpUsrChangeGvn"                       value = "123"    jblclass="true"    specific = "*.*.*.Event.EvtOperation"/>
+      <Opt  name = "OpOptorLogin"                         value = "122"    jblclass="true"    specific = "*.*.*.Event.EvtOperation"/>
+      <Opt  name = "OpOptorCashSnap"                      value = "121"    jblclass="true"    specific = "*.*.*.Event.EvtOperation"/>
+      <Opt  name = "OpCashierAct"                         value = "120"    jblclass="true"    specific = "*.*.*.Event.EvtOperation"/>
+      <Opt  name = "OpUsrCrdNtGvn"                        value = "119"    jblclass="true"    specific = "*.*.*.Event.EvtOperation"/>
+
+      <!-- ###################################  Common Logs Codes  ##################################### -->
+      <Opt  name = "LogReboot"                            value = "127"    jblclass="true"    specific = "*.*.*.Event.EvtLog"/>
+      <Opt  name = "LogLaneBarAct"                        value = "126"    jblclass="true"    specific = "*.*.*.Event.EvtLog"/>
+      <Opt  name = "LogLaneLoopAct"                       value = "125"    jblclass="true"    specific = "*.*.*.Event.EvtLog"/>
+      <Opt  name = "LogLaneButtonAct"                     value = "124"    jblclass="true"    specific = "*.*.*.Event.EvtLog"/>
+      <Opt  name = "LogLaneVCSAct"                        value = "123"    jblclass="true"    specific = "*.*.*.Event.EvtLog"/>
+      <Opt  name = "LogUsrPass"                           value = "122"    jblclass="true"    specific = "*.*.*.Event.EvtLog"/>
+      <Opt  name = "LogFloorCounter"                      value = "121"    jblclass="true"    specific = "*.*.*.Event.EvtLog"/>
+
+      <!-- ################################### Common Error Codes ################################### -->
+      <Opt  name = "ErrNone"                              value = "127"                       specific = "*.*.*.Response.*"/>
+      <Opt  name = "ErrUnknown"                           value = "126"                       specific = "*.*.*.Response.*"/>
+      <Opt  name = "ErrGeneric"                           value = "125"                       specific = "*.*.*.Response.*"/>
+      <Opt  name = "ErrUnsupported"                       value = "124"                       specific = "*.*.*.Response.*"/>
+      <Opt  name = "ErrConfiguringDev"                    value = "123"                       specific = "*.*.*.Response.*"/>
+      <Opt  name = "ErrExecutingPurge"                    value = "122"                       specific = "*.*.*.Response.*"/>
+      <Opt  name = "ErrQueryingStatus"                    value = "121"                       specific = "*.*.*.Response.*"/>
+      <Opt  name = "ErrOpeninigProto"                     value = "120"                       specific = "*.*.*.Response.*"/>
+      <Opt  name = "ErrLoadingCfg"                        value = "119"                       specific = "*.*.*.Response.*"/>
+      <Opt  name = "ErrInitInProgress"                    value = "118"                       specific = "*.*.*.Response.*"/>
+      <Opt  name = "ErrNotReady"                          value = "117"                       specific = "*.*.*.Response.*"/>
+      <Opt  name = "ErrOnOpExecution"                     value = "116"                       specific = "*.*.*.Response.*"/>
+      <Opt  name = "ErrOpTimeout"                         value = "115"                       specific = "*.*.*.Response.*"/>
+      <!-- ###################################  Common Status Codes  ##################################### -->
+      <Opt  name = "StatOperative"                        value = "127"                       specific = "*.*.*.Response.RspStatus"/>
+      <Opt  name = "StatPartOperative"                    value = "126"                       specific = "*.*.*.Response.RspStatus"/>
+      <Opt  name = "StatOutOfOrder"                       value = "125"                       specific = "*.*.*.Response.RspStatus"/>
+      <!-- ###################################  Common Alarm Codes  ##################################### -->
+      <Opt  name = "AlrmLinkOff"                          value = "127"    jblclass="true"    specific = "*.*.*.Event.EvtAlarm"/>
+      <Opt  name = "AlrmInitFailed"                       value = "126"    jblclass="true"    specific = "*.*.*.Event.EvtAlarm"/>
+      <Opt  name = "AlrmOutOfOrder"                       value = "125"    jblclass="true"    specific = "*.*.*.Event.EvtAlarm"/>
+      <Opt  name = "AlrmUnknown"                          value = "124"    jblclass="true"    specific = "*.*.*.Event.EvtAlarm"/>
+      <!-- ###################################  Applications Common Alarm Codes  ##################################### -->
+      <Opt  name = "AppAlrmDoorOpened"                    value = "123"    jblclass="true"    specific = "*.*.*.Event.EvtAlarm"/>
+      <Opt  name = "AppAlrmFraud"                         value = "122"    jblclass="true"    specific = "*.*.*.Event.EvtAlarm"/>
+      <Opt  name = "AppAlrmDoorUnlocked"                  value = "121"    jblclass="true"    specific = "*.*.*.Event.EvtAlarm"/>
+
+      <!-- ***********************************  Specific Applications  *********************************** -->
+
+      <!-- Le @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <!-- ################################### Specific Operations Code  ################################### -->
+
+      <!-- ***********************************  Specific Services  *********************************** -->
+      <!-- Lane @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <Opt  name = "SrvUsrPassAlrmWtdrwTmt"               value = "1"      jblclass="false"   specific = "*.SrvUsrPass.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvUsrPassAlrmPrintNotAva"            value = "2"      jblclass="false"   specific = "*.SrvUsrPass.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvUsrPassAlrmFiscRcptNotIssued"      value = "3"      jblclass="false"   specific = "*.SrvUsrPass.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvUsrPassAlrmTcktUnitNotAva"         value = "4"      jblclass="false"   specific = "*.SrvUsrPass.*.Event.EvtAlarm"/>
+      
+      <!-- Lane @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <Opt  name = "SrvLaneAlrmLoop1AlwaysBusy"           value = "1"     jblclass="false"    specific = "*.SrvLane.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvLaneAlrmLoop2AlwaysBusy"           value = "2"     jblclass="false"    specific = "*.SrvLane.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvLaneAlrmLoop3AlwaysBusy"           value = "3"     jblclass="false"    specific = "*.SrvLane.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvLaneAlrmLoop4AlwaysBusy"           value = "4"     jblclass="false"    specific = "*.SrvLane.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvLaneAlrmButtAlwaysPushed"          value = "5"     jblclass="false"    specific = "*.SrvLane.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvLaneAlrmBar1Uprooted"              value = "6"     jblclass="false"    specific = "*.SrvLane.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvLaneAlrmBar2Uprooted"              value = "7"     jblclass="false"    specific = "*.SrvLane.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvLaneAlrmBar1Blocked"               value = "8"     jblclass="false"    specific = "*.SrvLane.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvLaneAlrmBar2Blocked"               value = "9"     jblclass="false"    specific = "*.SrvLane.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvLaneAlrmVCS1NoClass"               value = "10"    jblclass="false"    specific = "*.SrvLane.*.Event.EvtAlarm"/>
+      <!-- ################################### Specific Operations Code  ################################### -->
+
+      <!-- Payment @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <Opt  name = "SrvPaymentErrCmdParam"                value = "1"                         specific = "*.SrvPayment.*.Response.*"/>
+      <Opt  name = "SrvPaymentErrPeriphNotReady"          value = "2"                         specific = "*.SrvPayment.*.Response.*"/>
+      <Opt  name = "SrvPaymentErrPeriphNotPresent"        value = "3"                         specific = "*.SrvPayment.*.Response.*"/>
+      <Opt  name = "SrvPaymentErrUsrAbort"                value = "4"                         specific = "*.SrvPayment.*.Response.*"/>
+      <Opt  name = "SrvPaymentErrCngNotAvailab"           value = "5"                         specific = "*.SrvPayment.*.Response.*"/>
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <Opt  name = "SrvPaymentAlrmFraud"                  value = "1"     jblclass="false"    specific = "*.SrvPayment.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvPaymentAlrmNotAva"                 value = "2"     jblclass="false"    specific = "*.SrvPayment.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvPaymentAlrmCashNotAva"             value = "3"     jblclass="false"    specific = "*.SrvPayment.*.Event.EvtAlarm"/>
+      <Opt  name = "SrvPaymentAlrmPosNotAva"              value = "4"     jblclass="false"    specific = "*.SrvPayment.*.Event.EvtAlarm"/>
+      <!-- ################################### Specific Operations Code  ################################### -->
+
+
+      <!-- ***********************************  Specific Devices  *********************************** -->
+
+      <!-- BCReader @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <!-- ################################### Specific Alarms Code  ################################### -->
+
+      <!-- BLE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <Opt  name = "DevBLEErrTktOk"                       value = "1"                         specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktUndef"                    value = "2"                         specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktIgnFld"                   value = "3"                         specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktDispStd"                  value = "4"                         specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktDiff2Pay"                 value = "5"                         specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktAlrdyUsd"                 value = "6"                         specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktBlkLst"                   value = "7"                         specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktNotPaid"                  value = "8"                         specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktWrngGate"                 value = "9"                         specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktNotValid"                 value = "10"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktRdVoucher"                value = "11"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktNotEnough"                value = "12"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktWrngPlaNo"                value = "13"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktPaymtCanc"                value = "14"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktSubscrNotVal"             value = "15"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktParkLotFull"              value = "16"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktSiteCodMsmch"             value = "17"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktFrmt"                     value = "18"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktTsctInPrgss"              value = "19"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktTimeout"                  value = "20"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrTktBlePrblm"                 value = "21"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrSessUpdt"                    value = "22"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrSessTimeout"                 value = "23"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrSessBleProblem"              value = "24"                        specific = "*.*.DevBLE.Response.*"/>
+      <Opt  name = "DevBLEErrSessUndefined"               value = "25"                        specific = "*.*.DevBLE.Response.*"/>
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <!-- ################################### Specific Operations Code  ################################### -->
+
+      <!-- CPGW @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <Opt  name = "DevCPGWErrGeneric"                    value = "1"                         specific = "*.*.DevCPGW.Response.*"/>
+      <Opt  name = "DevCPGWErrContext"                    value = "2"                         specific = "*.*.DevCPGW.Response.*"/>
+      <Opt  name = "DevCPGWErrTermLinkOff"                value = "3"                         specific = "*.*.DevCPGW.Response.*"/>
+      <Opt  name = "DevCPGWErrUsrAbort"                   value = "4"                         specific = "*.*.DevCPGW.Response.*"/>
+      <Opt  name = "DevCPGWErrDenyTrnsct"                 value = "5"                         specific = "*.*.DevCPGW.Response.*"/>
+      <Opt  name = "DevCPGWErrVoidedTrnsct"               value = "6"                         specific = "*.*.DevCPGW.Response.*"/>
+      <Opt  name = "DevCPGWErrParam"                      value = "7"                         specific = "*.*.DevCPGW.Response.*"/>
+      <Opt  name = "DevCPGWErrBusy"                       value = "8"                         specific = "*.*.DevCPGW.Response.*"/>
+      <Opt  name = "DevCPGWErrNotSupported"               value = "9"                         specific = "*.*.DevCPGW.Response.*"/>
+      <Opt  name = "DevCPGWErrPrinterNotFound"            value = "10"                        specific = "*.*.DevCPGW.Response.*"/>
+      <Opt  name = "DevCPGWErrCardNotRecognized"          value = "11"                        specific = "*.*.DevCPGW.Response.*"/>
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <!-- ################################### Specific Operations Code  ################################### -->
+
+
+      <!-- Display @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <!-- ################################### Specific Operations Code  ################################### -->
+
+      <!-- GpioCtrl @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <!-- ################################### Specific Operations Code  ################################### -->
+
+      <!-- OTB2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <Opt  name = "DevOTB2ErrCmdParam"                   value = "1"                         specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrNotReady"                   value = "2"                         specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrFeedEmpty"                  value = "3"                         specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrTicketPresent"              value = "4"                         specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrTicketNotPresent"           value = "5"                         specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrParkSlotBusy"               value = "6"                         specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrParkSlotFree"               value = "7"                         specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrReadInProgr"                value = "8"                         specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrReadNotInProgr"             value = "9"                         specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrAlarmInProgr"               value = "10"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrRFIDReadActive"             value = "11"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrRFIDReadNotActive"          value = "12"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrScriptInProgr"              value = "13"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrUnknownCmd"                 value = "14"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrCmdNotAvailable"            value = "15"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrGeneric"                    value = "16"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrFeederSelected"             value = "17"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrLayoutField"                value = "18"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrDataField"                  value = "19"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrLayMissing"                 value = "20"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrObjDownload"                value = "22"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrOutOfMem"                   value = "21"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrObjDelete"                  value = "23"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrTicketFull"                 value = "24"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrDataMissing"                value = "25"                        specific = "*.*.DevOTB2.Response.*"/>
+      <Opt  name = "DevOTB2ErrFieldOutOfPrntArea"         value = "26"                        specific = "*.*.DevOTB2.Response.*"/>
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <Opt  name = "DevOTB2AlrmCleaningRequired"          value = "1"     jblclass="false"    specific = "*.*.DevOTB2.Event.EvtAlarm"/>
+      <Opt  name = "DevOTB2AlrmReplacementRequired"       value = "2"     jblclass="false"    specific = "*.*.DevOTB2.Event.EvtAlarm"/>
+      <Opt  name = "DevOTB2AlrmPaperJam"                  value = "3"     jblclass="false"    specific = "*.*.DevOTB2.Event.EvtAlarm"/>
+      <Opt  name = "DevOTB2AlrmPaperNearEnd"              value = "4"     jblclass="false"    specific = "*.*.DevOTB2.Event.EvtAlarm"/>
+      <Opt  name = "DevOTB2AlrmPaperEnd"                  value = "5"     jblclass="false"    specific = "*.*.DevOTB2.Event.EvtAlarm"/>
+      <Opt  name = "DevOTB2AlrmHeadOverHeat"              value = "6"     jblclass="false"    specific = "*.*.DevOTB2.Event.EvtAlarm"/>
+      <Opt  name = "DevOTB2AlrmRstFromPwrFail"            value = "7"     jblclass="false"    specific = "*.*.DevOTB2.Event.EvtAlarm"/>
+      <!-- ################################### Specific Operations Code  ################################### -->
+
+      <!-- Printer @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <Opt  name = "DevPrinterAlrmCleaningRequired"       value = "1"     jblclass="false"    specific = "*.*.DevPrinter.Event.EvtAlarm"/>
+      <Opt  name = "DevPrinterAlrmReplacementRequired"    value = "2"     jblclass="false"    specific = "*.*.DevPrinter.Event.EvtAlarm"/>
+      <Opt  name = "DevPrinterAlrmPaperJam"               value = "3"     jblclass="false"    specific = "*.*.DevPrinter.Event.EvtAlarm"/>
+      <Opt  name = "DevPrinterAlrmPaperNearEnd"           value = "4"     jblclass="false"    specific = "*.*.DevPrinter.Event.EvtAlarm"/>
+      <Opt  name = "DevPrinterAlrmPaperEnd"               value = "5"     jblclass="false"    specific = "*.*.DevPrinter.Event.EvtAlarm"/>
+      <Opt  name = "DevPrinterAlrmHeadOverHeat"           value = "6"     jblclass="false"    specific = "*.*.DevPrinter.Event.EvtAlarm"/>
+
+      <!--Fiscal Printer @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <Opt  name = "DevFiscPrinterCommError"              value = "1"     jblclass="false"    specific = "*.*.DevFiscPrinter.Event.EvtAlarm"/>
+      <Opt  name = "DevFiscPrinterFiscModError"           value = "2"     jblclass="false"    specific = "*.*.DevFiscPrinter.Event.EvtAlarm"/>
+      <Opt  name = "DevFiscPrinterAlrmPaperNearEnd"       value = "3"     jblclass="false"    specific = "*.*.DevFiscPrinter.Event.EvtAlarm"/>
+      <Opt  name = "DevFiscPrinterAlrmPaperEnd"           value = "4"     jblclass="false"    specific = "*.*.DevFiscPrinter.Event.EvtAlarm"/>
+      <Opt  name = "DevFiscPrinterAlrmCoverOpened"        value = "5"     jblclass="false"    specific = "*.*.DevFiscPrinter.Event.EvtAlarm"/>
+      <Opt  name = "DevFiscPrinterAlrmFiscBalanceError"   value = "6"     jblclass="false"    specific = "*.*.DevFiscPrinter.Event.EvtAlarm"/>
+     <!-- ################################### Specific Operations Code  ################################### -->
+      <!-- SGP @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <Opt  name = "DevSGPAlrmCoinCashNP"                 value = "1"     jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmCoinCashAF"                 value = "2"     jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmCoinCashF"                  value = "3"     jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmCoinCashAE"                 value = "4"     jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmCoinCashE"                  value = "5"     jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinOpen"                  value = "6"     jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAEH1"                  value = "7"     jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAEH2"                  value = "8"     jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAEH3"                  value = "9"     jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAEH4"                  value = "10"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAEH5"                  value = "11"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAEH6"                  value = "12"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAEH7"                  value = "13"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinEH1"                   value = "14"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinEH2"                   value = "15"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinEH3"                   value = "16"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinEH4"                   value = "17"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinEH5"                   value = "18"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinEH6"                   value = "19"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinEH7"                   value = "20"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAFH1"                  value = "21"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAFH2"                  value = "22"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAFH3"                  value = "23"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAFH4"                  value = "24"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAFH5"                  value = "25"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAFH6"                  value = "26"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinAFH7"                  value = "27"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinFH1"                   value = "28"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinFH2"                   value = "29"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinFH3"                   value = "30"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinFH4"                   value = "31"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinFH5"                   value = "32"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinFH6"                   value = "33"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinFH7"                   value = "34"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinTmtH1"                 value = "35"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinTmtH2"                 value = "36"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinTmtH3"                 value = "37"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinTmtH4"                 value = "38"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinTmtH5"                 value = "39"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinTmtH6"                 value = "40"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinTmtH7"                 value = "41"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmBnkCashNP"                  value = "42"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmBnkCashAF"                  value = "43"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmBnkCashF"                   value = "44"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmBnkCashAE"                  value = "45"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmBnkCashE"                   value = "46"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillOpen"                  value = "47"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAEH1"                  value = "48"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAEH2"                  value = "49"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAEH3"                  value = "50"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAEH4"                  value = "51"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAEH5"                  value = "52"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAEH6"                  value = "53"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAEH7"                  value = "54"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillEH1"                   value = "55"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillEH2"                   value = "56"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillEH3"                   value = "57"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillEH4"                   value = "58"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillEH5"                   value = "59"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillEH6"                   value = "60"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillEH7"                   value = "61"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAFH1"                  value = "62"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAFH2"                  value = "63"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAFH3"                  value = "64"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAFH4"                  value = "65"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAFH5"                  value = "66"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAFH6"                  value = "67"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillAFH7"                  value = "68"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillFH1"                   value = "69"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillFH2"                   value = "70"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillFH3"                   value = "71"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillFH4"                   value = "72"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillFH5"                   value = "73"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillFH6"                   value = "74"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillFH7"                   value = "75"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillTmtH1"                 value = "76"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillTmtH2"                 value = "77"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillTmtH3"                 value = "78"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillTmtH4"                 value = "79"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillTmtH5"                 value = "80"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillTmtH6"                 value = "81"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillTmtH7"                 value = "82"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmSgpInitErr"                 value = "83"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmCCTalkNP"                   value = "84"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillNP"                    value = "85"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmSGPArdyUp"                  value = "86"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmSGPArdyDwn"                 value = "87"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmSGPIntrnErr"                value = "88"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmSGPCfgErr"                  value = "89"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmACoinCfgErr"                value = "90"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmABillCfgErr"                value = "91"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDCoinCfgErr"                value = "92"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+      <Opt  name = "DevSGPAlrmDBillCfgErr"                value = "93"    jblclass="false"    specific = "*.*.DevSGP.Event.EvtAlarm"/>
+
+      <!-- ACoin @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- ################################### Specific Error Code  ################################### -->
+      <!-- ################################### Specific Alarms Code  ################################### -->
+      <Opt  name = "DevACoinAlrmNoAlarms"                 value = "1"      jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmRejcted"                  value = "2"      jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibited"                value = "3"      jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmMultiWind"                value = "4"      jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmWakeUpTmt"                value = "5"      jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmValSnsTmt"                value = "6"      jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmCreSnsTmt"                value = "7"      jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmSortOptoTmt"              value = "8"      jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrm2ndClsCoinErr"            value = "9"      jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmAccGtNotRdy"              value = "10"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmCreSnsNotRdy"             value = "11"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmSortNotRdy"               value = "12"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmRejectNotCl"              value = "13"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmValSnsNotRdy"             value = "14"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmCreSnsBlok"               value = "15"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmSortOptoBlk"              value = "16"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmCreSeqErr"                value = "17"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmGoneBkwd"                 value = "18"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmGone2Fast"                value = "19"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmGone2Slow"                value = "20"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmCOSMecAct"                value = "21"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmDCEOptTmt"                value = "22"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmDCEOptNtSeen"             value = "23"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmCreSns2Early"             value = "24"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmRepRejected"              value = "25"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmSlugRejected"             value = "26"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmRejSnsBlk"                value = "27"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmGamesOvld"                value = "28"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmMaxPulsesTh"              value = "29"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmAccGtOpNoCl"              value = "30"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmAccGtClNoOp"              value = "31"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType01"              value = "32"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType02"              value = "33"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType03"              value = "34"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType04"              value = "35"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType05"              value = "36"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType06"              value = "37"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType07"              value = "38"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType08"              value = "39"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType09"              value = "40"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType10"              value = "41"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType11"              value = "42"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType12"              value = "43"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType13"              value = "44"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType14"              value = "45"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType15"              value = "46"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType16"              value = "47"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType17"              value = "48"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType18"              value = "49"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType19"              value = "50"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType20"              value = "51"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType21"              value = "52"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType22"              value = "53"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType23"              value = "54"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType24"              value = "55"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType25"              value = "56"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType26"              value = "57"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType27"              value = "58"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType28"              value = "59"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType29"              value = "60"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType30"              value = "61"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType31"              value = "62"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmInhibType32"              value = "63"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmDataBlkReq"               value = "64"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmFlightDeckOp"             value = "65"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmUnspecified"              value = "66"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmUnexpReset"               value = "67"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmEventsLost"               value = "68"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmMnyCodeNtVal"             value = "69"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <Opt  name = "DevACoinAlrmLinkOff"                  value = "70"     jblclass="false"   specific = "*.*.DevACoin.Event.EvtAlarm"/>
+      <!-- ################################### Specific Operations Code  ################################### -->
+
+     <!-- ABill @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+     <!-- ################################### Specific Error Code  ################################### -->
+     <!-- ################################### Specific Alarms Code  ################################### -->
+     <Opt  name = "DevABillAlrmFraud"                     value = "1"      jblclass="false"   specific = "*.*.DevABill.Event.EvtAlarm"/>
+     <Opt  name = "DevABillAlrmUnxRst"                    value = "2"      jblclass="false"   specific = "*.*.DevABill.Event.EvtAlarm"/>
+     <Opt  name = "DevABillAlrmCassFull"                  value = "3"      jblclass="false"   specific = "*.*.DevABill.Event.EvtAlarm"/>
+     <Opt  name = "DevABillAlrmJam"                       value = "4"      jblclass="false"   specific = "*.*.DevABill.Event.EvtAlarm"/>
+     <Opt  name = "DevABillAlrmFail"                      value = "5"      jblclass="false"   specific = "*.*.DevABill.Event.EvtAlarm"/>
+     <Opt  name = "DevABillAlrmCassNP"                    value = "6"      jblclass="false"   specific = "*.*.DevABill.Event.EvtAlarm"/>
+     <Opt  name = "DevABillAlrmWtBnkWtdw"                 value = "7"      jblclass="false"   specific = "*.*.DevABill.Event.EvtAlarm"/>
+     <Opt  name = "DevABillAlrmLinkOff"                   value = "8"      jblclass="false"   specific = "*.*.DevABill.Event.EvtAlarm"/>
+     <Opt  name = "DevABillAlrmCassAF"                    value = "9"      jblclass="false"   specific = "*.*.DevABill.Event.EvtAlarm"/>
+     <!-- ################################### Specific Operations Code  ################################### -->
+
+     <!-- DCoin @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+     <!-- ################################### Specific Error Code  ################################### -->
+     <!-- ################################### Specific Alarms Code  ################################### -->
+     <Opt  name = "DevDCoinAlrmFraudH1"                   value = "1"      jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmFraudH2"                   value = "2"      jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmFraudH3"                   value = "3"      jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmFraudH4"                   value = "4"      jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmFraudH5"                   value = "5"      jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmFraudH6"                   value = "6"      jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmFraudH7"                   value = "7"      jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOptBlkH1"                  value = "8"      jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOptBlkH2"                  value = "9"      jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOptBlkH3"                  value = "10"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOptBlkH4"                  value = "11"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOptBlkH5"                  value = "12"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOptBlkH6"                  value = "13"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOptBlkH7"                  value = "14"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngBlkH1"                  value = "15"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngBlkH2"                  value = "16"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngBlkH3"                  value = "17"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngBlkH4"                  value = "18"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngBlkH5"                  value = "19"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngBlkH6"                  value = "20"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngBlkH7"                  value = "21"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngRvdH1"                  value = "22"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngRvdH2"                  value = "23"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngRvdH3"                  value = "24"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngRvdH4"                  value = "25"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngRvdH5"                  value = "26"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngRvdH6"                  value = "27"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmEngRvdH7"                  value = "28"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmTmtGvChH1"                 value = "29"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmTmtGvChH2"                 value = "30"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmTmtGvChH3"                 value = "31"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmTmtGvChH4"                 value = "32"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmTmtGvChH5"                 value = "33"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmTmtGvChH6"                 value = "34"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmTmtGvChH7"                 value = "35"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOfflineH1"                 value = "36"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOfflineH2"                 value = "37"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOfflineH3"                 value = "38"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOfflineH4"                 value = "39"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOfflineH5"                 value = "40"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOfflineH6"                 value = "41"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <Opt  name = "DevDCoinAlrmOfflineH7"                 value = "42"     jblclass="false"   specific = "*.*.DevDCoin.Event.EvtAlarm"/>
+     <!-- ################################### Specific Operations Code  ################################### -->
+
+     <!-- DBill @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+     <!-- ################################### Specific Error Code  ################################### -->
+     <!-- ################################### Specific Alarms Code  ################################### -->
+     <!-- ###################################  low bills in BinX  ################################### -->
+     <Opt  name = "DevDBillAlrmLowBillsBin1"              value = "1"      jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+     <Opt  name = "DevDBillAlrmLowBillsBin2"              value = "2"      jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+     <Opt  name = "DevDBillAlrmLowBillsBin3"              value = "3"      jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+     <Opt  name = "DevDBillAlrmLowBillsBin4"              value = "4"      jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+     <!-- ###################################  no bills in BinX  ################################### -->
+     <Opt  name = "DevDBillAlrmEmptyBin1"                 value = "5"      jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+     <Opt  name = "DevDBillAlrmEmptyBin2"                 value = "6"      jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+     <Opt  name = "DevDBillAlrmEmptyBin3"                 value = "7"      jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+     <Opt  name = "DevDBillAlrmEmptyBin4"                 value = "8"      jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+     <!-- ###################################  Link off on bill bins  ################################### -->
+     <Opt  name = "DevDBillAlrmOfflineBin1"               value = "9"      jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+     <Opt  name = "DevDBillAlrmOfflineBin2"               value = "10"     jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+     <Opt  name = "DevDBillAlrmOfflineBin3"               value = "11"     jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+     <Opt  name = "DevDBillAlrmOfflineBin4"               value = "12"     jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+      <!-- ###################################  Reject bill in bin  ################################### -->
+      <Opt  name = "DevDBillAlrmRejectBin1"               value = "13"     jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+      <Opt  name = "DevDBillAlrmRejectBin2"               value = "14"     jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+      <Opt  name = "DevDBillAlrmRejectBin3"               value = "15"     jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+      <Opt  name = "DevDBillAlrmRejectBin4"               value = "16"     jblclass="false"   specific = "*.*.DevDBill.Event.EvtAlarm"/>
+     <!-- Bill2Bill @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+     <!-- ################################### Specific Alarms Code  ################################### -->
+     <Opt  name = "DevBill2BillAlrmDropCassRemoved"              value = "1"       jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmDropCassFull"                 value = "2"       jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmWrongEscrowMode"              value = "3"       jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmWrongCurrency"                value = "4"       jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmWrongNominal"                 value = "5"       jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmJamInAcceptor"                value = "6"       jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmJamInStacker"                 value = "7"       jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmReset"                        value = "8"       jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmHardwareErr"                  value = "9"       jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmDispenserErr"                 value = "10"      jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmCass1Err"                     value = "11"      jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmCass2Err"                     value = "12"      jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmCass3Err"                     value = "13"      jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+     <Opt  name = "DevBill2BillAlrmTransportErr"                 value = "14"      jblclass="false"   specific = "*.*.DevBill2Bill.Event.EvtAlarm"/>
+    </Field>
+  </DataSignatureFormat>
+</JPSDataSignature>
+
+<!-- JPS codes to JBL codes Mapping -->
+<!-- 
+        {Field name = "Applications" ...} | {Field name = "Services" ... } | {Field name = "Devices" ... }
+        - For JBL "Applications", "Services" and "Devices" are classified as "entityCode". The coded
+          "0x..." value univocally identifies (on JPS side) an entity capable to fire an "event" of interest
+          for JBL.
+    -->
+
+<!-- {Field name = "Types" ... }
+        - For JBL only the "Types.Event" sub-code is meaningful and represents an event fired toward JBL through the "event" REST service.
+          It's the way to route an asynchronous notification related to a JPS event.
+    -->
+
+<!-- {Field name = "SubTypes" ... }
+        - For JBL only {"SubTypes.EvtAlarm"}, {"SubTypes.EvtLog"} and {"SubTypes.EvtOperation"} are meaningful. Each
+          coded value (resp. "0x00001f80", "0x00001f00" and 0x00001e80) could be used as value of the "eventType" property
+          of an "event" fired from JPS to JBL.
+          
+          - {"SubTypes.EvtAlarm"}:
+            Each alarm is encoded in JBL using the codes listed into {Field name = "SpecCodes"}. In explicit each "name='...Alrm...'"
+            code could be used to set the "eventSpecCode" property of an alarm fired from JPS to JBL using the "event" service:
+            <Code name='AlrmLinkOff' type='uint' value= '0x00001fff'/>
+            <Code name='AlrmInitFailed' type='uint' value= '0x00001ffe'/>
+            <Code name='AlrmOutOfOrder' type='uint' value= '0x00001ffd'/>
+            <Code name='AlrmUnknown' type='uint' value= '0x00001ffc'/>
+            <Code name='AlrmTktWtdrwTmt' type='uint' value= '0x08001f81'/>
+            <Code name='SrvLaneAlrmLoop1AlwaysBusy' type='uint' value= '0x00801f81'/>
+            <Code name='SrvLaneAlrmLoop2AlwaysBusy' type='uint' value= '0x00801f82'/>
+            <Code name='SrvLaneAlrmLoop3AlwaysBusy' type='uint' value= '0x00801f83'/>
+            <Code name='SrvLaneAlrmLoop4AlwaysBusy' type='uint' value= '0x00801f84'/>
+            <Code name='SrvLaneAlrmButtAlwaysPushed' type='uint' value= '0x00801f85'/>
+            <Code name='SrvLaneAlrmBar1Uprooted' type='uint' value= '0x00801f86'/>
+            <Code name='SrvLaneAlrmBar2Uprooted' type='uint' value= '0x00801f87'/>
+            <Code name='SrvLaneAlrmBar1Blocked' type='uint' value= '0x00801f88'/>
+            <Code name='SrvLaneAlrmBar2Blocked' type='uint' value= '0x00801f89'/>
+            <Code name='SrvLaneAlrmVCS1NoClass' type='uint' value= '0x00801f8a'/>
+            <Code name='SrvPaymentFraudAlrm' type='uint' value= '0x00c01f81'/>
+            <Code name='DevOTB2AlrmCleaningRequired' type='uint' value= '0x00029f81'/>
+            <Code name='DevOTB2AlrmReplacementRequired' type='uint' value= '0x00029f82'/>
+            <Code name='DevOTB2AlrmPaperJam' type='uint' value= '0x00029f83'/>
+            <Code name='DevOTB2AlrmPaperNearEnd' type='uint' value= '0x00029f84'/>
+            <Code name='DevOTB2AlrmPaperEnd' type='uint' value= '0x00029f85'/>
+            <Code name='DevOTB2AlrmHeadOverHeat' type='uint' value= '0x00029f86'/>
+            <Code name='DevOTB2AlrmRstFromPwrFail' type='uint' value= '0x00029f87'/>
+            <Code name='DevPrinterAlrmCleaningRequired' type='uint' value= '0x00005f81'/>
+            <Code name='DevPrinterAlrmReplacementRequired' type='uint' value= '0x00005f82'/>
+            <Code name='DevPrinterAlrmPaperJam' type='uint' value= '0x00005f83'/>
+            <Code name='DevPrinterAlrmPaperNearEnd' type='uint' value= '0x00005f84'/>
+            <Code name='DevPrinterAlrmPaperEnd' type='uint' value= '0x00005f85'/>
+            <Code name='DevPrinterAlrmHeadOverHeat' type='uint' value= '0x00005f86'/>           
+            
+          - {"SubTypes.EvtOperation"}:
+            Each operation is encoded in JBL using some of the codes listed into Field name = "SubTypes":
+            Curretly these codes are used to set the property "eventSpecCode" of an operation fired from JPS to JBL using the
+            "event" service:
+            <Code name='OpTransit' type='uint' value= '0x00001eff'/>
+            <Code name='OpPayment' type='uint' value= '0x00001efe'/>
+            <Code name='OpCard' type='uint' value= '0x00001efd'/>           
+
+          - {"SubTypes.SrvLaneEvt..."}:
+            Each LANE Log is encoded in JBL using some of the codes listed into Field name = "SubTypes.SrvLaneEvt...":
+            Curretly these codes are used to set the property "eventSpecCode" of a log fired from JPS to JBL using the
+            "event" service:
+             <Code name='SrvLaneEvtBarAct' type='uint' value= '0x00801080'/>
+             <Code name='SrvLaneEvtLoopAct' type='uint' value= '0x00801100'/>
+             <Code name='SrvLaneEvtButtonAct' type='uint' value= '0x00801180'/>
+             <Code name='SrvLaneEvtVCSAct' type='uint' value= '0x00801200'/>
+             <Code name='SrvLaneEvtVehicle' type='uint' value= '0x00801280'/>
+             <Code name='SrvLaneEvtVehicle' type='uint' value= '0x00801280'/>
+
+    -->

@@ -1,0 +1,136 @@
+<style type="text/css">input { min-width: 75px; } </style>
+<div class="add-row-editable-table">
+  <button class="btn btn-primary" ng-disabled="inserted" ng-click="addUsrPass()">{{'_GENERIC_ADD_' | translate}}</button>
+  <div style="width:100%; height:10%;"><br></div>  
+  <label>{{'_GENERIC_DETAILS_' | translate}}<input type="checkbox" ng-model="deepview"></label><br/>
+  <div style="width:100%; height:10%;"><br></div>  
+  <div class="input-group">
+	<input type="text" class="form-control with-danger-addon" placeholder="{{'_GENERIC_SEARCHFOR_' | translate}}" ng-model="inputValue">
+	<span class="input-group-btn">
+	  <button class="btn btn-danger" type="button" ng-click="searchUsrPasses(inputValue)" ng-disabled="((!inputValue) || (inputValue.length == 0))">{{'_GENERIC_SEARCH_' | translate}}</button>
+	</span>
+  </div>
+</div>
+<table class="table table-bordered table-hover table-condensed">
+  <tr>
+    <td ng-show="false">IsCrt</td>
+    <td><b>{{'_GENERIC_UID_' | translate}}</b></td>
+    <td><b>{{'_GENERIC_NAME_' | translate}}</b></td>
+    <td><b>{{'_GENERIC_TYPE_' | translate}}</b></td>
+    <td><b>{{'_GENERIC_PRDTYPE_' | translate}}</b></td>
+    <td><b>{{'_GENERIC_STATUS_' | translate}}</b></td>
+    <td><b>{{'_GENERIC_BALANCE_' | translate}}</b></td>
+    <td><b>{{'_GENERIC_ENABLED_' | translate}}</b></td>
+    <td><b>{{'_GENERIC_STRTVAL_' | translate}}</b></td>
+    <td><b>{{'_GENERIC_ENDVAL_' | translate}}</b></td>
+    <td><b>{{'_GENERIC_RAWDATA_' | translate}}</b></td>
+    <td ng-show="deepview"><b>{{'_GENERIC_PINNUM_' | translate}}</b></td>
+    <td ng-show="deepview"><b>{{'_GENERIC_PINATMPT_' | translate}}</b></td>
+    <td ng-show="deepview"><b>{{'_GENERIC_MAXATMPT_' | translate}}</b></td>
+    <td ng-show="deepview"><b>{{'_GENERIC_RESERVED_' | translate}}</b></td>
+    <td><b>{{'_GENERIC_ACTIONS_' | translate}}</b></td>
+  </tr>
+  <tr ng-repeat="usrpass in usrpasses" class="editable-row">
+    <td ng-show="false">
+        <span editable-text="usrpass.iscrt" e-name="iscrt" e-form="rowform" e-required>
+		{{ usrpass.iscrt || false }}
+		</span>
+    </td>
+	<td>
+        <span editable-password="usrpass.uid" e-name="uid" e-form="rowform" ng-show="rowform.$visible" e-required >
+		{{ usrpass.uid }}
+		</span><span ng-show="!rowform.$visible">*****</span>
+		<div class="error" ng-show="(!(rowform.$data.uid) || (rowform.$data.usrtype.uid == 0))">required</div>
+    </td>
+	<td>
+        <span editable-text="usrpass.usrname" e-name="usrname" e-form="rowform" e-required>
+		{{ usrpass.usrname }}
+		</span>
+    </td>
+    <td>
+		<span editable-text="usrpass.usrtype" e-name="usrtype" e-form="rowform" e-required>
+		  {{ usrpass.usrtype }}
+        </span>
+		<div class="error" ng-show="(!(rowform.$data.usrtype) || (rowform.$data.usrtype.length == 0))">required</div>
+    </td>
+	<td>
+        <span editable-text="usrpass.prdtype" e-name="prdtype" e-form="rowform" e-required>
+          {{ usrpass.prdtype }}
+        </span>
+		<div class="error" ng-show="(!(rowform.$data.prdtype) || (rowform.$data.prdtype.length == 0))">required</div>
+    </td>
+    <td class="select-td">
+        <span editable-select="usrpass.status" e-name="status" onshow="loadStatuses()" e-form="rowform" e-selectpicker
+              e-ng-options="s as s for s in statuses">
+          {{ showStatus(usrpass) }}
+        </span>
+		<div class="error" ng-show="(statuses.indexOf(rowform.$data.status) < 0)">unsupported</div>
+    </td>
+	<td>
+        <span editable-text="usrpass.balance" e-name="balance" e-form="rowform">
+          {{ usrpass.balance }}
+        </span>
+    </td>
+	<td>
+        <span editable-select="usrpass.enabled" e-name="enabled" e-form="rowform" e-selectpicker
+              e-ng-options="v as v for v in [0,1]">
+          {{ usrpass.enabled }}
+        </span>
+		<div class="error" ng-show="([0,1].indexOf(rowform.$data.enabled) < 0) && ([false,true].indexOf(rowform.$data.enabled) < 0)">unsupported</div>
+    </td>
+	<td>
+        <span editable-date="usrpass.stvldty" e-name="stvldty" e-form="rowform" e-required>
+          {{ usrpass.stvldty | date:'dd-MM-yyyyTHH:mm:ss'}}
+        </span>
+		<div class="error" ng-show="(rowform.$data.stvldty.length == 0)">not valid</div>
+    </td>
+	<td>
+        <span editable-date="usrpass.edvldty" e-name="edvldty" e-form="rowform" e-required>
+          {{ usrpass.edvldty | date:'dd-MM-yyyyTHH:mm:ss'}}
+        </span>
+		<div class="error" ng-show="(rowform.$data.edvldty.length == 0)">not valid</div>
+    </td>
+	<td>
+        <span editable-password="usrpass.rawdata" e-name="rawdata" ng-show="rowform.$visible" e-form="rowform">
+          {{ usrpass.rawdata }}
+        </span><span ng-show="!rowform.$visible">*****</span>
+    </td>
+	<td ng-show="deepview">
+        <span editable-password="usrpass.pinnumb" e-name="pinnumb" ng-show="rowform.$visible" e-form="rowform">
+          {{ usrpass.pinnumb }}
+        </span><span ng-show="!rowform.$visible">*****</span>
+		<div class="error" ng-show="((rowform.$data.pinnumb.length > 0) && (rowform.$data.pinnumb.length < 5))">min length 5</div>
+    </td>
+	<td ng-show="deepview">
+        <span editable-number="usrpass.pinattempts" e-name="pinattempts" e-form="rowform">
+          {{ usrpass.pinattempts }}
+        </span>
+    </td>
+	<td ng-show="deepview">
+        <span editable-number="usrpass.maxattempts" e-name="maxattempts" e-form="rowform">
+          {{ usrpass.maxattempts }}
+        </span>
+    </td>
+	<td ng-show="deepview">
+        <span editable-select="usrpass.reserved" e-name="reserved" e-form="rowform" e-selectpicker
+              e-ng-options="v as v for v in [0,1]">
+          {{ usrpass.reserved }}
+        </span>
+    </td>
+    <td>
+      <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == usrpass">
+        <button type="button"  class="btn btn-primary editable-table-button btn-xs" ng-click="onSaveBtn($index, rowform.$data)"
+		ng-disabled="((rowform.$data.uid.length == 0) || (rowform.$data.stvldty == 0) || (rowform.$data.edvldty == 0) || (rowform.$data.usrtype.length == 0) || (rowform.$data.prdtype.length == 0) || (rowform.$data.pinnumb.length < 5))">
+          {{'_GENERIC_SAVE_' | translate}}
+        </button>
+        <button type="button" ng-disabled="rowform.$waiting" ng-click="cancelUsrPass(rowform)" class="btn btn-default editable-table-button btn-xs">
+          {{'_GENERIC_CANCEL_' | translate}}
+        </button>
+      </form>
+      <div class="buttons" ng-show="!rowform.$visible">
+        <button class="btn btn-primary editable-table-button btn-xs" ng-click="editUsrPass(rowform)">{{'_GENERIC_EDIT_' | translate}}</button>
+        <button class="btn btn-danger editable-table-button btn-xs" ng-click="onDeleteBtn($index)">{{'_GENERIC_DELETE_' | translate}}</button>
+      </div>
+    </td>
+  </tr>
+</table>

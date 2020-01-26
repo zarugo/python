@@ -1,0 +1,98 @@
+{
+  "cashmngr": {
+    "coins": [
+      {
+        "_idx_": 0,
+        "path": "A",
+        "dst": 0,
+        "fbpath": "E",
+        "enabled": true,
+        "ismxdcash": false,
+        "srcs": [
+          0
+        ]
+      },
+      {
+        "_idx_": 1,
+        "path": "B",
+        "dst": 1,
+        "fbpath": "E",
+        "enabled": true,
+        "ismxdcash": false,
+        "srcs": [
+          1
+        ]
+      },
+      {
+        "_idx_": 2,
+        "path": "C",
+        "dst": 2,
+        "fbpath": "E",
+        "enabled": true,
+        "ismxdcash": false,
+        "srcs": [
+          2
+        ]
+      },
+      {
+        "_idx_": 3,
+        "path": "D",
+        "dst": 3,
+        "fbpath": "E",
+        "enabled": true,
+        "ismxdcash": false,
+        "srcs": [
+          3
+        ]
+      },
+      {
+        "_idx_": 4,
+        "path": "E",
+        "dst": 4,
+        "fbpath": "E",
+        "enabled": true,
+        "ismxdcash": true,
+        "srcs": [
+          4,
+          5,
+          6
+        ]
+      }
+    ],
+    "bills": [
+      {
+        "_idx_": 0,
+        "path": "A",
+        "dst": 0,
+        "fbpath": "?",
+        "enabled": false,
+        "ismxdcash": false,
+        "srcs": []
+      },
+      {
+        "_idx_": 1,
+        "path": "B",
+        "dst": 1,
+        "fbpath": "?",
+        "enabled": false,
+        "ismxdcash": false,
+        "srcs": []
+      },
+      {
+        "_idx_": 2,
+        "path": "?",
+        "dst": 2,
+        "fbpath": "?",
+        "enabled": true,
+        "ismxdcash": true,
+        "srcs": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
+  }
+}

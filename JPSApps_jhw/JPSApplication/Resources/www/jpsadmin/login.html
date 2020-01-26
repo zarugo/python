@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JPS Admin</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="lib/ionicons.css" >
+  <link rel="stylesheet" href="lib/angular-toastr.css" >
+  <link rel="stylesheet" href="lib/animate.css" >
+  <link rel="stylesheet" href="lib/bootstrap.css" >
+  <link rel="stylesheet" href="lib/bootstrap-select.css" >
+  <link rel="stylesheet" href="lib/bootstrap-switch.css" >
+  <link rel="stylesheet" href="lib/bootstrap-tagsinput.css" >
+  <link rel="stylesheet" href="lib/font-awesome.css" >
+  <link rel="stylesheet" href="lib/fullcalendar.css" >
+  <link rel="stylesheet" href="lib/leaflet.css" >
+  <link rel="stylesheet" href="lib/angular-progress-button-styles.min.css" >
+  <link rel="stylesheet" href="lib/chartist.min.css" >
+  <link rel="stylesheet" href="lib/morris.css" >
+  <link rel="stylesheet" href="lib/ion.rangeSlider.css" >
+  <link rel="stylesheet" href="lib/ion.rangeSlider.skinFlat.css" >
+  <link rel="stylesheet" href="lib/textAngular.css" >
+  <link rel="stylesheet" href="lib/xeditable.css" >
+  <link rel="stylesheet" href="lib/style.css" >
+  <link rel="stylesheet" href="lib/select.css" >
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css({.tmp/serve,src}) styles/auth.css -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="app/auth.css">
+  <!-- endinject -->
+  <!-- endbuild -->
+</head>
+<body>
+<main class="auth-main">
+  <div class="auth-block" id="loginDiv">
+    <h1>Sign in to JPS Admin</h1>
+
+    <form class="form-horizontal" id="loginForm3">
+      <div class="form-group">
+        <label for="inputUser3" class="col-sm-2 control-label">User</label>
+
+        <div class="col-sm-10">
+          <input type="user" class="form-control" id="inputUser3" placeholder="User" onkeyup="stoppedTyping()">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="inputPassword3" placeholder="Password" onkeyup="stoppedTyping()">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default btn-auth" id="submitButton3" disabled onclick="jsonSubmit('/jpsadmin/api/login')">Sign in</button>
+          <a href class="forgot-pass">Forgot password?</a>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="wrapper row-offcanvas row-offcanvas-left" style="min-height: 923px;">
+		<!-- Main content -->
+		<!-- ------------------------------------------------------- FORM SUBMIT MODAL CONFIRMATION -------------------------------------------------- -->
+		<div id="notAuthDiv" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">Not Authorized</div>
+					<div class="modal-body">
+						<div class='alert alert-danger alert-dismissable' id="errMsg"><i class='fa fa-check'></i>Succeded.</div>
+					</div>
+					<div class="modal-footer">
+						<button href="index.html" class="btn btn-danger success" onclick="authDeniedMsgAck()"/>Got It</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ------------------------------------------------------- FORM SUBMIT MODAL CONFIRMATION -------------------------------------------------- -->
+	</div>
+</main>
+
+<script src="lib/md5.min.js"></script>
+<script type="text/javascript">
+    function stoppedTyping(){
+        var n = document.getElementById("inputUser3");
+        var p = document.getElementById("inputPassword3");
+        var b = document.getElementById("submitButton3");
+		
+		if((n.value.length == 0) || (p.value.length == 0)) { 
+            b.disabled = true; 
+        }
+		else{ 
+            b.disabled = false;
+        }
+    }
+	
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+	
+	function jsonSubmit(url){
+		var lginDiv = document.getElementById("loginDiv");
+		var form = document.getElementById("loginForm3");
+		var notAuthDiv = document.getElementById("notAuthDiv");
+		var errMsg = document.getElementById("errMsg");
+		
+		form.action = url;
+		form.method = "POST";
+		
+		form.onsubmit = function (e) {
+			// stop the regular form submission
+			e.preventDefault();
+
+			var n = document.getElementById("inputUser3");
+			var p = document.getElementById("inputPassword3");
+			var b = document.getElementById("submitButton3");
+		
+			// collect the form data while iterating over the inputs
+			var data = {};
+			data["name"] = n.value;
+			data["password"] = md5(p.value).toUpperCase();
+
+			// construct an HTTP request
+			var xhr = new XMLHttpRequest();
+			xhr.open(form.method, form.action, true);
+			xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+			xhr.onreadystatechange = function() {if ((xhr.readyState == XMLHttpRequest.DONE) && (xhr.status != 200)) {alert(xhr.responseText);}}
+			
+			xhr.onloadend = function (res) {
+				n.value = "";
+				p.value = "";
+				b.disabled = true;
+				cookies = document.cookie;
+				
+				if(getCookie("error") != ""){
+					notAuthDiv.className = "modal fade in";
+					errMsg.innerHTML = getCookie("error");
+				}				
+				else if(getCookie("sessTok") != ""){
+					     if(cookies.indexOf("role=Administrator") !== -1) {document.location = "/jpsadmin/index.html#/administration/terminal";}
+					else if(cookies.indexOf("role=Maintainer")    !== -1) {document.location = "/jpsadmin/index.html#/dashboard";}
+					else if(cookies.indexOf("role=Cashier")       !== -1) {document.location = "/jpsadmin/index.html#/cashier";}
+					else                                                  {document.location = "/jpsadmin/index.html";}
+				}
+			};
+			
+			// send the collected data as JSON
+			xhr.send(JSON.stringify(data));
+		}
+	}
+	
+	function authDeniedMsgAck(){
+		var notAuthDiv = document.getElementById("notAuthDiv");
+		notAuthDiv.className = "modal hide fade";
+	}
+</script>
+
+</body>
+</html>

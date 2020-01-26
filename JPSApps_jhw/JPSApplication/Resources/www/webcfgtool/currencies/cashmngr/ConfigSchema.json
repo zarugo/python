@@ -1,0 +1,103 @@
+{
+	"type": "object",
+	"properties": {
+		"cashmngr": {
+			"title": "Cash Manager",					
+			"type": "object",
+			"properties": {
+				"coins": {
+					"title": "Paths from a-coin to d-coin for each denomination",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"_idx_": {
+								"type": "integer",
+								"readonly": true
+							},
+							"path": {
+								"title": "Coin Main Path",
+								"$ref": "#/references/paths"
+							},
+							"dst": {
+								"title": "DCoin denom. id as destination",
+								"type": "integer",
+								"minimum": 0,
+								"maximum": 6
+							},
+							"fbpath": {
+								"title": "Fall Back Path",
+								"$ref": "#/references/paths"
+							},
+							"enabled": {
+								"title": "Enabled/Disabled",
+								"type": "boolean"
+							},
+							"ismxdcash": {
+								"title": "The path leads to a mixed cash?",
+								"type": "boolean"
+							},
+							"srcs": {
+								"title": "ACoin denom. ids as sources",
+								"type": "array",
+								"items": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 15
+								}
+							}
+						}
+					},
+					"minItems": 1,
+					"maxItems": 10
+				},
+				"bills": {
+					"title": "Paths from a-bill to d-bill for each denomination",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"_idx_": {
+								"type": "integer",
+								"readonly": true
+							},
+							"path": {
+								"title": "Banknote Main Path",
+								"$ref": "#/references/paths"
+							},
+							"dst": {
+								"title": "DBill denom. id as dest",
+								"type": "integer",
+								"minimum": 0,
+								"maximum": 6
+							},
+							"fbpath": {
+								"title": "Fall Back Path",
+								"$ref": "#/references/paths"
+							},
+							"enabled": {
+								"title": "Enabled/Disabled",
+								"type": "boolean"
+							},
+							"ismxdcash": {
+								"title": "The path leads to a mixed cash?",
+								"type": "boolean"
+							},
+							"srcs": {
+								"title": "ABill denom. ids as sources",
+								"type": "array",
+								"items": {
+									"type": "integer",
+									"minimum": 0,
+									"maximum": 15
+								}
+							}
+						}
+					},
+					"minItems": 1,
+					"maxItems": 10
+				}
+			}
+		}
+	}
+}

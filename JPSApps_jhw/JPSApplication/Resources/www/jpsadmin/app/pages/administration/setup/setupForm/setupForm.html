@@ -1,0 +1,51 @@
+<uib-tabset>
+	<!-- ------------------------------------------------------- ENVIRONMENT SETUP TAB -------------------------------------------------- -->		
+	<uib-tab heading="Environment"  title="Click to refresh">
+		<div class="row">
+			<div class="panel animated zoomIn">
+				<div class="panel-body">
+					<div>
+						<div id='envsetup_holder'></div>
+						<button type="button"  class="btn" ng-show="envSetupEditor.success == true" ng-click="onAlignMsTz(envSetupEditor)">Align TZ to MS</button>
+						<button type="button"  class="btn" ng-show="envSetupEditor.success == true" ng-click="onSetupSubmit(envSetupEditor)">Submit</button>
+						<button type="button"  class="btn" ng-show="envSetupEditor.success == true" ng-click="onSetupValidate(envSetupEditor)">Validate</button> 
+					</div>
+					<div class="error" ng-show="envSetupEditor.error != ''"><center>{{ envSetupEditor.error }}</center></div>
+				</div>
+				<div class="panel-footer"></div>
+			</div>
+		</div>	
+	</uib-tab>
+	<!-- ------------------------------------------------------- APPLICATION SETUP TAB -------------------------------------------------- -->		
+	<uib-tab heading="Application"  title="Click to refresh">
+		<div class="row">
+			<div class="panel animated zoomIn">
+				<div class="panel-body">
+					<div>
+						<div id='appsetup_holder'></div>
+						<button type="button"  class="btn" ng-show="appSetupEditor.success == true" ng-click="onSetupSubmit(appSetupEditor)">Submit</button> 
+						<button type="button"  class="btn" ng-show="appSetupEditor.success == true" ng-click="onSetupValidate(appSetupEditor)">Validate</button> 
+					</div>
+					<div class="error" ng-show="appSetupEditor.error != ''"><center>{{ appSetupEditor.error }}</center></div>
+				</div>
+				<div class="panel-footer"></div>
+			</div>
+		</div>	
+	</uib-tab>
+	<!-- ------------------------------------------------------- OUTPUTSCHEDULER SETUP TAB -------------------------------------------------- -->		
+	<uib-tab heading="Scheduler"  title="Click to refresh">
+		<div class="row">
+			<div class="panel animated zoomIn">
+				<div class="panel-body">
+					<div>
+						<div id='oscsetup_holder'></div>
+						<button type="button"  class="btn" ng-show="oscSetupEditor.success == true" ng-click="onSetupSubmit(oscSetupEditor)">Submit</button> 
+						<button type="button"  class="btn" ng-show="oscSetupEditor.success == true" ng-click="onSetupValidate(oscSetupEditor)">Validate</button>
+					</div>
+					<div class="error" ng-show="oscSetupEditor.error != ''"><center>{{ oscSetupEditor.error }}</center></div>
+				</div>
+				<div class="panel-footer"></div>
+			</div>
+		</div>
+	</uib-tab>
+</uib-tabset>

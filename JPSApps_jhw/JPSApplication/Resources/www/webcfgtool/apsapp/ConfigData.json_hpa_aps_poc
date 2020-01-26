@@ -1,0 +1,1335 @@
+{
+	"application": {
+		"spectype": 6,
+		"sitecode": 1,
+		"periphid": "80-0C-29-9C-B3-34",
+		"runmode": "InService",
+		"dbgsegflt": false,
+		"logmaxage": 7,
+		"loglevel": 0,
+		"dbglevel": 1,
+		"tmpscrntm": 3000,
+		"fraudalrmtm": 30000,
+		"backtoidletm": 60000,
+		"currency": "EUR",
+		"amoprecis": 2,
+		"locvalen": true,
+		"freetime": 5,
+		"exittime": 5,
+		"costtime": 0.05,
+		"lostmode": 2,
+		"loststrttm": "--:--",
+		"lostcosttm": 13,
+		"taxpctge": 22,
+		"prntsnapmode": 2,
+		"prntrcptmode": 2,
+		"showextm": true,
+		"showposmsg": true,
+		"showmaxcng": true,
+		"discntmode": 2,
+		"paytktgrace": true,
+		"pymtopts": [
+			10,
+			20,
+			30
+		],
+		"ticketdesc": [{
+				"_idx_": 0,
+				"name": "ParkNameDescr0"
+			}, {
+				"_idx_": 1,
+				"name": "ParkNameDescr1"
+			}, {
+				"_idx_": 2,
+				"name": "ParkNameDescr2"
+			}, {
+				"_idx_": 3,
+				"name": "ParkNameDescr3"
+			}
+		],
+		"receiptdesc": [{
+				"_idx_": 0,
+				"name": "Head0"
+			}, {
+				"_idx_": 1,
+				"name": "Head1"
+			}, {
+				"_idx_": 2,
+				"name": "Head2"
+			}, {
+				"_idx_": 3,
+				"name": "Head3"
+			}, {
+				"_idx_": 4,
+				"name": "Head4"
+			}
+		],
+		"persistentdata": {
+			"dbfilename": "./Resources/ApsApp/AppDB.fdb",
+			"dbfilesizekb": 1,
+			"dbtables": [{
+					"_idx_": 0,
+					"tablename": "JBLAuthToken",
+					"tableid": 0,
+					"recsz": 50,
+					"recsno": 1
+				}, {
+					"_idx_": 1,
+					"tablename": "DailyTicketNo",
+					"tableid": 1,
+					"recsz": 8,
+					"recsno": 1
+				}, {
+					"_idx_": 2,
+					"tablename": "CurrSessionID",
+					"tableid": 2,
+					"recsz": 4,
+					"recsno": 1
+				}, {
+					"_idx_": 3,
+					"tablename": "CurrRunMode",
+					"tableid": 3,
+					"recsz": 4,
+					"recsno": 1
+				}, {
+					"_idx_": 4,
+					"tablename": "OprtrActCntr",
+					"tableid": 4,
+					"recsz": 4,
+					"recsno": 1
+				}
+			]
+		},
+		"devices": {
+			"gpioctrl": {
+				"spectype": 4,
+				"pollingtimems": 50,
+				"cfgmasks": [{
+						"_idx_": 0,
+						"maskid": "EnableMask",
+						"maskval": "0x0FFF0FFF"
+					}, {
+						"_idx_": 1,
+						"maskid": "InOutMask",
+						"maskval": "0x00000FFF"
+					}, {
+						"_idx_": 2,
+						"maskid": "OutStatMask",
+						"maskval": "0x00000000"
+					}, {
+						"_idx_": 3,
+						"maskid": "RiseEvtMask",
+						"maskval": "0x00000000"
+					}, {
+						"_idx_": 4,
+						"maskid": "FallEvtMask",
+						"maskval": "0x00000000"
+					}
+				],
+				"communication": {
+					"spectype": "NETWORK",
+					"url": "eth1:172.31.0.0:2:2:1"
+				}
+			},
+			"display": {
+				"spectype": 2,
+				"periphmode": 2,
+				"dateformat": 0,
+				"multilanguage": 0,
+				"offlinescrst": "LANE_CLOSED",
+				"langsfile": "./Resources/megulang.xml",
+				"langslist": [{
+						"lang": "ITA"
+					}, {
+						"lang": "GBR"
+					}
+				],
+				"runmodests": [{
+						"_idx_": 0,
+						"runmode": "None",
+						"status": "PERIPH_OUT_OF_ORDER"
+					}, {
+						"_idx_": 1,
+						"runmode": "InService",
+						"status": "RD_TICKT_OR_CARD"
+					}, {
+						"_idx_": 2,
+						"runmode": "OccFull",
+						"status": "RD_TICKT_OR_CARD"
+					}, {
+						"_idx_": 3,
+						"runmode": "Closed",
+						"status": "PERIPH_OUT_OF_ORDER"
+					}, {
+						"_idx_": 4,
+						"runmode": "Opened",
+						"status": "DOOR_OPENED"
+					}, {
+						"_idx_": 5,
+						"runmode": "Emergency",
+						"status": "PERIPH_OUT_OF_ORDER"
+					}, {
+						"_idx_": 6,
+						"runmode": "OutOfOrder",
+						"status": "PERIPH_OUT_OF_ORDER"
+					}, {
+						"_idx_": 7,
+						"runmode": "Maintenance",
+						"status": "MAINTENACE"
+					}, {
+						"_idx_": 8,
+						"runmode": "Full",
+						"status": "PERIPH_OUT_OF_ORDER"
+					}
+				],
+				"communication": {
+					"spectype": "CONNSERIAL",
+					"url": "eth1:172.31.0.0:2:2:1:5"
+				},
+				"gpioctrl": {
+					"spectype": 0,
+					"sharedpath": "application/devices/gpioctrl",
+					"pollingtimems": 50,
+					"cfgmasks": [{
+							"_idx_": 0,
+							"maskid": "EnableMask",
+							"maskval": "0xFFFFFFFF"
+						}, {
+							"_idx_": 1,
+							"maskid": "InOutMask",
+							"maskval": "0x0000FFFF"
+						}, {
+							"_idx_": 2,
+							"maskid": "OutStatMask",
+							"maskval": "0x00000000"
+						}, {
+							"_idx_": 3,
+							"maskid": "RiseEvtMask",
+							"maskval": "0x00000000"
+						}, {
+							"_idx_": 4,
+							"maskid": "FallEvtMask",
+							"maskval": "0x00000000"
+						}
+					],
+					"communication": {
+						"spectype": "NETWORK",
+						"url": "127.0.0.1:5002"
+					}
+				},
+				"ctrlpins": [{
+						"_idx_": 0,
+						"funct": "DispRegSel",
+						"id": 255,
+						"activest": 1,
+						"lowperiodms": 0,
+						"highperiodms": 0,
+						"pulseno": 0
+					}, {
+						"_idx_": 1,
+						"funct": "DispDataRdWr",
+						"id": 255,
+						"activest": 1,
+						"lowperiodms": 0,
+						"highperiodms": 0,
+						"pulseno": 0
+					}, {
+						"_idx_": 2,
+						"funct": "DispEnable",
+						"id": 255,
+						"activest": 1,
+						"lowperiodms": 0,
+						"highperiodms": 0,
+						"pulseno": 0
+					}, {
+						"_idx_": 3,
+						"funct": "DispDataBus0",
+						"id": 255,
+						"activest": 1,
+						"lowperiodms": 0,
+						"highperiodms": 0,
+						"pulseno": 0
+					}, {
+						"_idx_": 4,
+						"funct": "DispDataBus1",
+						"id": 255,
+						"activest": 1,
+						"lowperiodms": 0,
+						"highperiodms": 0,
+						"pulseno": 0
+					}, {
+						"_idx_": 5,
+						"funct": "DispDataBus2",
+						"id": 255,
+						"activest": 1,
+						"lowperiodms": 0,
+						"highperiodms": 0,
+						"pulseno": 0
+					}, {
+						"_idx_": 6,
+						"funct": "DispDataBus3",
+						"id": 255,
+						"activest": 1,
+						"lowperiodms": 0,
+						"highperiodms": 0,
+						"pulseno": 0
+					}
+				]
+			},
+			"statpins": [{
+					"_idx_": 0,
+					"funct": "DoorOpened",
+					"id": 22,
+					"activest": 1,
+					"risedlyms": 0,
+					"falldlyms": 0
+				}, {
+					"_idx_": 1,
+					"funct": "DoorUnlocked",
+					"id": 23,
+					"activest": 1,
+					"risedlyms": 0,
+					"falldlyms": 0
+				}
+			],
+			"ctrlpins": [{
+					"_idx_": 0,
+					"funct": "DoorUnlock",
+					"id": 255,
+					"activest": 1,
+					"lowperiodms": 1000,
+					"highperiodms": 1000,
+					"pulseno": 2
+				}, {
+					"_idx_": 1,
+					"funct": "EnabUPMedia",
+					"id": 255,
+					"activest": 1,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"_idx_": 2,
+					"funct": "DisabUPMedia",
+					"id": 255,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"_idx_": 3,
+					"funct": "UPass1GuidanceOn",
+					"id": 0,
+					"activest": 1,
+					"lowperiodms": 500,
+					"highperiodms": 500,
+					"pulseno": 100000
+				}, {
+					"_idx_": 4,
+					"funct": "UPass1GuidanceOff",
+					"id": 0,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"_idx_": 5,
+					"funct": "UPass2GuidanceOn",
+					"id": 255,
+					"activest": 1,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"_idx_": 6,
+					"funct": "UPass2GuidanceOff",
+					"id": 255,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"_idx_": 7,
+					"funct": "PosGuidanceOn",
+					"id": 2,
+					"activest": 1,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"_idx_": 8,
+					"funct": "PosGuidanceOff",
+					"id": 2,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"_idx_": 9,
+					"funct": "CashGuidanceOn",
+					"id": 1,
+					"activest": 1,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"_idx_": 10,
+					"funct": "CashGuidanceOff",
+					"id": 1,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"_idx_": 11,
+					"funct": "CngBoxLampOn",
+					"id": 3,
+					"activest": 1,
+					"lowperiodms": 1000,
+					"highperiodms": 1000,
+					"pulseno": 5
+				}, {
+					"_idx_": 12,
+					"funct": "CngBoxLampOff",
+					"id": 3,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"_idx_": 13,
+					"funct": "VldtSuccOn",
+					"id": 255,
+					"activest": 1,
+					"lowperiodms": 0,
+					"highperiodms": 3000,
+					"pulseno": 1
+				}, {
+					"_idx_": 14,
+					"funct": "VldtSuccOff",
+					"id": 255,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"_idx_": 15,
+					"funct": "VldtFailOn",
+					"id": 255,
+					"activest": 1,
+					"lowperiodms": 0,
+					"highperiodms": 3000,
+					"pulseno": 1
+				}, {
+					"_idx_": 16,
+					"funct": "VldtFailOff",
+					"id": 255,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}, {
+					"_idx_": 17,
+					"funct": "AlrmBellOn",
+					"id": 255,
+					"activest": 1,
+					"lowperiodms": 1000,
+					"highperiodms": 1000,
+					"pulseno": 1000
+				}, {
+					"_idx_": 18,
+					"funct": "AlrmBellOff",
+					"id": 255,
+					"activest": 0,
+					"lowperiodms": 0,
+					"highperiodms": 0,
+					"pulseno": 0
+				}
+			]
+		},
+		"services": {
+			"localdbservice": {
+				"spectype": 1,
+				"dburls": [{
+						"_idx_": 0,
+						"dbdriver": "SQLITECIPHER",
+						"dbname": "AppDB",
+						"dburl": "/mnt/sd/ApsApp/jpsAppDB.sqlite"
+					}, {
+						"_idx_": 1,
+						"dbdriver": "SQLITECIPHER",
+						"dbname": "UspDB",
+						"dburl": "/mnt/sd/ApsApp/jpsUspDB.sqlite"
+					}
+				]
+			},
+			"jpsadminservice": {
+				"spectype": 1,
+				"loginon": true,
+				"httpserver": {
+					"spectype": 1,
+					"rootdir": "./Resources/www",
+					"tempdir": "./Resources/www/tempDir",
+					"postdir": "./Resources/www/postDir",
+					"autoserve": false,
+					"communication": {
+						"spectype": "NETWORK",
+						"url": ":65001"
+					}
+				}
+			},
+			"jblservice": {
+				"spectype": 1,
+				"localip": "172.29.1.54",
+				"cloudmodestupdms": 0,
+				"forceauth": 0,
+				"persistentdata": {
+					"dbfilename": "./Resources/ApsApp/JBLQueues/queuesDB.fdb",
+					"dbfilesizekb": 1,
+					"dbtables": [{
+							"_idx_": 0,
+							"tablename": "/mnt/sd/ApsApp/JBLQueues/HighPrioQueue",
+							"tableid": 0,
+							"recsz": 16,
+							"recsno": 1,
+							"queuesize": 1000000
+						}, {
+							"_idx_": 1,
+							"tablename": "/mnt/sd/ApsApp/JBLQueues/MediumPrioQueue",
+							"tableid": 1,
+							"recsz": 16,
+							"recsno": 1,
+							"queuesize": 1000000
+						}, {
+							"_idx_": 2,
+							"tablename": "/mnt/sd/ApsApp/JBLQueues/LowPrioQueue",
+							"tableid": 2,
+							"recsz": 16,
+							"recsno": 1,
+							"queuesize": 1000000
+						}
+					]
+				},
+				"httpserver": {
+					"spectype": 1,
+					"rootdir": "./Resources/www",
+					"tempdir": "./Resources/www/tempDir",
+					"postdir": "./Resources/www/postDir",
+					"autoserve": true,
+					"communication": {
+						"spectype": "NETWORK",
+						"url": ":65000"
+					}
+				},
+				"httpclient": {
+					"spectype": 1,
+					"rootdir": "./Resources/www",
+					"tempdir": "./Resources/www/tempDir",
+					"postdir": "./Resources/www/postDir",
+					"customprfx": "jbl_",
+					"communication": {
+						"spectype": "NETWORK",
+						"url": "172.29.1.84:55000"
+					}
+				}
+			},
+			"paymentservice": {
+				"spectype": 1,
+				"pymtmode": 2,
+				"cngalgo": 0,
+				"maxchange": 25,
+				"maxpieces": 20,
+				"maxcngrtry": 1,
+				"cngonabrt": 1,
+				"armedtmts": 600,
+				"runngtmts": 6000,
+				"carddeten": 0,
+				"dspuflwen": 0,
+				"cashiermd": 0,
+				"devices": {
+					"cpgw": {
+						"spectype": 0,
+						"src": "emu1",
+						"dst": "aps",
+						"encoding": "ASCII",
+						"communication": {
+							"spectype": "NETWORK",
+							"url": "172.29.1.70:5123"
+						}
+					},
+					"sgp": {
+						"spectype": 1,
+						"core": {
+							"spectype": 1,
+							"gpioctrl": {
+								"spectype": 4,
+								"sharedpath": "application/devices/gpioctrl",
+								"pollingtimems": 50,
+								"cfgmasks": [{
+										"_idx_": 0,
+										"maskid": "EnableMask",
+										"maskval": "0x00000000"
+									}, {
+										"_idx_": 1,
+										"maskid": "InOutMask",
+										"maskval": "0x00000000"
+									}, {
+										"_idx_": 2,
+										"maskid": "OutStatMask",
+										"maskval": "0x00000000"
+									}, {
+										"_idx_": 3,
+										"maskid": "RiseEvtMask",
+										"maskval": "0x00000000"
+									}, {
+										"_idx_": 4,
+										"maskid": "FallEvtMask",
+										"maskval": "0x00000000"
+									}
+								],
+								"communication": {
+									"spectype": "NETWORK",
+									"url": "eth1:172.31.0.0:2:2:1"
+								}
+							},
+							"statpins": [{
+									"_idx_": 0,
+									"funct": "HoppsPres",
+									"id": 26,
+									"activest": 0,
+									"risedlyms": 0,
+									"falldlyms": 0
+								}, {
+									"_idx_": 1,
+									"funct": "HoppsUnlocked",
+									"id": 27,
+									"activest": 1,
+									"risedlyms": 0,
+									"falldlyms": 0
+								}, {
+									"_idx_": 2,
+									"funct": "CoinCashPres",
+									"id": 24,
+									"activest": 0,
+									"risedlyms": 0,
+									"falldlyms": 0
+								}, {
+									"_idx_": 3,
+									"funct": "CoinCashUnlocked",
+									"id": 255,
+									"activest": 1,
+									"risedlyms": 0,
+									"falldlyms": 0
+								}, {
+									"_idx_": 4,
+									"funct": "BillCashPres",
+									"id": 255,
+									"activest": 0,
+									"risedlyms": 0,
+									"falldlyms": 0
+								}
+							],
+							"ctrlpins": [{
+									"_idx_": 0,
+									"funct": "OpenShutter",
+									"id": 4,
+									"activest": 1,
+									"lowperiodms": 0,
+									"highperiodms": 0,
+									"pulseno": 0
+								}, {
+									"_idx_": 1,
+									"funct": "CloseShutter",
+									"id": 4,
+									"activest": 0,
+									"lowperiodms": 0,
+									"highperiodms": 0,
+									"pulseno": 0
+								}, {
+									"_idx_": 2,
+									"funct": "CngBoxLampOn",
+									"id": 3,
+									"activest": 1,
+									"lowperiodms": 1000,
+									"highperiodms": 1000,
+									"pulseno": 5
+								}, {
+									"_idx_": 3,
+									"funct": "CngBoxLampOff",
+									"id": 3,
+									"activest": 0,
+									"lowperiodms": 0,
+									"highperiodms": 0,
+									"pulseno": 0
+								}, {
+									"_idx_": 4,
+									"funct": "AntiJam",
+									"id": 5,
+									"activest": 1,
+									"lowperiodms": 400,
+									"highperiodms": 300,
+									"pulseno": 3
+								}
+							]
+						},
+						"acoin": {
+							"spectype": 2,
+							"denominations": [{
+									"_idx_": 0,
+									"id": 0,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 2,
+									"moneycode": "EU200A"
+								}, {
+									"_idx_": 1,
+									"id": 1,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 1,
+									"moneycode": "EU100A"
+								}, {
+									"_idx_": 2,
+									"id": 2,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 0.5,
+									"moneycode": "EU050A"
+								}, {
+									"_idx_": 4,
+									"id": 3,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 0.1,
+									"moneycode": "EU010A"
+								}, {
+									"_idx_": 3,
+									"id": 4,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 0.2,
+									"moneycode": "EU020A"
+								}, {
+									"_idx_": 5,
+									"id": 5,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 0.05,
+									"moneycode": "EU005A"
+								}, {
+									"_idx_": 6,
+									"id": 6,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 0.02,
+									"moneycode": "EU002A"
+								}, {
+									"_idx_": 7,
+									"id": 7,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 0.01,
+									"moneycode": "EU001A"
+								}
+							],
+							"communication": {
+								"spectype": "SERIAL",
+								"url": "ttymxc2"
+							}
+						},
+						"abill": {
+							"spectype": 2,
+							"denominations": [{
+									"_idx_": 0,
+									"id": 0,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 5,
+									"moneycode": "1"
+								}, {
+									"_idx_": 1,
+									"id": 1,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 10,
+									"moneycode": "2"
+								}, {
+									"_idx_": 2,
+									"id": 2,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 20,
+									"moneycode": "3"
+								}, {
+									"_idx_": 3,
+									"id": 3,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 50,
+									"moneycode": "4"
+								}, {
+									"_idx_": 4,
+									"id": 4,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 100,
+									"moneycode": "5"
+								}, {
+									"_idx_": 5,
+									"id": 5,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 200,
+									"moneycode": "6"
+								}, {
+									"_idx_": 6,
+									"id": 6,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 500,
+									"moneycode": "7"
+								}, {
+									"_idx_": 7,
+									"id": 7,
+									"enabled": false,
+									"currency": "EUR",
+									"value": 0,
+									"moneycode": "8"
+								}
+							],
+							"communication": {
+								"spectype": "SERIAL",
+								"url": "ttymxc4"
+							}
+						},
+						"dcoin": {
+							"spectype": 1,
+							"denominations": [{
+									"_idx_": 0,
+									"id": 0,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 2,
+									"capacity": 800,
+									"reserve": 150,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100
+								}, {
+									"_idx_": 1,
+									"id": 1,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 1,
+									"capacity": 800,
+									"reserve": 150,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100
+								}, {
+									"_idx_": 2,
+									"id": 2,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 0.5,
+									"capacity": 800,
+									"reserve": 150,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100
+								}, {
+									"_idx_": 4,
+									"id": 3,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 0.1,
+									"capacity": 800,
+									"reserve": 150,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100
+								}, {
+									"_idx_": 3,
+									"id": 4,
+									"enabled": false,
+									"currency": "EUR",
+									"value": 0.2,
+									"capacity": 800,
+									"reserve": 150,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100
+								}, {
+									"_idx_": 5,
+									"id": 5,
+									"enabled": false,
+									"currency": "EUR",
+									"value": 0.05,
+									"capacity": 800,
+									"reserve": 150,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100
+								}, {
+									"_idx_": 6,
+									"id": 6,
+									"enabled": false,
+									"currency": "EUR",
+									"value": 0.02,
+									"capacity": 800,
+									"reserve": 150,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100
+								}
+							],
+							"communication": {
+								"spectype": "SERIAL",
+								"url": "ttymxc2"
+							}
+						},
+						"dbill": {
+							"spectype": 1,
+							"denominations": [{
+									"_idx_": 0,
+									"id": 0,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 5,
+									"capacity": 500,
+									"reserve": 50,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100,
+									"ispolymer": false,
+									"length": 121,
+									"thick": 0.1,
+									"stoponerr": false
+								}, {
+									"_idx_": 1,
+									"id": 1,
+									"enabled": true,
+									"currency": "EUR",
+									"value": 10,
+									"capacity": 500,
+									"reserve": 50,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100,
+									"ispolymer": false,
+									"length": 128,
+									"thick": 0.1,
+									"stoponerr": false
+								}, {
+									"_idx_": 2,
+									"id": 2,
+									"enabled": false,
+									"currency": "EUR",
+									"value": 20,
+									"capacity": 500,
+									"reserve": 50,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100,
+									"ispolymer": false,
+									"length": 133,
+									"thick": 0.1,
+									"stoponerr": false
+								}, {
+									"_idx_": 3,
+									"id": 3,
+									"enabled": false,
+									"currency": "EUR",
+									"value": 50,
+									"capacity": 500,
+									"reserve": 50,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100,
+									"ispolymer": false,
+									"length": 140,
+									"thick": 0.1,
+									"stoponerr": false
+								}, {
+									"_idx_": 4,
+									"id": 4,
+									"enabled": false,
+									"currency": "EUR",
+									"value": 100,
+									"capacity": 500,
+									"reserve": 50,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100,
+									"ispolymer": false,
+									"length": 147,
+									"thick": 0.1,
+									"stoponerr": false
+								}, {
+									"_idx_": 5,
+									"id": 5,
+									"enabled": false,
+									"currency": "EUR",
+									"value": 200,
+									"capacity": 500,
+									"reserve": 50,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100,
+									"ispolymer": false,
+									"length": 153,
+									"thick": 0.1,
+									"stoponerr": false
+								}, {
+									"_idx_": 6,
+									"id": 6,
+									"enabled": false,
+									"currency": "EUR",
+									"value": 500,
+									"capacity": 500,
+									"reserve": 50,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100,
+									"ispolymer": false,
+									"length": 160,
+									"thick": 0.1,
+									"stoponerr": false
+								}, {
+									"_idx_": 7,
+									"id": 7,
+									"enabled": false,
+									"currency": "EUR",
+									"value": 0,
+									"capacity": 500,
+									"reserve": 50,
+									"timeouts": 10,
+									"maxcngpcs": 10,
+									"nomqtty": 100,
+									"ispolymer": false,
+									"length": 0,
+									"thick": 0,
+									"stoponerr": false
+								}
+							],
+							"communication": {
+								"spectype": "SERIAL",
+								"url": "ttymxc4"
+							}
+						},
+						"cashmngr": {
+							"persistentdata": {
+								"dbfilename": "./Resources/Cash/cashDB.fdb",
+								"dbfilesizekb": 10,
+								"dbtables": [{
+										"_idx_": 0,
+										"tablename": "coins",
+										"tableid": 0,
+										"recsz": 116,
+										"recsno": 10
+									}, {
+										"_idx_": 1,
+										"tablename": "bills",
+										"tableid": 1,
+										"recsz": 116,
+										"recsno": 10
+									}
+								]
+							},
+							"coins": [{
+									"_idx_": 0,
+									"path": "E",
+									"dst": 0,
+									"fbpath": "H",
+									"enabled": true,
+									"ismxdcash": false,
+									"srcs": [
+										0
+									]
+								}, {
+									"_idx_": 1,
+									"path": "F",
+									"dst": 1,
+									"fbpath": "H",
+									"enabled": true,
+									"ismxdcash": false,
+									"srcs": [
+										1
+									]
+								}, {
+									"_idx_": 2,
+									"path": "G",
+									"dst": 2,
+									"fbpath": "H",
+									"enabled": true,
+									"ismxdcash": false,
+									"srcs": [
+										2
+									]
+								}, {
+									"_idx_": 3,
+									"path": "H",
+									"dst": 3,
+									"fbpath": "H",
+									"enabled": true,
+									"ismxdcash": true,
+									"srcs": [
+										3,
+										4,
+										5,
+										6,
+										7
+									]
+								}, {
+									"_idx_": 4,
+									"path": "E",
+									"dst": 4,
+									"fbpath": "E",
+									"enabled": false,
+									"ismxdcash": false,
+									"srcs": [
+									]
+								}
+							],
+							"bills": [{
+									"_idx_": 0,
+									"path": "A",
+									"dst": 0,
+									"fbpath": "?",
+									"enabled": true,
+									"ismxdcash": false,
+									"srcs": []
+								}, {
+									"_idx_": 1,
+									"path": "B",
+									"dst": 1,
+									"fbpath": "?",
+									"enabled": true,
+									"ismxdcash": false,
+									"srcs": []
+								}, {
+									"_idx_": 2,
+									"path": "?",
+									"dst": 2,
+									"fbpath": "?",
+									"enabled": true,
+									"ismxdcash": true,
+									"srcs": [
+										0,
+										1,
+										2,
+										3,
+										4,
+										5,
+										6
+									]
+								}
+							]
+						}
+					}
+				}
+			},
+			"tariffsservice": {
+				"spectype": 1,
+				"sitecode": 1,
+				"dbconfigfile": "/mnt/sd/ApsApp/TarDB.xml",
+				"httpserver": {
+					"spectype": 1,
+					"rootdir": "./Resources/www",
+					"tempdir": "./Resources/www/tempDir",
+					"postdir": "./Resources/www/postDir",
+					"autoserve": true,
+					"communication": {
+						"spectype": "NETWORK",
+						"url": ":60000"
+					}
+				}
+			},
+			"usrpassservice": {
+				"spectype": 1,
+				"rcprightalign": false,
+				"printer": {
+					"spectype": 1,
+					"basecfg": {
+						"papertype": 0,
+						"pagelen": 850,
+						"leftmargin": 0,
+						"chsize": 0,
+						"linepitch": 0,
+						"linespace": 0,
+						"brcdheight": 90
+					},
+					"communication": {
+						"spectype": "CONNSERIAL",
+						"url": "eth1:172.31.0.0:2:2:1:3"
+					}
+				},
+				"proxyrdrwrtr": {
+					"spectype": 1,
+					"rdfilter": 1,
+					"communication": {
+						"spectype": "SERIAL",
+						"url": "ttymxc3"
+					}
+				},
+				"proxyreaders": [{
+						"_idx_": 0,
+						"spectype": 0,
+						"rdfilter": 0,
+						"communication": {
+							"spectype": "SERIAL",
+							"url": "ttymxc3"
+						}
+					}, {
+						"_idx_": 1,
+						"spectype": 0,
+						"rdfilter": 0,
+						"communication": {
+							"spectype": "SERIAL",
+							"url": "proxyreader1SerCom"
+						}
+					}
+				],
+				"ble": {
+					"spectype": 0,
+					"parkbrand": 4,
+					"periphmode": 4,
+					"deviceno": 3,
+					"communication": {
+						"spectype": "SERIAL",
+						"url": "bleSerCom"
+					},
+					"installationcode": "JMS-EBBT-L1"
+				},
+				"bcreader": {
+					"spectype": 1,
+					"communication": {
+						"spectype": "CONNSERIAL",
+						"url": "eth1:172.31.0.0:2:2:1:4"
+					}
+				},
+				"otb2": {
+					"spectype": 1,
+					"deepinit": false,
+					"ejectmode": 0,
+					"fonts": [{
+							"_idx_": 0,
+							"id": 1,
+							"filename": "portd.ttf"
+						}, {
+							"_idx_": 1,
+							"id": 2,
+							"filename": "arimon.ttf"
+						}
+					],
+					"logos": [{
+							"_idx_": 0,
+							"id": 1,
+							"filename": "Logo.pcx"
+						}, {
+							"_idx_": 1,
+							"id": 2,
+							"filename": "BlackMark.pcx"
+						}
+					],
+					"rois": [{
+							"_idx_": 0,
+							"name": "TOP",
+							"enabled": true,
+							"id": 1,
+							"scanner": "TOP",
+							"bcmaxno": 3,
+							"pixx": 1,
+							"pixy": 1,
+							"dimpixsx": 630,
+							"dimpixsy": 500,
+							"timeout": 50,
+							"barcodes": [{
+									"_idx_": 0,
+									"type": "DATAMATRIX",
+									"enabled": true
+								}
+							]
+						}, {
+							"_idx_": 1,
+							"name": "BOTTOM",
+							"enabled": false,
+							"id": 2,
+							"scanner": "TOP",
+							"bcmaxno": 1,
+							"pixx": 1,
+							"pixy": 522,
+							"dimpixsx": 630,
+							"dimpixsy": 500,
+							"timeout": 50,
+							"barcodes": [{
+									"_idx_": 0,
+									"type": "DATAMATRIX",
+									"enabled": true
+								}
+							]
+						}, {
+							"_idx_": 2,
+							"name": "LEFT",
+							"enabled": false,
+							"id": 3,
+							"scanner": "TOP",
+							"bcmaxno": 1,
+							"pixx": 1,
+							"pixy": 1,
+							"dimpixsx": 300,
+							"dimpixsy": 1022,
+							"timeout": 10,
+							"barcodes": [{
+									"_idx_": 0,
+									"type": "DATAMATRIX",
+									"enabled": true
+								}
+							]
+						}, {
+							"_idx_": 3,
+							"name": "RIGHT",
+							"enabled": false,
+							"id": 4,
+							"scanner": "TOP",
+							"bcmaxno": 1,
+							"pixx": 330,
+							"pixy": 1,
+							"dimpixsx": 300,
+							"dimpixsy": 1022,
+							"timeout": 10,
+							"barcodes": [{
+									"_idx_": 0,
+									"type": "DATAMATRIX",
+									"enabled": true
+								}
+							]
+						}, {
+							"_idx_": 4,
+							"name": "FULL",
+							"enabled": false,
+							"id": 5,
+							"scanner": "TOP",
+							"bcmaxno": 4,
+							"pixx": 1,
+							"pixy": 1,
+							"dimpixsx": 630,
+							"dimpixsy": 1022,
+							"timeout": 100,
+							"barcodes": [{
+									"_idx_": 0,
+									"type": "DATAMATRIX",
+									"enabled": true
+								}
+							]
+						}
+					],
+					"communication": {
+						"spectype": "SERIAL",
+						"url": "ttymxc1"
+					}
+				}
+			}
+		}
+	}
+}

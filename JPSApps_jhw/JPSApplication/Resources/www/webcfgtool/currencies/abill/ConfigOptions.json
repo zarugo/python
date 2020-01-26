@@ -1,0 +1,15 @@
+{
+	"fields": {
+		"CUR": {
+			"collapsible": true,
+			"collapsed": true,
+			"fields": {
+				"denominations": {
+					"type": "table",
+					"showActionsColumn": true,
+					"actionbar": {"actions": [{"action": "add","enabled": false}, {"action": "remove","enabled": false}]}
+				}
+			}
+		}
+	}
+}

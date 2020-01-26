@@ -1,0 +1,35 @@
+{
+	"type": "object",
+	"references": {
+		"currency": {"title":"Currency", "type":"string", "enum":["AED","AFN","ALL","AMD","ANG","AOA","ARS","AUD","AWG","AZN","BAM","BBD","BDT","BGN","BHD","BIF","BMD","BND","BOB","BRL","BSD","BTN","BWP","BYN","BZD","CAD","CDF","CHF","CLP","CNY","COP","CRC","CUC","CUP","CVE","CZK","DJF","DKK","DOP","DZD","EGP","ERN","ETB","EUR","FJD","FKP","GBP","GEL","GGP","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HRK","HTG","HUF","IDR","ILS","IMP","INR","IQD","IRR","ISK","JEP","JMD","JOD","JPY","KES","KGS","KHR","KMF","KPW","KRW","KWD","KYD","KZT","LAK","LBP","LKR","LRD","LSL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRO","MUR","MVR","MWK","MXN","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SLL","SOS","SPL","SRD","STD","SVC","SYP","SZL","THB","TJS","TMT","TND","TOP","TRY","TTD","TVD","TWD","TZS","UAH","UGX","USD","UYU","UZS","VEF","VND","VUV","WST","XAF","XCD","XDR","XOF","XPF","YER","ZAR","ZMW","ZWD"]},
+		"denominations": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"_idx_":    {"type":"integer", "readonly": true},
+					"id":  		 {"title":"Denomination Id","type":"integer","minimum":0,"maximum":6},
+					"enabled":	 {"title":"Enabled/Disabled","type":"boolean"},
+					"currency":  {"title":"Denom. Currency", "$ref": "#/references/currency" },
+					"value":  	 {"title":"Value","type":"number","minimum":0,"maximum":1000},
+					"capacity":  {"title":"Capacity","type":"integer","minimum":0,"maximum":1000},
+					"reserve": 	 {"title":"Reserve","type":"integer","minimum":0,"maximum":500},
+					"timeouts":  {"title":"Timeout","type":"integer","minimum":0,"maximum":60},
+					"maxcngpcs": {"title":"Max Change No.","type":"integer","minimum":0,"maximum":500},
+					"nomqtty":   {"title":"Nominal Quantity","type":"integer","minimum":0,"maximum":1000}
+				}
+			},
+			"minItems": 1,
+			"maxItems": 7
+		}
+	},
+	"properties": {
+		"CUR":{
+			"title": "DCoin Currency Description",
+			"type": "object",
+			"properties": {
+				"denominations":{"$ref": "#/references/denominations"}
+			}
+		}
+	}
+}

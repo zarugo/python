@@ -1,0 +1,568 @@
+{
+	"title": "Application Configurations",
+	"description": "Configurations of the JPSDemoLua_TestCase application",
+	"type": "object",
+	"references":
+	{
+		"currency":      {"title":"Currency", "type":"string", "enum":["AED","AFN","ALL","AMD","ANG","AOA","ARS","AUD","AWG","AZN","BAM","BBD","BDT","BGN","BHD","BIF","BMD","BND","BOB","BRL","BSD","BTN","BWP","BYN","BZD","CAD","CDF","CHF","CLP","CNY","COP","CRC","CUC","CUP","CVE","CZK","DJF","DKK","DOP","DZD","EGP","ERN","ETB","EUR","FJD","FKP","GBP","GEL","GGP","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HRK","HTG","HUF","IDR","ILS","IMP","INR","IQD","IRR","ISK","JEP","JMD","JOD","JPY","KES","KGS","KHR","KMF","KPW","KRW","KWD","KYD","KZT","LAK","LBP","LKR","LRD","LSL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRO","MUR","MVR","MWK","MXN","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SLL","SOS","SPL","SRD","STD","SVC","SYP","SZL","THB","TJS","TMT","TND","TOP","TRY","TTD","TVD","TWD","TZS","UAH","UGX","USD","UYU","UZS","VEF","VND","VUV","WST","XAF","XCD","XDR","XOF","XPF","YER","ZAR","ZMW","ZWD"]},
+		"screenid":      {"title":"ScreenId", "type":"string", "enum":["LANE_CLOSED", "RD_TICKT_OR_CARD", "WT_VEHICLE", "LANE_OPEN", "COLUMN_FMW", "PARKING_FULL", "DOOR_OPENED", "PERIPH_OUT_OF_ORDER","MAINTENACE"]},
+		"runmode":       {"title":"App Run Mode","type":"string","enum":["None","InService","OccFull","Closed","Opened","Emergency","OutOfOrder","Maintenance","Full"], "readonly": false},
+		"communication": {"title":"Communication", "type": "object", "properties": {"spectype": {"title":"Communication Spec. Type","type":"string","enum":["SERIAL","NETWORK","CONNSERIAL","KEYBOARDFD"]},"url":{"title":"Com URL","type":"string"}}},
+		"gpioctrl": 	 {"title":"GpioCtrl", "type": "object", "properties": { "spectype": { "title": "Specific Type", "type": "integer", "minimum": 0, "maximum": 4 }, "sharedpath":{"title":"Module Shared Path","type":"string","default": ""}, "pollingtimems": { "title": "Polling Time (ms)", "type": "integer", "minimum": 50, "maximum": 100 }, "cfgmasks": { "title": "Config Raw Masks", "type": "array", "items": { "type": "object", "properties": { "_idx_": {"type":"integer", "readonly": true}, "maskid": { "title": "Maks Identifier", "type": "string", "enum": ["EnableMask", "InOutMask", "OutStatMask", "RiseEvtMask", "FallEvtMask"], "readonly": false }, "maskval": { "title": "Hex Mask Value", "type": "string", "pattern":"^0x[A-Fa-f0-9]{8}$"} } }, "minItems": 5, "maxItems": 5 }, "communication": { "$ref": "#/references/communication" } } },
+		"httpserver":    {"title":"HttpServer Configurations", "type": "object", "properties": { "spectype": { "title": "Specific Type", "type": "integer", "minimum": 0, "maximum": 1}, "rootdir": { "title": "Http Server Root Directory", "type": "string", "readonly": false }, "tempdir": { "title": "Http Server Temp Directory", "type": "string", "readonly": false }, "postdir": { "title": "Http Server Post Directory", "type": "string", "readonly": false }, "autoserve": { "title": "Automatically handle get requests", "type": "boolean", "readonly": false }, "connqueuesz": { "title": "Connection Queue Size", "type": "integer", "minimum": 50, "maximum": 100000 }, "communication": { "$ref": "#/references/communication" } } },
+		"httpclient": 	 {"title":"HttpClient Configurations", "type": "object", "properties": { "spectype":{"title":"Specific Type","type":"integer","minimum":0,"maximum":1}, "rootdir":{"title":"Http Client Root Directory","type":"string"}, "tempdir":{"title":"Http Client Temp Directory","type":"string"}, "postdir":{"title":"Http Client Post Directory","type":"string"}, "customprfx": { "title": "Custom Http Header", "type": "string"}, "communication": { "$ref": "#/references/communication" } } },
+		"langcodes":     {"title":"Language", "type":"string","enum":["AND","ARE","AFG","ATG","AIA","ALB","ARM","AGO","ATA","ARG","ASM","AUT","AUS","ABW","ALA","AZE","BIH","BRB","BGD","BEL","BFA","BGR","BHR","BDI","BEN","BLM","BMU","BRN","BOL","BES","BRA","BHS","BTN","BVT","BWA","BLR","BLZ","CAN","CCK","COD","CAF","COG","CHE","CIV","COK","CHL","CMR","CHN","COL","CRI","CUB","CPV","CUW","CXR","CYP","CZE","DEU","DJI","DNK","DMA","DOM","DZA","ECU","EST","EGY","ESH","ERI","ESP","ETH","FIN","FJI","FLK","FSM","FRO","FRA","GAB","GBR","GRD","GEO","GUF","GGY","GHA","GIB","GRL","GMB","GIN","GLP","GNQ","GRC","SGS","GTM","GUM","GNB","GUY","HKG","HMD","HND","HRV","HTI","HUN","IDN","IRL","ISR","IMN","IND","IOT","IRQ","IRN","ISL","ITA","JEY","JAM","JOR","JPN","KEN","KGZ","KHM","KIR","COM","KNA","PRK","KOR","XKX","KWT","CYM","KAZ","LAO","LBN","LCA","LIE","LKA","LBR","LSO","LTU","LUX","LVA","LBY","MAR","MCO","MDA","MNE","MAF","MDG","MHL","MKD","MLI","MMR","MNG","MAC","MNP","MTQ","MRT","MSR","MLT","MUS","MDV","MWI","MEX","MYS","MOZ","NAM","NCL","NER","NFK","NGA","NIC","NLD","NOR","NPL","NRU","NIU","NZL","OMN","PAN","PER","PYF","PNG","PHL","PAK","POL","SPM","PCN","PRI","PSE","PRT","PLW","PRY","QAT","REU","ROU","SRB","RUS","RWA","SAU","SLB","SYC","SDN","SSD","SWE","SGP","SHN","SVN","SJM","SVK","SLE","SMR","SEN","SOM","SUR","STP","SLV","SXM","SYR","SWZ","TCA","TCD","ATF","TGO","THA","TJK","TKL","TLS","TKM","TUN","TON","TUR","TTO","TUV","TWN","TZA","UKR","UGA","UMI","USA","URY","UZB","VAT","VCT","VEN","VGB","VIR","VNM","VUT","WLF","WSM","YEM","MYT","ZAF","ZMB","ZWE","SCG","ANT"]},
+		"paths":         {"title":"Paths","type":"string","enum":["A","B","C","D","E","F","G","H","R","?"], "readonly": false}
+		
+	},
+	"properties": {
+		"application": {
+			"type": "object",
+			"title": "Application",
+			"properties":{
+				"dbgsegflt":{"title": "SegFault Debug", "type": "boolean", "readonly": false },
+				"logmaxage":{"title":"Max Logging Age (in days)", 	"type":"integer",	"minimum":1,"maximum":365},
+				"modules": {
+					"title": "Modules",
+					"type": "object",
+					"properties": {
+						"gpioctrl": {"title": "GpioCtrl", "$ref": "#/references/gpioctrl"},
+						"display": {
+							"title": "Display",
+							"type": "object",
+							"properties": {
+								"spectype":      {"title":"Specific Type","type":"integer","minimum":0,"maximum":3},
+								"periphmode":    {"title":"Peripheral Mode","type":"integer","minimum":0,"maximum":3},
+								"dateformat":    {"title":"Date Format","type":"integer","minimum":0,"maximum":1},
+								"multilanguage": {"title":"Multi Language Option","type":"integer","minimum":0,"maximum":1},
+								"offlinescrst":  {"$ref" : "#/references/screenid"},
+								"langsfile":  	 {"title":"Languages File", "type":"string"},
+								"langslist": {
+									"title":"Languages List",
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"_idx_":  { "type":"integer", "readonly": true}, 
+											"lang": {"$ref" : "#/references/langcodes"}
+										}
+									},
+									"minItems": 2,
+									"maxItems": 10
+								},
+								"runmodests": {
+									"title": "Run Mode Statuses",
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"_idx_":  { "type":"integer", "readonly": true}, 
+											"runmode":{"$ref" : "#/references/runmode"},
+											"status": {"$ref" : "#/references/screenid"}
+										}
+									},
+									"minItems": 0,
+									"maxItems": 50
+								},
+								"communication": { "$ref": "#/references/communication" },
+								"gpioctrl": {"title": "GpioCtrl", "$ref": "#/references/gpioctrl"},
+								"ctrlpins": {
+									"title": "Ctrl I/O",
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"_idx_":    { "type":"integer", "readonly": true}, 
+											"funct":		{"title":"Function",				  "type":"string",  "enum":["DispRegSel", "DispDataRdWr", "DispEnable", "DispDataBus0", "DispDataBus1", "DispDataBus2", "DispDataBus3"], "readonly": false},
+											"id":			{"title":"Pin ID",					  "type":"integer","minimum":0,"maximum":255},
+											"activest":		{"title":"StartMode",				  "type":"integer","minimum":0,"maximum":1},
+											"lowperiodms":	{"title":"Low Period Duration (ms)",  "type":"integer","minimum":0,"maximum":1000000},
+											"highperiodms":	{"title":"High Period Duration (ms)", "type":"integer","minimum":0,"maximum":1000000},
+											"pulseno":		{"title":"Number of pulses",		  "type":"integer","minimum":0,"maximum":1000000}
+										}
+									},
+									"minItems": 0,
+									"maxItems": 20
+								}
+							}
+						},
+						"httpserver": {"title": "HttpServer Configurations", "$ref": "#/references/httpserver"},
+						"httpclient": {"title": "HttpClient Configurations", "$ref": "#/references/httpclient"},
+						"laneservice": {
+							"title": "Lane Service",
+							"type": "object",
+							"properties": {
+								"spectype":			{"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+								"ethernetbarrier":
+								{
+									"title": "Ethernet Barrier",
+									"type": "object",
+									"properties": {
+										"spectype":{"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+										"closeddegrees":{"title":"Closed Barrier Degrees","type":"integer","minimum":0,"maximum":90},	
+										"loops": {
+											"title": "Loops",
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"_idx_":    { "type":"integer", "readonly": true}, 
+													"typestr":{"title":"JPS Loop Type","type":"string"},
+													"spectype":{"title":"Specific Type","type":"integer","minimum":0,"maximum":4},
+													"looptype":{"title":"Barrier Loop Type","type":"string", "enum": ["A", "B", "C", "D"]},
+													"activatedlyms": {"title":"Activated filter (ms)", "type":"integer","minimum":0,"maximum":5000},
+													"deactivatedlyms": {"title":"Deactivated filter (ms)", "type":"integer","minimum":0,"maximum":5000}
+												}
+											},
+											"minItems": 0,
+											"maxItems": 4
+										},				
+										"communication": { "$ref": "#/references/communication" }	
+									}					
+								}
+							}
+						},
+						"usrpassservice": {
+							"title": "UsrPass Service",
+							"type": "object",
+							"properties": {
+								"spectype":			{"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+								"rcprightalign":{"title":"Receipt Right Align","type": "boolean"},
+								"printer": {
+									"title": "Printer",
+									"type": "object",
+									"properties": {
+										"spectype":		{"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+										"basecfg": {
+											"title": "Printer Basic Configuration",
+											"type": "object",
+											"properties": {
+												"papertype":   {"title":"Paper Type (0=Roll,1=FanFold)","type":"integer","minimum":0,"maximum":1},
+												"pagelen":     {"title":"Page Length (tenth of mm)","type":"integer","minimum":0,"maximum":850},
+												"leftmargin":  {"title":"Left Margin (dots)","type":"integer","minimum":0,"maximum":65535},
+												"chsize":  	   {"title":"Char Size (dots)","type":"integer","minimum":0,"maximum":255},
+												"linepitch":   {"title":"Line Pitch (dot lines)","type":"integer","minimum":0,"maximum":255},
+												"linespace":   {"title":"Line Space (dot lines)","type":"integer","minimum":0,"maximum":255},
+												"brcdheight":  {"title":"Bar Code Height (dots)","type":"integer","minimum":0,"maximum":255}										
+											}
+										},
+										"communication": { "$ref": "#/references/communication" }
+									}
+								},
+								"fiscalprinter": {
+									"title": "Fiscal Printer",
+									"type": "object",
+									"properties": {
+										"spectype":		{"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+										"communication": { "$ref": "#/references/communication" }
+									}
+								},
+								"proxyrdrwrtr": {
+									"title": "Proximity Card Reader/Writer",
+									"type": "object",
+									"properties": {
+										"spectype":	{"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+										"rdfilter":	{"title":"Read Filter (flag)","type":"integer","minimum":0,"maximum":1},
+										"communication": { "$ref": "#/references/communication" }
+									}
+								},
+								"proxyreaders": {
+									"title": "Proximity Card Readers List",
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"_idx_":    { "type":"integer", "readonly": true}, 
+											"spectype":	{"title":"Specific Type","type":"integer","minimum":0,"maximum":2},
+											"rdfilter":	{"title":"Read Filter (ms)","type":"integer","minimum":0,"maximum":10000},
+											"communication": { "$ref": "#/references/communication" }
+										}
+									}
+								},
+								"ble": {
+									"title": "BLE",
+									"type": "object",
+									"properties": {
+										"spectype":			{"title":"Specific Type","type":"integer","minimum":0,"maximum":2},
+										"parkbrand":		{"title":"Parking Brand","type":"integer","minimum":0,"maximum":4},
+										"periphmode":		{"title":"Peripheral Mode","type":"integer","minimum":0,"maximum":5},
+										"deviceno":			{"title":"Peripheral Device Number","type":"integer","minimum":0,"maximum":1000},
+										"installationcode": {"title":"Parking Installation Code","type":"string","required":true},
+										"communication":    { "$ref": "#/references/communication" }
+									}
+								},
+								"bcreader": {
+									"title": "BarCode Reader",
+									"type": "object",
+									"properties": {
+										"spectype":	{"title":"Specific Type","type":"integer","minimum":0,"maximum":2},
+										"communication": { "$ref": "#/references/communication" }
+									}
+								},
+								"otb2": {
+									"title": "OTB2",
+									"type": "object",
+									"properties": {
+										"spectype":{"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+										"deepinit":{"title":"Deep Init","type": "boolean"},
+										"ejectmode":{"title":"Default Eject Mode","type":"integer","minimum":0,"maximum":3},
+										"fonts": {
+											"title": "Preloaded Fonts",
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"_idx_":    { "type":"integer", "readonly": true}, 
+													"id":		{"title":"Internal Font ID","type":"integer","minimum":0,"maximum":99},
+													"filename": {"title":"Font File Name","type":"string","pattern":"^.*\\.ttf$"}
+												}
+											},
+											"minItems": 0,
+											"maxItems": 50
+										},
+										"logos": {
+											"title": "Preloaded Logos",
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"_idx_":    { "type":"integer", "readonly": true}, 
+													"id":		{"title":"Internal Logo ID", "type":"integer","minimum":0,"maximum":99},
+													"filename": {"title":"Logo File Name",	 "type":"string","pattern":"^.*\\.pcx$"}
+												}
+											},
+											"minItems": 0,
+											"maxItems": 50
+										},
+										"rois": {
+											"title": "Regions Of Iterest",
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"_idx_":    { "type":"integer", "readonly": true}, 
+													"name":		{"title":"ROI Name","type":"string"},
+													"enabled":	{"title":"ROI Enabled/Disabled","type":"boolean"},
+													"id":		{"title":"Internal ROI ID","type":"integer","minimum":0,"maximum":99},
+													"scanner":	{"title":"Scanner Mode","type":"string","enum":["TOP","BOTTOM"]},
+													"bcmaxno":	{"title":"Maximum Number Of Barcode Expected","type":"integer","minimum":1,"maximum":5},
+													"pixx":		{"title":"X-Pixel starting from left side","type":"integer","minimum":1,"maximum":630},
+													"pixy":		{"title":"Y-Pixel starting from bottomside","type":"integer","minimum":1,"maximum":1022},
+													"dimpixsx":	{"title":"X length in pixel","type":"integer","minimum":1,"maximum":630},
+													"dimpixsy":	{"title":"Y length in pixel","type":"integer","minimum":1,"maximum":1022},
+													"timeout":	{"title":"Research Timeout (ms)","type":"integer","minimum":1,"maximum":5000},
+													"barcodes": {
+														"title": "Enabled Barcodes",
+														"type": "array",
+														"items": {
+															"type": "object",
+															"properties": {
+																"_idx_":    { "type":"integer", "readonly": true}, 
+																"type":    { "title": "Barcode Type", "type": "string", "enum": ["DATAMATRIX", "QRCODE", "AZTEC", "PDF", "CODE39", "ITF", "CODABAR", "CODE128", "CODE93", "EAN13"], "default": "DATAMATRIX"},
+																"enabled": { "title": "Barcode Enabled/Disabled", "type": "boolean", "default": false }
+															}
+														},
+														"minItems": 0,
+														"maxItems": 50
+													}
+												}
+											},
+											"minItems": 0,
+											"maxItems": 50
+										},
+										"communication": { "$ref": "#/references/communication" }
+									}
+								}
+							}
+						},
+						"paymentservice": {
+							"title": "Payment Service",
+							"type": "object",
+							"properties": {
+								"spectype": {"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+								"pymtmode": {"title":"Payment Mode","type":"integer","minimum":0, "maximum":2},
+								"cngalgo":  {"title":"Change Algorithm","type":"integer","minimum":0, "maximum":2},
+								"maxchange": {"title":"Max Change Amount","type":"integer","minimum":0, "maximum":1000},
+								"maxpieces": {"title":"Max Number of Pieces","type":"integer","minimum":0, "maximum":1000},
+								"maxcngrtry": {"title":"Max Change Retry","type":"integer","minimum":0, "maximum":2},
+								"cngonabrt": {"title":"Give Change On Abort","type":"integer","minimum":0, "maximum":1},
+								"armedtmts": {"title":"Armed Payment Abort Timeout","type":"integer","minimum":0, "maximum":900000},
+								"runngtmts": {"title":"Running Payment Abort Timeout","type":"integer","minimum":0, "maximum":900000},
+								"carddeten": {"title":"Card Detect Enable","type":"integer","minimum":0, "maximum":1},
+								"dspuflwen": {"title":"Dispense Underflow Enable","type":"integer","minimum":0, "maximum":1},
+								"cashiermd": {"title":"Cashier Mode","type":"integer","minimum":0, "maximum":2},
+								"devices": {
+									"title": "Devices",
+									"type": "object",
+									"properties": {
+										"cpgw":{
+											"title": "Chip And Pin Gateway",
+											"type": "object",
+											"properties": {
+												"spectype": {"title":"Specific Type",	  "type":"integer","minimum":0,"maximum":1},
+												"src":      {"title":"CPGW-Id", 		  "type":"string"},
+												"dst":      {"title":"Teminal-Id", 		  "type":"string"},
+												"encoding": {"title":"Protocol Encoding", "type":"string", "enum":["ASCII","UTF-8"]},
+												"communication": { "$ref": "#/references/communication" }
+											}
+										},
+										"sgp": {
+											"title": "SGP",
+											"type": "object",
+											"properties": {
+												"spectype":{"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+												"core": {
+													"title": "Core",
+													"type": "object",
+													"properties": {
+														"spectype":{"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+														"gpioctrl": {"title": "GpioCtrl", "$ref": "#/references/gpioctrl"},
+														"statpins": {"title": "Status I/O", "type": "array",
+															"items": {"type": "object",
+																 "properties": {
+																	"_idx_":    {"type":"integer", "readonly": true},
+																	"funct":	{"title":"Function",		 "type":"string",  "enum":["HoppsPres","HoppsUnlocked","CoinCashPres","CoinCashUnlocked","BillCashPres"], "readonly": false},
+																	"id":		{"title":"Pin ID",			 "type":"integer", "minimum":0,"maximum":255},
+																	"activest": {"title":"ActiveState",		 "type":"integer", "minimum":0,"maximum":1},
+																	"risedlyms":{"title":"Rise filter (ms)", "type":"integer", "minimum":0,"maximum":5000},
+																	"falldlyms":{"title":"Fall filter (ms)", "type":"integer", "minimum":0,"maximum":5000}
+																}
+															},
+															"minItems": 0,
+															"maxItems": 50
+														},
+														"ctrlpins": {"title": "Ctrl I/O","type": "array",
+															"items":{"type": "object",
+																 "properties": {
+																	"_idx_":        {"type":"integer", "readonly": true},
+																	"funct":	    { "title": "Function", 	   "type": "string",  "enum": ["OpenShutter", "CloseShutter", "CngBoxLampOn", "CngBoxLampOff", "AntiJam"], "readonly": false},
+																	"id":		    { "title": "Pin ID",   	   "type": "integer", "minimum": 0, "maximum": 255 },
+																	"activest":     { "title": "StartMode",  "type": "integer", "minimum": 0, "maximum": 1},
+																	"lowperiodms":  { "title": "LowTime(ms)",  "type": "integer", "minimum": 0, "maximum": 10000},
+																	"highperiodms": { "title": "HighTime(ms)", "type": "integer", "minimum": 0, "maximum": 10000},
+																	"pulseno": 		{ "title": "PulsesNo",     "type": "integer", "minimum": 0, "maximum": 10000}
+																}
+															},
+															"minItems": 0,
+															"maxItems": 50
+														}
+													}
+												},
+												"acoin": {
+													"title": "Coins Acceptor",
+													"type": "object",
+													"properties": {
+														"spectype":{"title":"Specific Type","type":"integer","minimum":0,"maximum":3},
+														"denominations": {
+															"title": "List Of Denominations Configurations",
+															"type": "array",
+															"items": {
+																"type": "object",
+																"properties": {
+																	"_idx_":    {"type":"integer", "readonly": true},
+																	"id":  		 {"title":"Denomination Id","type":"integer","minimum":0,"maximum":15},
+																	"enabled":	 {"title":"Enabled/Disabled","type":"boolean"},
+																	"currency":  {"title":"Denom. Currency", "$ref": "#/references/currency" },
+																	"value":  	 {"title":"Value","type":"number","minimum":0,"maximum":1000},
+																	"moneycode": {"title":"Denom. Money Code","type":"string","enum":["EU001A","EU002A","EU005A","EU010A","EU020A","EU050A","EU100A","EU200A","GB005D","GB010D","GB010B","GB020A","GB050B","GB100B","GB200A","CH005A","CH010A","CH020A","CH050A","CH100A","CH200A","CH500A","ZA500B","ZA500C","ZA200A","ZA100C","ZA050B","ZA020A","ZA010B","ZA005A"]}
+																}
+															},
+															"minItems": 1,
+															"maxItems": 16
+														},
+														"communication": { "$ref": "#/references/communication" }
+													}
+												},
+												"abill": {
+													"title": "Bills Acceptor",
+													"type": "object",
+													"properties": {
+														"spectype":{"title":"Specific Type","type":"integer","minimum":0,"maximum":2},
+														"denominations": {
+															"title": "List Of Denominations Configurations",
+															"type": "array",
+															"items": {
+																"type": "object",
+																"properties": {
+																	"_idx_":    {"type":"integer", "readonly": true},
+																	"id":  		 {"title":"Denomination Id","type":"integer","minimum":0,"maximum":15},
+																	"enabled":	 {"title":"Enabled/Disabled","type":"boolean"},
+																	"currency":  {"title":"Denom. Currency", "$ref": "#/references/currency" },
+																	"value":  	 {"title":"Value","type":"number","minimum":0,"maximum":1000},
+																	"moneycode": {"title":"Denom. Money Code","type":"string","enum":["1","2","3","4","5","6","7","8"]}
+																}
+															},
+															"minItems": 1,
+															"maxItems": 16
+														},
+														"communication": { "$ref": "#/references/communication" }
+													}
+												},
+												"dcoin": {
+													"title": "Coins Dispenser",
+													"type": "object",
+													"properties": {
+														"spectype":{"title":"Specific Type","type":"integer","minimum":0,"maximum":2},
+														"denominations": {
+															"title": "List Of Denominations Configurations",
+															"type": "array",
+															"items": {
+																"type": "object",
+																"properties": {
+																	"_idx_":    {"type":"integer", "readonly": true},
+																	"id":  		 {"title":"Denomination Id","type":"integer","minimum":0,"maximum":6},
+																	"enabled":	 {"title":"Enabled/Disabled","type":"boolean"},
+																	"currency":  {"title":"Denom. Currency", "$ref": "#/references/currency" },
+																	"value":  	 {"title":"Value","type":"number","minimum":0,"maximum":1000},
+																	"capacity":  {"title":"Capacity","type":"integer","minimum":0,"maximum":1000},
+																	"reserve": 	 {"title":"Reserve","type":"integer","minimum":0,"maximum":500},
+																	"timeouts":  {"title":"Timeout","type":"integer","minimum":0,"maximum":60},
+																	"maxcngpcs": {"title":"Max Change No.","type":"integer","minimum":0,"maximum":500},
+																	"nomqtty":   {"title":"Nominal Quantity","type":"integer","minimum":0,"maximum":1000}
+																}
+															},
+															"minItems": 1,
+															"maxItems": 7
+														},
+														"communication": { "$ref": "#/references/communication" }
+													}
+												},
+												"dbill": {
+													"title": "Bills Dispenser",
+													"type": "object",
+													"properties": {
+														"spectype":{"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+														"denominations": {
+															"title": "List Of Denominations Configurations",
+															"type": "array",
+															"items": {
+																"type": "object",
+																"properties": {
+																	"_idx_":     {"type":"integer", "readonly": true},
+																	"id":  		 {"title":"Denomination Id","type":"integer","minimum":0,"maximum":7},
+																	"enabled":	 {"title":"Enabled/Disabled","type":"boolean"},
+																	"currency":  {"title":"Denom. Currency", "$ref": "#/references/currency" },
+																	"value":  	 {"title":"Value","type":"number","minimum":0,"maximum":1000},
+																	"capacity":  {"title":"Capacity","type":"integer","minimum":0,"maximum":1000},
+																	"reserve": 	 {"title":"Reserve","type":"integer","minimum":0,"maximum":500},
+																	"timeouts":  {"title":"Timeout","type":"integer","minimum":0,"maximum":60},
+																	"maxcngpcs": {"title":"Max Change No.","type":"integer","minimum":0,"maximum":500},
+																	"nomqtty":   {"title":"Nominal Quantity","type":"integer","minimum":0,"maximum":1000},
+																	"ispolymer": {"title":"Is Polymer","type":"boolean"},
+																	"length":    {"title":"Length","type":"number"},
+																	"thick":     {"title":"Tickness","type":"number"},
+																	"stoponerr": {"title":"Stop On Error","type":"boolean"}
+																}
+															},
+															"minItems": 1,
+															"maxItems": 8
+														},
+														"communication": { "$ref": "#/references/communication" }
+													}
+												},
+												"cashmngr": {
+													"title": "Cash Manager",
+													"type": "object",
+													"properties": {
+														"persistentdata": {
+															"title": "Persistent Data Configurations",
+															"type": "object",
+															"properties": {
+																"dbfilename":	{"title":"DB FileName",		  "type":"string"},
+																"dbfilesizekb": {"title":"DB File Size (KB)", "type":"integer","minimum":1,"maximum":1024},
+																"dbtables": {
+																	"title": "DB Tables",
+																	"type": "array",
+																	"items": {
+																		"type": "object",
+																		"properties": {
+																			"_idx_":    {"type":"integer", "readonly": true},
+																			"tablename": { "title": "Table Name", 		   "type": "string" , "readonly": false},
+																			"tableid":   { "title": "Table Id",   		   "type": "integer", "readonly": false },
+																			"recsz": 	 { "title": "Table Record Size",   "type": "integer", "readonly": false },
+																			"recsno": 	 { "title": "Table Record Number", "type": "integer", "readonly": false}
+																		}
+																	},
+																	"minItems": 2,
+																	"maxItems": 2
+																}
+															}
+														},
+														"coins": {
+															"title": "Paths from a-coin to d-coin for each denomination",
+															"type": "array",
+															"items": {
+																"type": "object",
+																"properties": {
+																	"_idx_":    {"type":"integer", "readonly": true},
+																	"path":     {"title":"Coin Main Path","$ref": "#/references/paths"},
+																	"dst":	    {"title":"DCoin denom. id as destination","type":"integer","minimum":0,"maximum":6},
+																	"fbpath":   {"title":"Fall Back Path","$ref": "#/references/paths"},
+																	"enabled":  {"title":"Enabled/Disabled","type":"boolean"},
+																	"ismxdcash":{"title":"The path leads to a mixed cash?","type":"boolean"},
+																	"srcs":		{"title":"ACoin denom. ids as sources", "type": "array", "items": {"type": "integer","minimum":0,"maximum":15}}
+																}
+															},
+															"minItems": 1,
+															"maxItems": 10
+														},
+														"bills": {
+															"title": "Paths from a-bill to d-bill for each denomination",
+															"type": "array",
+															"items": {
+																"type": "object",
+																"properties": {
+																	"_idx_":    {"type":"integer", "readonly": true},
+																	"path":     {"title":"Banknote Main Path","$ref": "#/references/paths"},
+																	"dst":	    {"title":"DBill denom. id as dest","type":"integer","minimum":0,"maximum":6},
+																	"fbpath":   {"title":"Fall Back Path","$ref": "#/references/paths"},
+																	"enabled":  {"title":"Enabled/Disabled","type":"boolean"},
+																	"ismxdcash":{"title":"The path leads to a mixed cash?","type":"boolean"},
+																	"srcs":		{"title":"ABill denom. ids as sources", "type": "array", "items": {"type": "integer","minimum":0,"maximum":15}}
+																}
+															},
+															"minItems": 1,
+															"maxItems": 10
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"tariffsservice": {
+							"title": "Tariffs Service",
+							"type": "object",
+							"properties": {
+								"spectype":	{"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+								"sitecode" :	{"title":"Site Code",	 "type":"integer",	"minimum":1,"maximum":999999,"required":true, "id": "#sc"},
+								"dbconfigfile":	{"title": "Tariffs DB Config File", "type": "string", "readonly": false },
+								"httpserver": 	{"title": "HttpServer Configurations", "$ref": "#/references/httpserver"}
+							}
+						},
+						"localdbservice": {
+							"title": "Local DB Service",
+							"type": "object",
+							"properties": {
+								"spectype":	{"title":"Specific Type","type":"integer","minimum":0,"maximum":1},
+								"dburls":{
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"dbdriver" :	{"title":"Database Driver","type":"string"},
+											"dbname":		{"title":"Database Name","type":"string"},
+											"dburl":		{"title":"Database URL","type":"string"}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

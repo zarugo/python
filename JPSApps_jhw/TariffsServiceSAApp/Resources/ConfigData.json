@@ -1,0 +1,24 @@
+{
+	"application": {
+		"logmaxage": 2,
+                "loglevel": 5,
+		"dbglevel": 1,
+		"modules": {
+			"tariffsservice": {
+				"spectype": 1,
+				"sitecode": 1,
+				"dbconfigfile":"./Resources/TarDB.xml",
+				"httpserver": {
+					"spectype": 1,
+					"rootdir": "./Resources/www",
+					"tempdir": "./Resources/www/tempDir",
+					"postdir": "./Resources/www/postDir",
+					"communication": {
+						"spectype": "NETWORK",
+						"url": ":60000"
+					}
+				}
+			}
+		}
+	}
+}

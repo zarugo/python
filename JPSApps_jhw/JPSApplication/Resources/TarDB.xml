@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tables>
+	<tab_checktarmodify>
+		<row>
+            <last_modify>2017-01-05 12:14:00</last_modify>
+		</row>
+	</tab_checktarmodify>
+ 	<tab_cathegory_profile>
+ 		<row>
+ 			<system_code>1</system_code>
+ 			<id>4</id>
+ 			<cat_id>4</cat_id>
+ 			<source_code>40</source_code>
+ 			<description>LONG TERMS</description>
+ 			<superid>4</superid>
+ 			<type>1</type> 			
+ 		</row>
+ 		<row>
+ 			<system_code>1</system_code>
+ 			<id>1</id>
+ 			<cat_id>1</cat_id>
+ 			<source_code>0</source_code>
+ 			<description>OCCASIONALI</description>
+ 			<superid>1</superid>
+ 			<type>0</type> 			
+ 		</row>
+ 		<row>
+ 			<system_code>1</system_code>
+ 			<id>2</id>
+ 			<cat_id>2</cat_id>
+ 			<source_code>10</source_code>
+ 			<description>TEMPO</description>
+ 			<superid>2</superid>
+ 			<type>1</type> 			
+ 		</row>
+ 		<row>
+ 			<system_code>1</system_code>
+ 			<id>3</id>
+ 			<cat_id>3</cat_id>
+ 			<source_code>30</source_code>
+ 			<description>ABBONATI</description>
+ 			<superid>3</superid>
+ 			<type>0</type> 			
+ 		</row>
+	</tab_cathegory_profile>
+	<tab_pfl_distribution>
+ 		<row>
+ 			<system_code>1</system_code>
+ 			<pflid>0</pflid>
+ 			<distid>1</distid>
+ 			<begin_date>2016-07-14 00:00:00</begin_date>
+ 			<end_date>2050-12-31 00:00:00</end_date>
+ 			<superid>1</superid>
+ 		</row>
+ 		<row>
+ 			<system_code>1</system_code>
+ 			<pflid>2</pflid>
+ 			<distid>2</distid>
+ 			<begin_date>2016-07-14 00:00:00</begin_date>
+ 			<end_date>2050-12-31 00:00:00</end_date>
+ 			<superid>3</superid>
+ 		</row>
+	</tab_pfl_distribution>
+	<tab_pfl_passedtime>
+		<row>
+ 			<system_code>1</system_code>
+ 			<id>1</id>
+ 			<cat_id>2</cat_id>
+			<time_from>0</time_from>
+			<time_to>99999999</time_to>
+ 			<pflid>2</pflid>
+ 			<umd>2</umd>
+		</row>
+		<row>
+ 			<system_code>1</system_code>
+ 			<id>2</id>
+ 			<cat_id>4</cat_id>
+			<time_from>0</time_from>
+			<time_to>99999999</time_to>
+ 			<pflid>1</pflid>
+ 			<umd>2</umd>
+		</row>
+	</tab_pfl_passedtime>
+	<tab_pfl>
+		<row>
+ 			<system_code>1</system_code>
+ 			<pflid>0</pflid>
+ 			<descrizione>OCC</descrizione>
+			<nopay_time>0</nopay_time>
+			<toll_time>5</toll_time>
+ 			<max_day>0.00</max_day>
+ 			<step_continue>1</step_continue>
+ 			<threshold_continue>1</threshold_continue>
+		</row>
+		<row>
+ 			<system_code>1</system_code>
+ 			<pflid>1</pflid>
+ 			<descrizione>ABB</descrizione>
+			<nopay_time>15</nopay_time>
+			<toll_time>5</toll_time>
+ 			<max_day>0.00</max_day>
+ 			<step_continue>1</step_continue>
+ 			<threshold_continue>1</threshold_continue>
+		</row>
+		<row>
+ 			<system_code>1</system_code>
+ 			<pflid>2</pflid>
+ 			<descrizione>SCA</descrizione>
+			<nopay_time>10</nopay_time>
+			<toll_time>5</toll_time>
+ 			<max_day>0.00</max_day>
+ 			<step_continue>1</step_continue>
+ 			<threshold_continue>1</threshold_continue>
+		</row>
+	</tab_pfl>
+	<tab_tdt>
+		<row>
+ 			<system_code>1</system_code>
+ 			<id>1</id>
+ 			<pflid>0</pflid>
+			<tdtid>0</tdtid>
+			<weekday_from>0</weekday_from>
+ 			<time_from>2016-07-14 00:00:00</time_from>
+			<weekday_to>6</weekday_to>
+ 			<time_to>2016-07-14 23:59:59</time_to>
+ 			<max_tarif>0.00</max_tarif>
+			<tarid>1</tarid>
+		</row>
+		<row>
+ 			<system_code>1</system_code>
+ 			<id>2</id>
+ 			<pflid>1</pflid>
+			<tdtid>1</tdtid>
+			<weekday_from>0</weekday_from>
+ 			<time_from>2016-07-14 00:00:00</time_from>
+			<weekday_to>6</weekday_to>
+ 			<time_to>2016-07-14 23:59:59</time_to>
+ 			<max_tarif>0.00</max_tarif>
+			<tarid>2</tarid>
+		</row>
+		<row>
+ 			<system_code>1</system_code>
+ 			<id>3</id>
+ 			<pflid>2</pflid>
+			<tdtid>2</tdtid>
+			<weekday_from>0</weekday_from>
+ 			<time_from>2016-07-14 00:00:00</time_from>
+			<weekday_to>6</weekday_to>
+ 			<time_to>2016-07-14 23:59:59</time_to>
+ 			<max_tarif>0.00</max_tarif>
+			<tarid>2</tarid>
+		</row>
+		<row>
+ 			<system_code>1</system_code>
+ 			<id>3</id>
+ 			<pflid>1</pflid>
+			<tdtid>100</tdtid>
+			<weekday_from>0</weekday_from>
+ 			<time_from>2016-07-14 00:00:00</time_from>
+			<weekday_to>6</weekday_to>
+ 			<time_to>2016-07-14 23:59:59</time_to>
+ 			<max_tarif>0.00</max_tarif>
+			<tarid>2</tarid>
+		</row>
+	</tab_tdt>
+	<tab_tar>
+		<row>
+ 			<system_code>1</system_code>
+ 			<id>1</id>
+ 			<tarid>1</tarid>
+			<umd>2</umd>
+			<durata_lo>0</durata_lo>
+ 			<durata_hi>60</durata_hi>
+			<amount>3.00</amount>
+ 			<umi>2</umi>
+ 			<step_calc>60</step_calc>
+			<limit_sup_tar>0.00</limit_sup_tar>
+		</row>
+		<row>
+ 			<system_code>1</system_code>
+ 			<id>3</id>
+ 			<tarid>1</tarid>
+			<umd>2</umd>
+			<durata_lo>60</durata_lo>
+ 			<durata_hi>99999999</durata_hi>
+			<amount>1.00</amount>
+ 			<umi>2</umi>
+ 			<step_calc>60</step_calc>
+			<limit_sup_tar>0.00</limit_sup_tar>
+		</row>
+		<row>
+ 			<system_code>1</system_code>
+ 			<id>2</id>
+ 			<tarid>2</tarid>
+			<umd>2</umd>
+			<durata_lo>0</durata_lo>
+ 			<durata_hi>99999999</durata_hi>
+                        <amount>4.00</amount>
+ 			<umi>2</umi>
+ 			<step_calc>60</step_calc>
+			<limit_sup_tar>0.00</limit_sup_tar>
+		</row>
+	</tab_tar>
+	<tab_spec>
+		<row>
+ 			<system_code>1</system_code>
+      		<pflid>1</pflid>
+    		<specid>100</specid>
+      		<begin_date>2016-12-25 00:00:00</begin_date>
+      		<begin_time>2016-12-25 00:00:00</begin_time>
+      		<end_date>2016-12-26 00:00:00</end_date>
+      		<end_time>2016-12-26 23:59:59</end_time>
+      		<no_year_check>1</no_year_check>
+		</row>
+	</tab_spec>
+	<tab_lmt/>
+</tables>

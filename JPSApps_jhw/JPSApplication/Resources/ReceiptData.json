@@ -1,0 +1,557 @@
+﻿{
+	"rcpmsg": [{
+			"lang": "GBR",
+			"data": [{
+					"name": "printedTime",
+					"defvalue": "Printed      :"
+				}, {
+					"name": "rcpNo",
+					"defvalue": "Receipt No.  :"
+				}, {
+					"name": "periphId",
+					"defvalue": "Periph. Id   :"
+				}, {
+					"name": "operation",
+					"defvalue": "Operation    :"
+				}, {
+					"name": "opTrans",
+					"defvalue": "Parking time to pay"
+				}, {
+					"name": "opTransDiff",
+					"defvalue": "Difference to pay"
+				}, {
+					"name": "opRecharge",
+					"defvalue": "Contract Recharge"
+				}, {
+					"name": "opRenewal",
+					"defvalue": "Contract Renewal"
+				}, {
+					"name": "opRenewalOverstay",
+					"defvalue": "Contract Renewal and Overstay Payment"
+				}, {
+					"name": "opOverstay",
+					"defvalue": "Overstay Payment"
+				}, {
+					"name": "opPrdctPurchased",
+					"defvalue": "Prodcut Purchased"
+				}, {
+					"name": "payRcpSeparator",
+					"defvalue": "--------------- PAYMENT RECEIPT --------------"
+				}, {
+					"name": "posRcpSeparator",
+					"defvalue": "----------------- RECEIPT ----------------"
+				}, {
+					"name": "lostRcpSeparator",
+					"defvalue": "------------------ SCAN AT EXIT --------------"
+				}, {
+					"name": "creditNoteSeparator",
+					"defvalue": "---------------- SCAN AT APS -----------------"
+				}, {
+					"name": "tktNo",
+					"defvalue": "Ticket No.   :"
+				}, {
+					"name": "contrNo",
+					"defvalue": "Contract No. :"
+				}, {
+					"name": "validFromTime",
+					"defvalue": "Valid From   :"
+				}, {
+					"name": "validToTime",
+					"defvalue": "Valid To     :"
+				}, {
+					"name": "newBalance",
+					"defvalue": "New Balance  :"
+				}, {
+					"name": "duration",
+					"defvalue": "Duration     :"
+				}, {
+					"name": "entry",
+					"defvalue": "Entry        :"
+				}, {
+					"name": "prevPay",
+					"defvalue": "Prev. Payment:"
+				}, {
+					"name": "currPay",
+					"defvalue": "Curr. Payment:"
+				}, {
+					"name": "details",
+					"defvalue": "Details      :"
+				}, {
+					"name": "amount",
+					"defvalue": "Amount :"
+				}, {
+					"name": "CreditAmntLbl",
+					"defvalue": "Credit Amount: "
+				}, {
+					"name": "IssueTmDtLbl",
+					"defvalue": "Issued on: "
+				}, {
+					"name": "SnapTitle",
+					"defvalue": "OPEN CASH SNAPSHOT"
+				}, {
+					"name": "SnapTitleOpen",
+					"defvalue": "OPEN"
+				}, {
+					"name": "SnapTitleInserted",
+					"defvalue": "INSERTED"
+				}, {
+					"name": "SnapTitleWithdrawn",
+					"defvalue": "WITHDRAWN"
+				}, {
+					"name": "SnapTitleClose",
+					"defvalue": "CLOSE"
+				}, {
+					"name": "SnapSiteCode",
+					"defvalue": "Site Code:"
+				}, {
+					"name": "SnapPeriphID",
+					"defvalue": "PeriphID:"
+				}, {
+					"name": "SnapProtNo",
+					"defvalue": "ProtNo:"
+				}, {
+					"name": "SnapOptorID",
+					"defvalue": "OptorID:"
+				}, {
+					"name": "SnapTabHead",
+					"defvalue": "Id    Val   Qty   Cur   Tot          "
+				}, {
+					"name": "SnapCoinsSep",
+					"defvalue": "- Coins -------------------------------"
+				}, {
+					"name": "SnapHopperNo",
+					"defvalue": "H"
+				}, {
+					"name": "SnapBillsSep",
+					"defvalue": "- Bills -------------------------------"
+				}, {
+					"name": "SnapCassetteNo",
+					"defvalue": "C"
+				}, {
+					"name": "SnapCoinsSafeSep",
+					"defvalue": "- Coins Safe --------------------------"
+				}, {
+					"name": "SnapBillsSafeSep",
+					"defvalue": "- Bills Safe --------------------------"
+				}, {
+					"name": "SnapTotalSep",
+					"defvalue": "- Total -------------------------------"
+				}
+			]
+		}, {
+			"lang": "ITA",
+			"data": [{
+					"name": "printedTime",
+					"defvalue": "Stampato            :"
+				}, {
+					"name": "rcpNo",
+					"defvalue": "Ricevuta n.         :"
+				}, {
+					"name": "periphId",
+					"defvalue": "Id periferica       :"
+				}, {
+					"name": "operation",
+					"defvalue": "Operazione          :"
+				}, {
+					"name": "opTrans",
+					"defvalue": "Sosta da pagare"
+				}, {
+					"name": "opTransDiff",
+					"defvalue": "Differenza da pagare"
+				}, {
+					"name": "opRecharge",
+					"defvalue": "Ricarica contratto"
+				}, {
+					"name": "opRenewal",
+					"defvalue": "Rinnovo contratto"
+				}, {
+					"name": "opRenewalOverstay",
+					"defvalue": "Rinnovo contratto e pagamento eccedenza"
+				}, {
+					"name": "opOverstay",
+					"defvalue": "Pagamento eccedenza"
+				}, {
+					"name": "opPrdctPurchased",
+					"defvalue": "Prodotto Acquistato"
+				}, {
+					"name": "payRcpSeparator",
+					"defvalue": "--------------- RICEVUTA DI PAGAMENTO --------------"
+				}, {
+					"name": "posRcpSeparator",
+					"defvalue": "----------------- RICEVUTA ----------------"
+				}, {
+					"name": "lostRcpSeparator",
+					"defvalue": "------------------ SCAN AT EXIT --------------"
+				}, {
+					"name": "creditNoteSeparator",
+					"defvalue": "---------------- SCAN AT APS -----------------"
+				}, {
+					"name": "tktNo",
+					"defvalue": "Biglietto n.        :"
+				}, {
+					"name": "contrNo",
+					"defvalue": "Contratto n.        :"
+				}, {
+					"name": "validFromTime",
+					"defvalue": "Valido dal          :"
+				}, {
+					"name": "validToTime",
+					"defvalue": "Valido fino al      :"
+				}, {
+					"name": "newBalance",
+					"defvalue": "Nuovo saldo         :"
+				}, {
+					"name": "duration",
+					"defvalue": "Durata              :"
+				}, {
+					"name": "entry",
+					"defvalue": "Ingresso            :"
+				}, {
+					"name": "prevPay",
+					"defvalue": "Pagamento precedente:"
+				}, {
+					"name": "currPay",
+					"defvalue": "Pagamento attuale   :"
+				}, {
+					"name": "details",
+					"defvalue": "Dettagli            :"
+				}, {
+					"name": "amount",
+					"defvalue": "Importo   :"
+				}, {
+					"name": "CreditAmntLbl",
+					"defvalue": "Credit Amount: "
+				}, {
+					"name": "IssueTmDtLbl",
+					"defvalue": "Issued on: "
+				}, {
+					"name": "SnapTitle",
+					"defvalue": "OPEN CASH SNAPSHOT"
+				}, {
+					"name": "SnapTitleOpen",
+					"defvalue": "OPEN"
+				}, {
+					"name": "SnapTitleInserted",
+					"defvalue": "INSERTED"
+				}, {
+					"name": "SnapTitleWithdrawn",
+					"defvalue": "WITHDRAWN"
+				}, {
+					"name": "SnapTitleClose",
+					"defvalue": "CLOSE"
+				}, {
+					"name": "SnapSiteCode",
+					"defvalue": "Site Code:"
+				}, {
+					"name": "SnapPeriphID",
+					"defvalue": "PeriphID:"
+				}, {
+					"name": "SnapProtNo",
+					"defvalue": "ProtNo:"
+				}, {
+					"name": "SnapOptorID",
+					"defvalue": "OptorID:"
+				}, {
+					"name": "SnapTabHead",
+					"defvalue": "Id    Val   Qty   Cur   Tot          "
+				}, {
+					"name": "SnapCoinsSep",
+					"defvalue": "- Coins -------------------------------"
+				}, {
+					"name": "SnapHopperNo",
+					"defvalue": "H"
+				}, {
+					"name": "SnapBillsSep",
+					"defvalue": "- Bills -------------------------------"
+				}, {
+					"name": "SnapCassetteNo",
+					"defvalue": "C"
+				}, {
+					"name": "SnapCoinsSafeSep",
+					"defvalue": "- Coins Safe --------------------------"
+				}, {
+					"name": "SnapBillsSafeSep",
+					"defvalue": "- Bills Safe --------------------------"
+				}, {
+					"name": "SnapTotalSep",
+					"defvalue": "- Total -------------------------------"
+				}
+			]
+		}, {
+			"lang": "FRA",
+			"data": [{
+					"name": "printedTime",
+					"defvalue": "Printed      :"
+				}, {
+					"name": "rcpNo",
+					"defvalue": "Receipt No.  :"
+				}, {
+					"name": "periphId",
+					"defvalue": "Periph. Id   :"
+				}, {
+					"name": "operation",
+					"defvalue": "Operation    :"
+				}, {
+					"name": "opTrans",
+					"defvalue": "Parking time to pay"
+				}, {
+					"name": "opTransDiff",
+					"defvalue": "Difference to pay"
+				}, {
+					"name": "opRecharge",
+					"defvalue": "Contract Recharge"
+				}, {
+					"name": "opRenewal",
+					"defvalue": "Contract Renewal"
+				}, {
+					"name": "opRenewalOverstay",
+					"defvalue": "Contract Renewal and Overstay Payment"
+				}, {
+					"name": "opOverstay",
+					"defvalue": "Overstay Payment"
+				}, {
+					"name": "opPrdctPurchased",
+					"defvalue": "Prodcut Purchased"
+				}, {
+					"name": "payRcpSeparator",
+					"defvalue": "--------------- PAYMENT RECEIPT --------------"
+				}, {
+					"name": "posRcpSeparator",
+					"defvalue": "----------------- RECEIPT ----------------"
+				}, {
+					"name": "lostRcpSeparator",
+					"defvalue": "------------------ SCAN AT EXIT --------------"
+				}, {
+					"name": "creditNoteSeparator",
+					"defvalue": "---------------- SCAN AT APS -----------------"
+				}, {
+					"name": "tktNo",
+					"defvalue": "Ticket No.   :"
+				}, {
+					"name": "contrNo",
+					"defvalue": "Contract No. :"
+				}, {
+					"name": "validFromTime",
+					"defvalue": "Valid From   :"
+				}, {
+					"name": "validToTime",
+					"defvalue": "Valid To     :"
+				}, {
+					"name": "newBalance",
+					"defvalue": "New Balance  :"
+				}, {
+					"name": "duration",
+					"defvalue": "Duration     :"
+				}, {
+					"name": "entry",
+					"defvalue": "Entry        :"
+				}, {
+					"name": "prevPay",
+					"defvalue": "Prev. Payment:"
+				}, {
+					"name": "currPay",
+					"defvalue": "Curr. Payment:"
+				}, {
+					"name": "details",
+					"defvalue": "Details      : "
+				}, {
+					"name": "amount",
+					"defvalue": "Amount :"
+				}, {
+					"name": "CreditAmntLbl",
+					"defvalue": "Credit Amount: "
+				}, {
+					"name": "IssueTmDtLbl",
+					"defvalue": "Issued on: "
+				}, {
+					"name": "SnapTitle",
+					"defvalue": "OPEN CASH SNAPSHOT"
+				}, {
+					"name": "SnapTitleOpen",
+					"defvalue": "OPEN"
+				}, {
+					"name": "SnapTitleInserted",
+					"defvalue": "INSERTED"
+				}, {
+					"name": "SnapTitleWithdrawn",
+					"defvalue": "WITHDRAWN"
+				}, {
+					"name": "SnapTitleClose",
+					"defvalue": "CLOSE"
+				}, {
+					"name": "SnapSiteCode",
+					"defvalue": "Site Code:"
+				}, {
+					"name": "SnapPeriphID",
+					"defvalue": "PeriphID:"
+				}, {
+					"name": "SnapProtNo",
+					"defvalue": "ProtNo:"
+				}, {
+					"name": "SnapOptorID",
+					"defvalue": "OptorID:"
+				}, {
+					"name": "SnapTabHead",
+					"defvalue": "Id    Val   Qty   Cur   Tot          "
+				}, {
+					"name": "SnapCoinsSep",
+					"defvalue": "- Coins -------------------------------"
+				}, {
+					"name": "SnapHopperNo",
+					"defvalue": "H"
+				}, {
+					"name": "SnapBillsSep",
+					"defvalue": "- Bills -------------------------------"
+				}, {
+					"name": "SnapCassetteNo",
+					"defvalue": "C"
+				}, {
+					"name": "SnapCoinsSafeSep",
+					"defvalue": "- Coins Safe --------------------------"
+				}, {
+					"name": "SnapBillsSafeSep",
+					"defvalue": "- Bills Safe --------------------------"
+				}, {
+					"name": "SnapTotalSep",
+					"defvalue": "- Total -------------------------------"
+				}
+			]
+		}, {
+			"lang": "BGR",
+			"data": [{
+					"name": "printedTime",
+					"defvalue": "Дата на издаване:"
+				}, {
+					"name": "rcpNo",
+					"defvalue": "Номер на фискалния бон:"
+				}, {
+					"name": "periphId",
+					"defvalue": "Номер на устройството:"
+				}, {
+					"name": "operation",
+					"defvalue": "Операция:"
+				}, {
+					"name": "opTrans",
+					"defvalue": "Паркиране"
+				}, {
+					"name": "opTransDiff",
+					"defvalue": "Доплащане"
+				}, {
+					"name": "opRecharge",
+					"defvalue": "Презареждане на сметка"
+				}, {
+					"name": "opRenewal",
+					"defvalue": "Подновяване на договор"
+				}, {
+					"name": "opRenewalOverstay",
+					"defvalue": "Плащане на договор и превишен престой"
+				}, {
+					"name": "opOverstay",
+					"defvalue": "Плащане на превишен престой"
+				}, {
+					"name": "payRcpSeparator",
+					"defvalue": "--------------- КАСОВА БЕЛЕЖКА --------------"
+				}, {
+					"name": "posRcpSeparator",
+					"defvalue": "----------------- ПОС БЕЛЕЖКА ----------------"
+				}, {
+					"name": "lostRcpSeparator",
+					"defvalue": "-------------- СКАНИРАЙТЕ НА ИЗХОД ----------"
+				}, {
+					"name": "creditNoteSeparator",
+					"defvalue": "------------ СКАНИРАЙТЕ ЗА ИЗПЛАЩАНЕ --------"
+				}, {
+					"name": "tktNo",
+					"defvalue": "Номер на билета:"
+				}, {
+					"name": "contrNo",
+					"defvalue": "Номер на договора:"
+				}, {
+					"name": "validFromTime",
+					"defvalue": "Валидност от:"
+				}, {
+					"name": "validToTime",
+					"defvalue": "Валидност до:"
+				}, {
+					"name": "newBalance",
+					"defvalue": "Нова наличност:"
+				}, {
+					"name": "duration",
+					"defvalue": "Престой:"
+				}, {
+					"name": "entry",
+					"defvalue": "Входно време:"
+				}, {
+					"name": "prevPay",
+					"defvalue": "Предходно плащане:"
+				}, {
+					"name": "currPay",
+					"defvalue": "Време на плащане:"
+				}, {
+					"name": "details",
+					"defvalue": "Детайли:"
+				}, {
+					"name": "amount",
+					"defvalue": "Сума:"
+				}, {
+					"name": "CreditAmntLbl",
+					"defvalue": "Неизплатена сума: "
+				}, {
+					"name": "IssueTmDtLbl",
+					"defvalue": "Дата на издаване: "
+				}, {
+					"name": "SnapTitle",
+					"defvalue": "OPEN CASH SNAPSHOT"
+				}, {
+					"name": "SnapTitleOpen",
+					"defvalue": "ОТВАРЯНЕ"
+				}, {
+					"name": "SnapTitleInserted",
+					"defvalue": "ВЪВЕДЕНИ"
+				}, {
+					"name": "SnapTitleWithdrawn",
+					"defvalue": "ИЗВЕДЕНИ"
+				}, {
+					"name": "SnapTitleClose",
+					"defvalue": "ЗАТВАРЯНЕ"
+				}, {
+					"name": "SnapSiteCode",
+					"defvalue": "Номер на паркинга:"
+				}, {
+					"name": "SnapPeriphID",
+					"defvalue": "Номер на устройството:"
+				}, {
+					"name": "SnapProtNo",
+					"defvalue": "Номер на оператора:"
+				}, {
+					"name": "SnapOptorID",
+					"defvalue": "Име на оператора:"
+				}, {
+					"name": "SnapTabHead",
+					"defvalue": "Номер  Номинал   Брой   Валута   Общо"
+				}, {
+					"name": "SnapCoinsSep",
+					"defvalue": "- Монети ------------------------------"
+				}, {
+					"name": "SnapHopperNo",
+					"defvalue": "Х"
+				}, {
+					"name": "SnapBillsSep",
+					"defvalue": "- Банкноти ----------------------------"
+				}, {
+					"name": "SnapCassetteNo",
+					"defvalue": "К"
+				}, {
+					"name": "SnapCoinsSafeSep",
+					"defvalue": "- Сейф монети -------------------------"
+				}, {
+					"name": "SnapBillsSafeSep",
+					"defvalue": "- Сейф Банкноти -----------------------"
+				}, {
+					"name": "SnapTotalSep",
+					"defvalue": "- ОБЩО --------------------------------"
+				}
+			]
+		}
+	]
+}

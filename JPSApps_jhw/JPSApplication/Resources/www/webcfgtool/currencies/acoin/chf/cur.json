@@ -1,0 +1,70 @@
+{
+  "CUR": {
+    "denominations": [
+      {
+        "_idx_": 0,
+        "id": 0,
+        "enabled": true,
+        "currency": "CHF",
+        "value": 5,
+        "moneycode": "CH500A"
+      },
+      {
+        "_idx_": 1,
+        "id": 1,
+        "enabled": true,
+        "currency": "CHF",
+        "value": 2,
+        "moneycode": "CH200A"
+      },
+      {
+        "_idx_": 2,
+        "id": 2,
+        "enabled": true,
+        "currency": "CHF",
+        "value": 1,
+        "moneycode": "CH100A"
+      },
+      {
+        "_idx_": 3,
+        "id": 3,
+        "enabled": true,
+        "currency": "CHF",
+        "value": 0.5,
+        "moneycode": "CH050A"
+      },
+      {
+        "_idx_": 4,
+        "id": 4,
+        "enabled": true,
+        "currency": "CHF",
+        "value": 0.2,
+        "moneycode": "CH020A"
+      },
+      {
+        "_idx_": 5,
+        "id": 5,
+        "enabled": true,
+        "currency": "CHF",
+        "value": 0.1,
+        "moneycode": "CH010A"
+      },
+      {
+        "_idx_": 6,
+        "id": 6,
+        "enabled": false,
+        "currency": "CHF",
+        "value": 0.05,
+        "moneycode": "CH005A"
+      },
+      {
+        "_idx_": 7,
+        "id": 7,
+        "enabled": false,
+        "currency": "CHF",
+        "value": 0,
+        "moneycode": "CH005A"
+      }
+    ]
+  }
+}

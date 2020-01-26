@@ -1,0 +1,146 @@
+<html>
+    <head>
+		<!-- Style Sheet -->
+        <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" />
+        <link type="text/css" href="../css/alpaca.min.css.v154" rel="stylesheet" />
+		<style>
+		.no-js #loader { display: none;  }
+		.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+		.se-pre-con {
+			position: fixed;
+			left: 0px;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+			z-index: 9999;
+			background: url(../images/Preloader_8.gif) center no-repeat #fff;
+		}
+		</style>
+		<style>
+		legend {color: rgba(72, 123, 99, 0.95);}
+		label {color: rgba(80, 131, 107, 0.95);}
+		.alpaca-field-object {
+			border: 3px solid rgba(72, 123, 99, 0.55);
+			border-radius: 4px;
+			padding: 10px;
+		}
+		.alpaca-field-array {
+			border: 3px solid rgba(72, 123, 99, 0.55);
+			border-radius: 4px;
+			padding: 10px;
+		}
+		document.body.style.zoom="75%"
+		</style>
+		<!-- Basic Javascript -->
+        <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/handlebars.js"></script>
+        <script type="text/javascript" src="../js/alpaca.min.js.v154"></script>
+		<script type="text/javascript" src="../js/modernizr.js"></script>
+		<script type="text/javascript" src="../js/FileSaver.min.js"></script>
+		<script type="text/javascript">
+		function delayedFadeOut() {
+			$(".se-pre-con").fadeOut("slow");
+		}
+		</script>
+		<script type="text/javascript">
+			Alpaca.views["bootstrap-edit"].callbacks["collapsible"] = function() {
+			var $fieldEl = $(this.getFieldEl());
+			var $legendEl = $fieldEl.find("legend").first();
+			var $anchorEl = $("[data-toggle='collapse']", $legendEl);
+			if ($anchorEl.length > 0) {
+				var $containerEl = $(this.getContainerEl());
+				var id = $containerEl.attr("id");
+				if (!id) {
+					id = Alpaca.generateId();
+					$containerEl.attr("id", id);
+				}
+				$anchorEl.attr("aria-expanded", this.options.collapsed ? "false" : "true");
+				$containerEl.addClass(this.options.collapsed ? "collapse" : "collapse in");
+				if (!$anchorEl.attr("data-target")) {
+					$anchorEl.attr("data-target", "#" + id);
+				}
+				$anchorEl.mouseover(function(e) {
+					$(this).css("cursor", "pointer");
+				})
+			}
+		};
+		</script>
+    </head>
+    <body>
+		<div class="se-pre-con"></div>
+		<div id="outscdservice"></div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+				$("#outscdservice").alpaca({
+					"dataSource": "./ConfigData.json",
+					"schemaSource": "./ConfigSchema.json",
+					"view":"bootstrap-edit-horizontal",
+					"optionsSource": "./ConfigOptions.json",
+					///////////////////////////////////////////////////////////////////////////// OPTIONS /////////////////////////////////////////////////////////////////
+					"options": {
+						"form":{
+                            "attributes":{
+                                "action":"/webcfgtool",
+                                "method":"post"
+                            },
+                            "buttons":{
+								"validate":{
+                                    "title": "Validate",
+                                    "click": function() {
+                                        var val = this.getValue();
+                                        if (this.isValid(true)) {
+											alert("The data model is valid!");
+                                        } else {
+											var errors = "";
+                                            $(".alpaca-invalid").each(function(){
+												errors = errors +";\n"+$(this).attr("data-alpaca-field-path");
+											});
+											alert("Invalid value in: " + errors);
+                                        }
+                                    }
+                                },
+                                "submit":{
+                                    "title": "Send Configuration",
+                                    "click": function() {
+                                        var val = this.getValue();
+                                        if (this.isValid(true)) {
+											var myjson= JSON.stringify(val, null, "  ");
+											var blob = new Blob([myjson], {type: "application/json"});
+											var filename = 'ConfigData.json.def';
+											var formData = new FormData();
+											formData.append('file', new File([blob], filename));
+											var request = new XMLHttpRequest();
+											request.open("POST", "/webcfgtool/outsched");
+											request.send(formData);
+                                        } else {
+                                            alert("Invalid value: " + JSON.stringify(val, null, "  "));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+					},
+					"postRender": function(control) {
+						setTimeout(delayedFadeOut, 500);
+						$( ".help-block" ).each(function() {
+							//Dump the <p>...</p> element:
+							var html_dump = $(this).outerHTML();
+							//Dump and remove its <i>...</i> element:
+							html_dump = $(this).children("i:first").outerHTML();
+							$(this).children("i:first").remove();
+							//Dump the <p>...</p> element without the inner <i>...</i>:
+							var html_dump = $(this).outerHTML();
+							//Get the helper message:
+							var helper_msg = this.innerHTML;
+							var new_helper_node = '<span data-toggle="tooltip" data-placement="top" data-delay="{ show: 1, hide: 5000}" title="' + helper_msg + '" style="padding-left:20px"><i class="alpaca-icon-16 glyphicon glyphicon-info-sign"/></span>';
+							$(this).parent().children("legend:first").append(new_helper_node);
+							$(this).parent().children("label:first").append(new_helper_node);
+							$(this).empty();
+						});
+					}
+				});/*End Of $("#timings").alpaca({ */
+            });
+        </script>
+    </body>
+</html>
