@@ -1,4 +1,4 @@
-import functions_jps as jps
+import jps as jps
 import os
 import shutil
 import json
@@ -8,37 +8,22 @@ import paramiko
 from jsonmerge import merge
 
 #Clean garbage from old updates
-if os.path.isfile('ConfigData_ORIG.json'):
-    os.remove('ConfigData_ORIG.json')
-if os.path.isfile('ConfigData_NEW.json'):
-    os.remove('ConfigData_NEW.json')
-if os.path.isfile('ConfigData_merged.json'):
-    os.remove('ConfigData_merged.json')
-if os.path.isfile('_update.sh'):
-    os.remove('_update.sh')
-if os.path.isfile('JPSApps.tar.gz'):
-    os.remove('JPSApps.tar.gz')
-if os.path.isdir('JPSApps'):
-    shutil.rmtree('JPSApps')
-
-
-
+jps.pre_clean()
 
 #Ask the user for the import ip
 while True:
     try:
-        device = str(ipaddress.ip_address(input("Type the IP of the device: ")))
+        ip = str(ipaddress.ip_address(input("Type the IP of the device: ")))
         break
     except ValueError:
         print("The IP is invalid, please check that it's correct")
 
 #Get all the info we need on the device (hardware type and configuration)
 print("Getting the device informations about hardware and JPSApplication...")
-info = jps.get_type(device)
+device = JpsDevice(ip)
 
 print("Saving current config file...")
-jps.get_config(info["hw"], device, info["login"], info["appfld"], info["webfld"], info["script"], info["workdir"])
-
+jps.get_config(device.info["hw"], ip, device.info["login"], device.info["appfld"], device.info["webfld"], device.info["script"], device.info["workdir"])
 
 #######################################
 #MERGE JSON FILE
@@ -60,21 +45,28 @@ with tarfile.open('JPSApps.tar.gz', 'w:gz') as tar:
 
 #Create the update script that will be pushed to the device
 print("Creating the update script file...")
-jps.update_script(info["appfld"], info["webfld"], info["workdir"])
+jps.update_script(device.info["appfld"], device.info["webfld"], device.info["workdir"])
 
 #Push the files to the device
 print("Uploading the files to the device...")
+client = paramiko.SSHClient()
+client.load_system_host_keys()
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+client.connect(ip, username=device.info["login"], password='')
+sftp = client.open_sftp()
 try:
-    client = paramiko.SSHClient()
-    client.load_system_host_keys()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect(device, username=info["login"], password='')
-    sftp = client.open_sftp()
     sftp.put("JPSApps.tar.gz", info["workdir"] + "/JPSApps.tar.gz")
+except:
+    sys.exit("Impossible to copy the JPSApps.tar.gz file into the device, the update has failed.")
+try:
     sftp.put("_update.sh", info["workdir"] + "/_update.sh")
+except:
+    sys.exit("Impossible to copy the _update.sh file into the device, the update has failed.")
+try:
     sftp.put("ConfigData_merged.json", info["workdir"] + "/ConfigData_merged.json")
-finally:
-    client.close()
+except:
+    sys.exit("Impossible to copy the ConfigData_merged.json file into the device, the update has failed.")
+client.close()
 
 #Execute the update script
 print("Updating...")
@@ -82,28 +74,17 @@ client = paramiko.SSHClient()
 client.load_system_host_keys()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 client.connect(device, username="root", password='')
-client.exec_command("chmod +x " + info["workdir"] + "/_update.sh")
-client.exec_command(info["workdir"] + "/_update.sh")
-
-
-
-
-
-
+try:
+    client.exec_command("chmod +x " + info["workdir"] + "/_update.sh")
+except:
+    sys.exit("Impossible to execute chmod via ssh, the update has failed.")
+try:
+    client.exec_command(info["workdir"] + "/_update.sh")
+except:
+    sys.exit("Impossible to execute _update.sh via ssh, the update has failed.")
 
 
 #Take the trash out
-print("Cleaning temp files...")
-if os.path.isfile('ConfigData_ORIG.json'):
-    os.remove('ConfigData_ORIG.json')
-if os.path.isfile('ConfigData_NEW.json'):
-    os.remove('ConfigData_NEW.json')
-if os.path.isfile('ConfigData_merged.json'):
-    os.remove('ConfigData_merged.json')
-if os.path.isfile('_update.sh'):
-    os.remove('_update.sh')
-if os.path.isfile('JPSApps.tar.gz'):
-    os.remove('JPSApps.tar.gz')
-if os.path.isdir('JPSApps'):
-    shutil.rmtree('JPSApps')
+jps.post_clean()
+
 print("The update has been completed correctly.")
