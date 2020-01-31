@@ -173,7 +173,7 @@ def get_config(hw, ip, login, appfld, webfld, script, workdir):
                 print("Impossible to remove useless app web folder from the installation package")
                 pass
     for folder in appfloders:
-        if not re.match(appfld, folder)
+        if not re.match(r".*" + appfld, folder):
             try:
                 shutil.rmtree(folder)
             except:
