@@ -1,7 +1,5 @@
-import jps as jps
-import os
-import shutil
-import json
+import jps
+import sys
 import tarfile
 import ipaddress
 import paramiko
