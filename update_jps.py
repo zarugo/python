@@ -18,7 +18,7 @@ while True:
 
 #Get all the info we need on the device (hardware type and configuration)
 print("Getting the device informations about hardware and JPSApplication...")
-device = JpsDevice(ip)
+device = jps.JpsDevice(ip)
 
 print("Saving current config file...")
 jps.get_config(device.info["hw"], ip, device.info["login"], device.info["appfld"], device.info["webfld"], device.info["script"], device.info["workdir"])
@@ -71,16 +71,20 @@ print("Updating...")
 client = paramiko.SSHClient()
 client.load_system_host_keys()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-client.connect(device, username="root", password='')
+client.connect(ip, username="root", password='')
 try:
-    client.exec_command("chmod +x " + info["workdir"] + "/_update.sh")
+    client.exec_command("chmod +x " + device.info["workdir"] + "/_update.sh")
 except:
     sys.exit("Impossible to execute chmod via ssh, the update has failed.")
 try:
-    client.exec_command(info["workdir"] + "/_update.sh")
+    client.exec_command(device.info["workdir"] + "/_update.sh")
 except:
     sys.exit("Impossible to execute _update.sh via ssh, the update has failed.")
-
+try:
+    client.exec_command("reboot")
+except:
+    sys.exit("Impossible to reboot via ssh, please reboot the device manually.")
+client.close()
 
 #Take the trash out
 jps.post_clean()

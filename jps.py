@@ -38,9 +38,10 @@ def post_clean():
         shutil.rmtree('JPSApps')
 
 
-class JpsDevice(ip):
-    url = "http://" + ip + ":65000/jps/api/status"
-    def __init__(self):
+class JpsDevice:
+
+    def __init__(self, ip):
+        url = "http://" + ip + ":65000/jps/api/status"
         self.info = {}
         client = paramiko.SSHClient()
         client.load_system_host_keys()
@@ -65,7 +66,7 @@ class JpsDevice(ip):
                 "login":"root",
                 "appfld": "ApsApp",
                 "webfld": "apsapp",
-                "script": "ApsAppRun",
+                "script": "ApsAppRun.sh",
                 "workdir": "/home/root"}
             if type == "AppLe":
                 self.info = {
@@ -73,7 +74,7 @@ class JpsDevice(ip):
                 "login":"root",
                 "appfld": "LeApp",
                 "webfld": "leapp",
-                "script": "LeAppRun",
+                "script": "LeAppRun.sh",
                 "workdir": "/home/root"}
             if type == "AppLx":
                 self.info = {
@@ -81,7 +82,7 @@ class JpsDevice(ip):
                 "login":"root",
                 "appfld": "AplApp",
                 "webfld": "aplapp",
-                "script": "AplAppRun",
+                "script": "AplAppRun.sh",
                 "workdir": "/home/root"}
             if type == "AppApl":
                 self.info = {
@@ -89,7 +90,7 @@ class JpsDevice(ip):
                 "login":"root",
                 "appfld": "AplApp",
                 "webfld": "aplapp",
-                "script": "LxAppRun",
+                "script": "LxAppRun.sh",
                 "workdir": "/home/root"}
             if type == "AppOv":
                 self.info = {
@@ -97,7 +98,7 @@ class JpsDevice(ip):
                 "login":"root",
                 "appfld": "ApsApp",
                 "webfld": "apsapp",
-                "script": "OvAppRun",
+                "script": "OvAppRun.sh",
                 "workdir": "/home/root"}
             if type == "AppDr":
                 self.info = {
@@ -105,7 +106,7 @@ class JpsDevice(ip):
                 "login":"root",
                 "appfld": "LeApp",
                 "webfld": "leapp",
-                "script": "DrAppRun",
+                "script": "DrAppRun.sh",
                 "workdir": "/home/root"}
             if type == "AppLs":
                 self.info = {
@@ -113,7 +114,7 @@ class JpsDevice(ip):
                 "login":"root",
                 "appfld": "LeApp",
                 "webfld": "leapp",
-                "script": "LsAppRun",
+                "script": "LsAppRun.sh",
                 "workdir": "/home/root"}
         except requests.exceptions.Timeout:
             sys.exit("The device type is unknown...make sure the JPSApplication is running on the device and the IP address is correct, the update has failed.")
@@ -127,8 +128,9 @@ def get_config(hw, ip, login, appfld, webfld, script, workdir):
         sys.exit("Impossible to create the update folder JPSApps, the update has failed.")
     json_new = "./JPSApps/JPSApplication/Resources/www/webcfgtool/" + webfld + "/ConfigData.json"
     json_orig = workdir + "/JPSApps/JPSApplication/Resources/www/webcfgtool/" + webfld + "/" + appfld + "/ConfigData.json"
-    scriptfile = "./JPSApps/JPSApplication/" + script + ".sh"
+    scriptfile = "./JPSApps/JPSApplication/" + script
     webfolders = [f.path for f in os.scandir("./JPSApps/JPSApplication/Resources/www/webcfgtool") if f.is_dir()]
+    appfloders = ["./JPSApps/JPSApplication/Resources/ApsApp", "./JPSApps/JPSApplication/Resources/AplApp", "./JPSApps/JPSApplication/Resources/LeApp"]
     #print(json_orig)
     try:
         shutil.copyfile(json_new, "./ConfigData_NEW.json")
@@ -168,8 +170,16 @@ def get_config(hw, ip, login, appfld, webfld, script, workdir):
             try:
                 shutil.rmtree(folder)
             except:
+                print("Impossible to remove useless app web folder from the installation package")
+                pass
+    for folder in appfloders:
+        if not re.match(appfld, folder)
+            try:
+                shutil.rmtree(folder)
+            except:
                 print("Impossible to remove useless app folder from the installation package")
                 pass
+
     try:
         shutil.copy(scriptfile, "./JPSApps/JPSApplication/XXXAppRun.sh")
     except:
