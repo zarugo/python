@@ -10,14 +10,26 @@ from glob import glob
 def usage():
     print("You must provide the IP address of the device you want to update" )
 
-def get_type(ip):
-    url = "http://" + ip + ":65000/jps/api/status"
+def get_type(device):
+    url = "http://" + device + ":65000/jps/api/status"
+    client = paramiko.SSHClient()
+    client.load_system_host_keys()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    client.connect(device, username="root", password='')
+    stdin, stdout, stderr = client.exec_command("hostname")
+    if "ebb" in str(stdout.read()):
+        hw = "jhw"
+    elif "raspberrypi" in str(stdout.read()):
+        hw = "rpi"
+    else:
+        print("It's impossible to understand the hardware (JHW or Raspberry), please check the ssh connection.")
+        sys.exit(1)
     try:
         r = requests.get(url, timeout=10.0)
         type = (json.loads(r.text)["perType"])
         if type == "AppAps":
             info = {
-            "type":"AppAps",
+            "hw": hw,
             "login":"root",
             "appfld": "ApsApp",
             "webfld": "apsapp",
@@ -25,7 +37,7 @@ def get_type(ip):
             "workdir": "/home/root"}
         if type == "AppLe":
             info = {
-            "type":"AppLe",
+            "hw": hw,
             "login":"root",
             "appfld": "LeApp",
             "webfld": "leapp",
@@ -33,7 +45,7 @@ def get_type(ip):
             "workdir": "/home/root"}
         if type == "AppLx":
             info = {
-            "type":"AppLx",
+            "hw": hw,
             "login":"root",
             "appfld": "AplApp",
             "webfld": "aplapp",
@@ -41,7 +53,7 @@ def get_type(ip):
             "workdir": "/home/root"}
         if type == "AppApl":
             info = {
-            "type":"AppApl",
+            "hw": hw,
             "login":"root",
             "appfld": "AplApp",
             "webfld": "aplapp",
@@ -49,7 +61,7 @@ def get_type(ip):
             "workdir": "/home/root"}
         if type == "AppOv":
             info = {
-            "type":"AppOv",
+            "hw": hw,
             "login":"root",
             "appfld": "ApsApp",
             "webfld": "apsapp",
@@ -57,7 +69,7 @@ def get_type(ip):
             "workdir": "/home/root"}
         if type == "AppDr":
             info = {
-            "type":"AppDr",
+            "hw": hw,
             "login":"root",
             "appfld": "LeApp",
             "webfld": "leapp",
@@ -65,7 +77,7 @@ def get_type(ip):
             "workdir": "/home/root"}
         if type == "AppLs":
             info = {
-            "type":"AppLs",
+            "hw": hw,
             "login":"root",
             "appfld": "LeApp",
             "webfld": "leapp",
@@ -74,18 +86,18 @@ def get_type(ip):
         return info
     except requests.exceptions.Timeout:
         print("The device type is unknown...make sure the JPSApplication is running on the device and the IP address is correct")
-        sys.exit(1)
+
     except requests.exceptions.ConnectionError:
          print("The device type is unknown...make sure the JPSApplication is running on the device and the IP address is correct")
-         sys.exit(1)
 
-def get_config(hw, appfld, webfld, script, login, device, workdir):
+
+def get_config(hw, device, login, appfld, webfld, script, workdir):
     shutil.copytree("./JPSApps_" + hw, "./JPSApps")
     json_new = "./JPSApps/JPSApplication/Resources/www/webcfgtool/" + webfld + "/ConfigData.json"
-    json_orig = workdir + "/JPSApps/JPSApplication/Resources/www/webcfgtool/" + webfld + appfld + "/ConfigData.json"
+    json_orig = workdir + "/JPSApps/JPSApplication/Resources/www/webcfgtool/" + webfld + "/" + appfld + "/ConfigData.json"
     scriptfile = "./JPSApps/JPSApplication/" + script + ".sh"
     webfolders = [f.path for f in os.scandir("./JPSApps/JPSApplication/Resources/www/webcfgtool") if f.is_dir()]
-    webfolder = "./JPSApps/JPSApplication/Resources" + webfld
+    print(json_orig)
     shutil.copyfile(json_new, "./ConfigData_NEW.json")
     try:
         client = paramiko.SSHClient()
@@ -94,8 +106,10 @@ def get_config(hw, appfld, webfld, script, login, device, workdir):
         client.connect(device, username=login, password='')
         sftp = client.open_sftp()
         sftp.get(json_orig, "./ConfigData_ORIG.json")
-    finally:
         client.close()
+    except:
+        print("It was not possible to fetch the Configuration file from the device. ")
+
 
     for file in glob("./JPSApps/JPSApplication/*AppRun.sh"):
         if file != scriptfile:
@@ -107,10 +121,11 @@ def get_config(hw, appfld, webfld, script, login, device, workdir):
     for folder in webfolders:
         if re.match(r".*app", folder) and not re.match(r".*" + webfld, folder):
             shutil.rmtree(folder)
+    shutil.copy(scriptfile, "./JPSApps/JPSApplication/XXXAppRun.sh")
 
 
 def update_script(appfld, webfld, workdir):
-    with open("_update.sh", "a") as script:
+    with open("_update.sh", "a", newline='\n') as script:
         script.write("""#!/bin/bash
 #set -x
 WORKDIR=""" + workdir + """
@@ -180,7 +195,7 @@ echo 'REMOTE CRITICAL ERROR!! \
 rollback
 	exit 3
 fi
-mv ./AppDB.fdb \$TOKEN
+mv ./AppDB.fdb $TOKEN
 if [ $? != 0 ]
 	then
 	echo 'REMOTE CRITICAL ERROR!! \
@@ -192,7 +207,7 @@ fi
 if [[ $APS ]]
 then
 mkdir $CASHDIR
-mv ./cashDB.fdb \$CASH
+mv ./cashDB.fdb $CASH
 fi
 if [ $? != 0 ]
 	then
