@@ -83,15 +83,17 @@ except:
     sys.exit("Impossible to execute chmod via ssh, the update has failed.")
 try:
     stdin, stdout, stderr = client.exec_command(device.info["workdir"] + "/_update.sh", get_pty=True)
-    channel.recv_exit_status()
     remote_out = stdout.readlines()
     for line in remote_out:
         print(line)
-except:
-    sys.exit("Impossible to execute _update.sh via ssh, the update has failed.")
+except Exception as e:
+    sys.exit("The execution of the remote update script has failed with the error: " + e)
 client.close()
 
 #Take the trash out
 jps.post_clean()
 
 print("The update has been completed correctly.")
+a = input('Press a key to exit...')
+if a:
+    sys.exit(0)
