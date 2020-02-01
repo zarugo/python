@@ -62,7 +62,7 @@ class JpsDevice:
             type = (json.loads(r.text)["perType"])
             if type == "AppAps":
                 self.info = {
-                "type": type
+                "type": type,
                 "hw": hw,
                 "login":"root",
                 "appfld": "ApsApp",
@@ -71,7 +71,7 @@ class JpsDevice:
                 "workdir": "/home/root"}
             if type == "AppLe":
                 self.info = {
-                "type": type
+                "type": type,
                 "hw": hw,
                 "login":"root",
                 "appfld": "LeApp",
@@ -80,7 +80,7 @@ class JpsDevice:
                 "workdir": "/home/root"}
             if type == "AppLx":
                 self.info = {
-                "type": type
+                "type": type,
                 "hw": hw,
                 "login":"root",
                 "appfld": "AplApp",
@@ -89,7 +89,7 @@ class JpsDevice:
                 "workdir": "/home/root"}
             if type == "AppApl":
                 self.info = {
-                "type": type
+                "type": type,
                 "hw": hw,
                 "login":"root",
                 "appfld": "AplApp",
@@ -98,7 +98,7 @@ class JpsDevice:
                 "workdir": "/home/root"}
             if type == "AppOv":
                 self.info = {
-                "type": type
+                "type": type,
                 "hw": hw,
                 "login":"root",
                 "appfld": "ApsApp",
@@ -107,7 +107,7 @@ class JpsDevice:
                 "workdir": "/home/root"}
             if type == "AppDr":
                 self.info = {
-                "type": type
+                "type": type,
                 "hw": hw,
                 "login":"root",
                 "appfld": "LeApp",
@@ -116,7 +116,7 @@ class JpsDevice:
                 "workdir": "/home/root"}
             if type == "AppLs":
                 self.info = {
-                "type": type
+                "type": type,
                 "hw": hw,
                 "login":"root",
                 "appfld": "LeApp",
