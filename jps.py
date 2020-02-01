@@ -63,7 +63,7 @@ class JpsDevice:
         elif "raspberrypi" in str(stdout.read()):
             hw = "rpi"
         else:
-            raise Exception("It's impossible to understand the hardware (JHW or Raspberry), please check the ssh connection. The update has failed.")
+            raise Exception("It's impossible to understand the hardware (JHW or Raspberry), please check the ssh connection. The update has failed!")
         try:
             r = requests.get(url, timeout=10.0)
             type = (json.loads(r.text)["perType"])
@@ -131,9 +131,9 @@ class JpsDevice:
                 "script": "LsAppRun.sh",
                 "workdir": "/home/root"}
         except requests.exceptions.Timeout:
-            sys.exit("The device type is unknown...make sure the JPSApplication is running on the device and the IP address is correct, the update has failed.")
+            sys.exit("The device type is unknown...make sure the JPSApplication is running on the device and the IP address is correct, the update has failed!")
         except requests.exceptions.ConnectionError:
-             sys.exit("The device type is unknown...make sure the JPSApplication is running on the device and the IP address is correct, the update has failed.")
+             sys.exit("The device type is unknown...make sure the JPSApplication is running on the device and the IP address is correct, the update has failed!")
 
 def get_config(hw, ip, login, appfld, webfld, script, workdir):
     try:
@@ -157,7 +157,7 @@ def get_config(hw, ip, login, appfld, webfld, script, workdir):
     try:
         sftp.get(json_orig, "./ConfigData_ORIG.json")
     except:
-        sys.exit("It was not possible to fetch the Configuration file from the device, the update has failed.")
+        sys.exit("It was not possible to fetch the Configuration file from the device, the update has failed!")
     client.close()
 
     for file in glob("./JPSApps/JPSApplication/*AppRun.sh"):
@@ -196,7 +196,7 @@ def get_config(hw, ip, login, appfld, webfld, script, workdir):
     try:
         shutil.copy("./JPSApps/JPSApplication/" + script, "./JPSApps/JPSApplication/XXXAppRun.sh")
     except:
-        sys.exit("Impossible to create the XXXAppRun.sh launch script, the update has failed.")
+        sys.exit("Impossible to create the XXXAppRun.sh launch script, the update has failed!")
 
 def update_script(appfld, webfld, workdir):
     with open("_update.sh", "a", newline='\n') as script:
