@@ -21,6 +21,10 @@ while True:
 #Get all the info we need on the device (hardware type and configuration)
 print("Getting the device informations about hardware and JPSApplication...")
 device = jps.JpsDevice(ip)
+if os.pathexists("JPSApps_" + device.info["hw"]):
+    pass
+else:
+    raise("The installation package JPSApps_" + device.info["hw"] + " does not exist in this folder, the update has failed!")
 print("The hardware is " + device.info["hw"] + " and the application is " + device.info["type"] + ".")
 time.sleep(2)
 
