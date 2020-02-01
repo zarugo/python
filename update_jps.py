@@ -78,7 +78,7 @@ try:
 except:
     sys.exit("Impossible to execute chmod via ssh, the update has failed.")
 try:
-    stdin, stdout, stderr = client.exec_command(device.info["workdir"] + "/_update.sh")
+    stdin, stdout, stderr = client.exec_command(device.info["workdir"] + "/_update.sh", get_pty=True)
 except:
     sys.exit("Impossible to execute _update.sh via ssh, the update has failed.")
 client.close()
