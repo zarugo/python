@@ -46,11 +46,18 @@ class JpsDevice:
         client = paramiko.SSHClient()
         client.load_system_host_keys()
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        client.connect(ip, username="root", password="")
+        try:
+            client.connect(ip, username="root", password="")
+        except ConnectionRefusedError:
+            sys.exit("The connection to the device has been refused, please check the IP address, user and password on the device (must be 'root' and empty). The update has failed!")
+        except OSError:
+            sys.exit("No route to this IP addres, please check that it's correct. The update has failed!")
+        except TimeoutError:
+            sys.exit("The connection has timed out, please check please check the IP address.")
         try:
             stdin, stdout, stderr = client.exec_command("hostname")
         except SSHException:
-            sys.exit("It's impossible to understand the hardware (JHW or Raspberry), please check the ssh connection. the update has failed.")
+            sys.exit("It's impossible to understand the hardware (JHW or Raspberry), please check the ssh connection. the update has failed!")
         if "ebb" in str(stdout.read()):
             hw = "jhw"
         elif "raspberrypi" in str(stdout.read()):
