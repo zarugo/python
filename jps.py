@@ -128,7 +128,6 @@ def get_config(hw, ip, login, appfld, webfld, script, workdir):
         sys.exit("Impossible to create the update folder JPSApps, the update has failed.")
     json_new = "./JPSApps/JPSApplication/Resources/www/webcfgtool/" + webfld + "/ConfigData.json"
     json_orig = workdir + "/JPSApps/JPSApplication/Resources/www/webcfgtool/" + webfld + "/" + appfld + "/ConfigData.json"
-    scriptfile = "./JPSApps/JPSApplication/" + script
     webfolders = [f.path for f in os.scandir("./JPSApps/JPSApplication/Resources/www/webcfgtool") if f.is_dir()]
     appfloders = ["./JPSApps/JPSApplication/Resources/ApsApp", "./JPSApps/JPSApplication/Resources/AplApp", "./JPSApps/JPSApplication/Resources/LeApp"]
     #print(json_orig)
@@ -148,7 +147,7 @@ def get_config(hw, ip, login, appfld, webfld, script, workdir):
     client.close()
 
     for file in glob("./JPSApps/JPSApplication/*AppRun.sh"):
-        if file != scriptfile:
+        if not re.match(r".*" + script, file):
             try:
                 os.remove(file)
             except:
@@ -181,7 +180,7 @@ def get_config(hw, ip, login, appfld, webfld, script, workdir):
                 pass
 
     try:
-        shutil.copy(scriptfile, "./JPSApps/JPSApplication/XXXAppRun.sh")
+        shutil.copy("./JPSApps/JPSApplication/" + script, "./JPSApps/JPSApplication/XXXAppRun.sh")
     except:
         sys.exit("Impossible to create the XXXAppRun.sh launch script, the update has failed.")
 
