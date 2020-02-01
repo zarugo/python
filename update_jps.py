@@ -1,5 +1,6 @@
 import jps
 import sys
+import time
 import tarfile
 import json
 import ipaddress
@@ -20,6 +21,9 @@ while True:
 #Get all the info we need on the device (hardware type and configuration)
 print("Getting the device informations about hardware and JPSApplication...")
 device = jps.JpsDevice(ip)
+print("The hardware is " + device.info["hw"] + " and the application is " + device.info["type"] + ".")
+time.sleep(2)
+
 
 print("Saving current config file...")
 jps.get_config(device.info["hw"], ip, device.info["login"], device.info["appfld"], device.info["webfld"], device.info["script"], device.info["workdir"])
@@ -79,6 +83,10 @@ except:
     sys.exit("Impossible to execute chmod via ssh, the update has failed.")
 try:
     stdin, stdout, stderr = client.exec_command(device.info["workdir"] + "/_update.sh", get_pty=True)
+    channel.recv_exit_status()
+    remote_out = stdout.readlines()
+    for line in remote_out:
+        print(line)
 except:
     sys.exit("Impossible to execute _update.sh via ssh, the update has failed.")
 client.close()
