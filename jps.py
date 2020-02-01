@@ -286,6 +286,6 @@ fi
 #clean
 rm -rf _update.sh JPSApps.tar.gz
 sync
-echo "Rebooting"
+echo "Rebooting..."
 reboot
 """)

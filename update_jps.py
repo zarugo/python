@@ -1,5 +1,6 @@
 import jps
 import sys
+import os
 import time
 import tarfile
 import json
@@ -21,10 +22,10 @@ while True:
 #Get all the info we need on the device (hardware type and configuration)
 print("Getting the device informations about hardware and JPSApplication...")
 device = jps.JpsDevice(ip)
-if os.pathexists("JPSApps_" + device.info["hw"]):
+if os.path.exists("JPSApps_" + device.info["hw"]):
     pass
 else:
-    raise("The installation package JPSApps_" + device.info["hw"] + " does not exist in this folder, the update has failed!")
+    sys.exit("The installation package JPSApps_" + device.info["hw"] + " does not exist in this folder, the update has failed!")
 print("The hardware is " + device.info["hw"] + " and the application is " + device.info["type"] + ".")
 time.sleep(2)
 
@@ -64,15 +65,15 @@ sftp = client.open_sftp()
 try:
     sftp.put("JPSApps.tar.gz", device.info["workdir"] + "/JPSApps.tar.gz")
 except:
-    sys.exit("Impossible to copy the JPSApps.tar.gz file into the device, the update has failed.")
+    sys.exit("Impossible to copy the JPSApps.tar.gz file into the device, the update has failed!")
 try:
     sftp.put("_update.sh", device.info["workdir"] + "/_update.sh")
 except:
-    sys.exit("Impossible to copy the _update.sh file into the device, the update has failed.")
+    sys.exit("Impossible to copy the _update.sh file into the device, the update has failed!")
 try:
     sftp.put("ConfigData_merged.json", device.info["workdir"] + "/ConfigData_merged.json")
 except:
-    sys.exit("Impossible to copy the ConfigData_merged.json file into the device, the update has failed.")
+    sys.exit("Impossible to copy the ConfigData_merged.json file into the device, the update has failed!")
 client.close()
 
 #Execute the update script
@@ -84,13 +85,18 @@ client.connect(ip, username="root", password='')
 try:
     stdin, stdout, stderr = client.exec_command("chmod +x " + device.info["workdir"] + "/_update.sh", get_pty=True)
 except:
-    sys.exit("Impossible to execute chmod via ssh, the update has failed.")
+    jps.post_clean()
+    sys.exit("Impossible to execute chmod via ssh, the update has failed!")
 try:
     stdin, stdout, stderr = client.exec_command(device.info["workdir"] + "/_update.sh", get_pty=True)
     remote_out = stdout.readlines()
     for line in remote_out:
         print(line)
+    if stdout.channel.recv_exit_status() != 0:
+        jps.post_clean()
+        sys.exit("An error occurred during the update script execution, the update has failed!")
 except Exception as e:
+    jps.post_clean()
     sys.exit("The execution of the remote update script has failed with the error: " + e)
 client.close()
 
