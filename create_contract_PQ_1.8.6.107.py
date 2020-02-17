@@ -23,7 +23,7 @@ token = jms.login(jmsip, username, password)
 
 #parse the csv and upload it to JMS as json
 
-with open(input_file, encoding="utf-8") as csvfile:
+with open(input_file, encoding="latin-1") as csvfile:
     reader = csv.DictReader(csvfile)
     for line in reader:
         csv_lines = {}
