@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+
+#
+# #create a simple GUI to get the info
+#
+
+# >>> fieldValues = easygui.multenterbox(msg, title, fieldNames)
 import subprocess
 import sys
 import ipaddress
@@ -7,18 +13,29 @@ try:
     import paramiko
 except:
     subprocess.call([sys.executable, "-m", "ensurepip" ])
-    subprocess.call([sys.executable, "pip3", "install", "paramiko"])
+    subprocess.call([sys.executable, "pip3", "install", "paramiko-ng"])
 finally:
     import paramiko
+try:
+    import easygui
+except:
+    subprocess.call([sys.executable, "pip3", "install", "easygui"])
+finally:
+    import easygui as eg
 
 
-
+#Create some GUI to fetch the info
+msg = 'Please enter the Dysplay IP address'
+title = 'XEGU update'
+fieldNames = [ 'IP Address: ' ]
 while True:
     try:
-        ip = str(ipaddress.ip_address(input("Type the IP of the device: ")))
+        ip = str(ipaddress.ip_address(eg.enterbox(msg=msg, title=title, default='',strip=True,image=None,root=None)))
         break
     except ValueError:
-        print("The IP is invalid, please check that it's correct")
+        eg.msgbox(msg='The IP is not a valid IP, please enter it again',title='Error!',ok_button='OK',image=None,root=None)
+
+
 
 class XeguDevice:
 
@@ -29,11 +46,11 @@ class XeguDevice:
         try:
             client.connect(ip, username="root", password="hubparking")
         except ConnectionRefusedError:
-            sys.exit("The connection to the device has been refused, please check the IP address, user and password on the device (must be 'root' and 'hubparking'). The update has failed!")
+            sys.exit(eg.msgbox(msg="The connection to the device has been refused, please check the IP address, user and password on the device (must be 'root' and 'hubparking'). The update has failed!", title='Error!', ok_button='OK',image=None,root=None))
         except OSError:
-            sys.exit("No route to this IP addres, please check that it's correct. The update has failed!")
+            sys.exit(eg.msgbox(msg="No route to this IP addres, please check that it's correct. The update has failed!", title='Error!', ok_button='OK',image=None,root=None))
         except TimeoutError:
-            sys.exit("The connection has timed out, please check please check the IP address.")
+            sys.exit(eg.msgbox(msg="The connection has timed out, please check please check the IP address.", title='Error!', ok_button='OK',image=None,root=None))
         try:
             stdin, stdout, stderr = client.exec_command('fbset | grep \"mode \" | awk \'{print $2; }\' | tr -d \"\\"\" | cut -d \"-\" -f1')
             size = str(stdout.read())
