@@ -107,6 +107,7 @@ else:
         stdin, stdout, stderr = client.exec_command('df -h | grep ubi0 | awk \'{print $5}\' | cut -d \'%\' -f1')
         free = 100 - float(stdout.read())
         if free < 14:
+            os.remove('xegu.sh')
             sys.exit(eg.msgbox(msg='The device has only ' + str(free) + '% of free space, we need at least 14%. Please check and free enough space, the update has failed.'))
         else:
             sftp.put(binary, '/home/root/xegu.new')
@@ -123,11 +124,13 @@ language = eg.fileopenbox(msg=None, title='Language file selection', default=Non
 try:
     sftp.put(language, '/home/root/.local/share/xegu/xegulang.xml')
 except:
-    sys.exit(eg.msgbox(msg='The language file upload failed with the error ' + Exception + '. The update has failed.'))
+    os.remove('xegu.sh')
+    sys.exit(eg.msgbox(msg='Unable to upload the xegulang.xml file, the update has failed.'))
 
 if eg.ccbox(msg='The xegu and xegulang.xml files have been updloaded, please reboot the display to use the new release', title=device.hw, choices=('Reboot', 'Cancel')):
     pass
 else:
+    os.remove('xegu.sh')
     sys.exit(eg.msgbox(msg='Please remember to reboot the display manually later.'))
 stdin, stdout, stderr = client.exec_command('reboot')
 os.remove('xegu.sh')
