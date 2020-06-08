@@ -33,7 +33,10 @@ while True:
         ip = str(ipaddress.ip_address(eg.enterbox(msg=msg, title=title, default='',strip=True,image=None,root=None)))
         break
     except ValueError:
-        eg.msgbox(msg='The IP is not a valid IP, please enter it again',title='Error!',ok_button='OK',image=None,root=None)
+        if eg.ccbox(msg='The IP is not a valid IP, do you want to try again?',title='Error!',choices=('Yes', 'No, abort the update'),image=None):
+            pass
+        else:
+            sys.exit(eg.msgbox(msg='The The update has been canceled by the user', title='Update aborted', ok_button='OK',image=None,root=None))
 
 
 
