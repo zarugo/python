@@ -42,6 +42,19 @@ def delete_customers(jmsip, first, last, token):
             except Exception as e:
                 print("Something went wrong, the error is: " + str(e))
 
+def delete_account(jmsip, first, last, token):
+        import requests
+        headers = { "Content-Type": "application/json" , "Accept": "application/json", "Janus-TP-Authorization": token}
+        for i in range(first, last + 1):
+            url = "http://" + str(jmsip) + ":8080/janus-integration/api/ext/account/delete?accountId=" + str(i)
+            try:
+                r = requests.put(url, headers=headers, timeout=5.0)
+                if r.status_code == 200:
+                    print("Deleted account whith ID: " + str(i) + "(Response: " + r.text)
+                else:
+                    print("Error: " + str(r.status_code) + r.text)
+            except Exception as e:
+                print("Something went wrong, the error is: " + str(e))
 
 def get_node_and_devices(jmsip, token):
     import json, requests, sys
