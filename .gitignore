@@ -1,6 +1,6 @@
 __pycache__
 *.log
 build
-#dist
+dist
 *.spec
 *.pyc
