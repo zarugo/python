@@ -1,3 +1,6 @@
+#tool to use JMS API for action
+
+
 import jms, sys
 
 

@@ -1,3 +1,6 @@
+#A stess test for postgres connection pool
+
+
 from threading import Thread, Lock
 import psycopg2
 import sys
