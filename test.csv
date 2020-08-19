@@ -1,0 +1,4 @@
+accessPolicyId,accountId,customerFirstName,customerLastName,plates,start_validity,end_validity,enabled,mediaType
+1,1,BENALI,ABBES,DL543RL,1595586150,2226738150000,TRUE,plate
+1,1,BENALI,ABBES,CT917HM,1595586150,2226738150000,TRUE,plate
+1,1,BENALI,MYRIAN,BY253AE,1595586150,2226738150000,TRUE,plate
