@@ -6,7 +6,7 @@ import tarfile
 import json
 import ipaddress
 import paramiko
-from jsonmerge import merge
+from jsonmerge import merge, Merger
 
 #Clean garbage from old updates
 jps.pre_clean()
