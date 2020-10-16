@@ -38,243 +38,176 @@ jps.get_config(device.info["hw"], ip, device.info["login"], device.info["appfld"
 #######################################
 print("Merging the configuration files...")
 schema = {
-	"schemauid":"appc",
-	"title": "Application Configurations",
-	"type": "object",
-	"options": { "disable_collapse":true},
-	"definitions":
-	{
-		"currency":      {"title":"Currency", "type":"string", "enum":["AED","AFN","ALL","AMD","ANG","AOA","ARS","AUD","AWG","AZN","BAM","BBD","BDT","BGN","BHD","BIF","BMD","BND","BOB","BRL","BSD","BTN","BWP","BYN","BZD","CAD","CDF","CHF","CLP","CNY","COP","CRC","CUC","CUP","CVE","CZK","DJF","DKK","DOP","DZD","EGP","ERN","ETB","EUR","FJD","FKP","GBP","GEL","GGP","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HRK","HTG","HUF","IDR","ILS","IMP","INR","IQD","IRR","ISK","JEP","JMD","JOD","JPY","KES","KGS","KHR","KMF","KPW","KRW","KWD","KYD","KZT","LAK","LBP","LKR","LRD","LSL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRO","MUR","MVR","MWK","MXN","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SLL","SOS","SPL","SRD","STD","SVC","SYP","SZL","THB","TJS","TMT","TND","TOP","TRY","TTD","TVD","TWD","TZS","UAH","UGX","USD","UYU","UZS","VEF","VND","VUV","WST","XAF","XCD","XDR","XOF","XPF","YER","ZAR","ZMW","ZWD"]},
-		"screenid":      {"title":"ScreenId", "type":"string", "enum":["LANE_CLOSED", "RD_TICKT_OR_CARD", "WT_VEHICLE", "LANE_OPEN", "COLUMN_FMW", "PARKING_FULL", "DOOR_OPENED", "PERIPH_OUT_OF_ORDER","MAINTENACE","EVT_PREPAY"]},
-		"runmode":       {"title":"App Run Mode","type":"string","enum":["None","InService","OccFull","ReservedOnly","Closed","Opened","Emergency","OutOfOrder","Maintenance","Full","DoorOpened","EventParking"], "readonly": false},
-		"communication": {"title":"Communication", "type": "object", "format":"grid", "properties": {"spectype": {"title":"Communication Spec. Type","type":"string","enum":["SERIAL","NETWORK","CONNSERIAL","KEYBOARDFD"]},"url":{"title":"Com URL","type":"string", "options": { "infoText": ">SERIAL=\n-- COMNAME\n-- [:BOUDRATE]\n-- [:DATABITS]\n-- [:PARITY]\n-- [:STOPBITS]\n-- [:FLOWCTRL],\n\n>NETWORK=\n-- IP:\n-- PORT,\n\n>CONNSERIAL=\n-- IFACE\n-- :NETWORK\n-- :NID\n-- :MAJ\n-- :MIN\n-- :OBJ,\n\n>KEYBOARDFD:\n-- FILE_PATH"}}}},
-		"communications":{"title": "Communications", "type": "array", "options": {"collapsed": true, "disable_array_reorder":true}, "format": "table", "items":{"type": "object", "properties": { "_idx_": {"type":"integer", "readonly": true}, "descr": { "title": "Channel Description", "type": "string", "readonly": true }, "communication": { "$ref": "#/definitions/communication" }}},"minItems": 1,"maxItems": 50},
-		"gpioctrl": 	 {"title":"GpioCtrl", "type": "object", "format":"grid", "properties": { "spectype": { "title": "Specific Type", "type": "integer", "minimum": 0, "maximum": 4, "options": { "infoText": "Options:\n'0' = Not Present,\n'1' =  KeyBoard,\n'2' =  RaspberryPi,\n'3' =  EbbSimulator,\n'4' = EbbConnector"} }, "sharedpath":{"title":"Import From","type":"string", "options": { "infoText": "The path from where the object will be imported\neg. 'application/devices/gpioctrl'"},"default": ""}, "pollingtimems": { "title": "Polling Time (ms)", "type": "integer", "minimum": 50, "maximum": 100, "options": { "infoText": "min 50 ms, max 100 ms"}}, "cfgmasks": { "title": "Config Raw Masks", "type": "array","options": {"collapsed": true}, "format": "table", "items": { "type": "object", "properties": { "_idx_": {"type":"integer", "readonly": true}, "maskid": { "title": "Maks Identifier", "type": "string", "enum": ["EnableMask", "InOutMask", "OutStatMask", "RiseEvtMask", "FallEvtMask"], "readonly": false }, "maskval": { "title": "Hex Mask Value", "type": "string", "pattern":"^0x[A-Fa-f0-9]{8}$"} } }, "minItems": 5, "maxItems": 5 }, "communication": { "$ref": "#/definitions/communication" } } },
-		"httpserver":    {"title":"HttpServer Configurations", "type": "object", "format":"grid", "properties": { "spectype": { "title": "Specific Type", "type": "integer", "minimum": 0, "maximum": 1, "options": { "infoText": "Options:\n'0' = Not Present,\n'1' = Present", "grid_columns": 4}}, "rootdir": { "title": "Http Server Root Directory", "type": "string", "readonly": false , "options": { "infoText": "The base directory from where to serve files", "grid_columns": 4}}, "tempdir": { "title": "Http Server Temp Directory", "type": "string", "readonly": false , "options": { "infoText": "The temporary directory used to store in progress trasfer data", "grid_columns": 4}}, "postdir": { "title": "Http Server Post Directory", "type": "string", "readonly": false , "options": { "infoText": "The directory used to store transferred data", "grid_columns": 4}}, "autoserve": { "title": "Auto Serve GET", "type": "boolean", "readonly": false , "options": { "infoText": "Enables/Disables GET request automatic management", "grid_columns": 4}},"secure": { "title": "Secure Mode", "type": "boolean", "readonly": false , "options": { "infoText": "Enables/Disables secure socket communication", "grid_columns": 4}}, "connqueuesz": { "title": "Connection Queue Size", "type": "integer", "minimum": 50, "maximum": 100000 , "options": { "infoText": "Configures the connections queue size", "grid_columns": 4}}, "communication": { "$ref": "#/definitions/communication" } } },
-		"httpclient": 	 {"title":"HttpClient Configurations", "type": "object", "format":"grid", "properties": { "spectype": { "title": "Specific Type", "type": "integer", "minimum": 0, "maximum": 1, "options": { "infoText": "Options:\n'0' = Not Present,\n'1' = Present", "grid_columns": 3}}, "rootdir": { "title": "Http Client Root Directory", "type": "string", "readonly": false , "options": { "infoText": "The base directory from where to serve files", "grid_columns": 3}}, "tempdir": { "title": "Http Client Temp Directory", "type": "string", "readonly": false , "options": { "infoText": "The temporary directory used to store in progress trasfer data", "grid_columns": 3}}, "postdir": { "title": "Http Client Post Directory", "type": "string", "readonly": false , "options": { "infoText": "The directory used to store transferred data", "grid_columns": 6}}, "secure": { "title": "Secure Mode", "type": "boolean", "readonly": false , "options": { "infoText": "Enables/Disables secure socket communication", "grid_columns": 4}},"customprfx": { "title": "Custom Http Header", "type": "string", "readonly": false , "options": { "infoText": "The prefix used to mark server managed session headers", "grid_columns": 6}}, "communication": { "$ref": "#/definitions/communication" } } },
-		"rawudpservice": {"title":"Raw UDP Service", "type": "object", "format": "grid", "description":"Here you can configure the RawUdp service", "properties": { "spectype": {"title":"Specific Type","type":"integer","minimum":0,"maximum":1, "options": { "infoText": "Options:\n'0' = Not Present,\n'1' = Present", "grid_columns": 3}},"encrypted":{"title": "Data Encryption","type":"boolean", "options": { "infoText": "Enables/Disables Data Encryption", "grid_columns": 3}}, "localhost":{"title": "Local Udp Server Url", "type": "string", "readonly": false, "options": { "infoText": "[MULTICAST_GROUP]:PORT", "grid_columns": 3}}, "remotehost":{"title": "Remote Udp Client Url", "type": "string", "readonly": false, "options": { "infoText": "IP:PORT", "grid_columns": 3}}}},
-		"langcodes":     {"title":"Language", "type":"string","enum":["AND","ARE","AFG","ATG","AIA","ALB","ARM","AGO","ATA","ARG","ASM","AUT","AUS","ABW","ALA","AZE","BIH","BRB","BGD","BEL","BFA","BGR","BHR","BDI","BEN","BLM","BMU","BRN","BOL","BES","BRA","BHS","BTN","BVT","BWA","BLR","BLZ","CAN","CCK","COD","CAF","COG","CHE","CIV","COK","CHL","CMR","CHN","COL","CRI","CUB","CPV","CUW","CXR","CYP","CZE","DEU","DJI","DNK","DMA","DOM","DZA","ECU","EST","EGY","ESH","ERI","ESP","ETH","FIN","FJI","FLK","FSM","FRO","FRA","GAB","GBR","GRD","GEO","GUF","GGY","GHA","GIB","GRL","GMB","GIN","GLP","GNQ","GRC","SGS","GTM","GUM","GNB","GUY","HKG","HMD","HND","HRV","HTI","HUN","IDN","IRL","ISR","IMN","IND","IOT","IRQ","IRN","ISL","ITA","JEY","JAM","JOR","JPN","KEN","KGZ","KHM","KIR","COM","KNA","PRK","KOR","XKX","KWT","CYM","KAZ","LAO","LBN","LCA","LIE","LKA","LBR","LSO","LTU","LUX","LVA","LBY","MAR","MCO","MDA","MNE","MAF","MDG","MHL","MKD","MLI","MMR","MNG","MAC","MNP","MTQ","MRT","MSR","MLT","MUS","MDV","MWI","MEX","MYS","MOZ","NAM","NCL","NER","NFK","NGA","NIC","NLD","NOR","NPL","NRU","NIU","NZL","OMN","PAN","PER","PYF","PNG","PHL","PAK","POL","SPM","PCN","PRI","PSE","PRT","PLW","PRY","QAT","REU","ROU","SRB","RUS","RWA","SAU","SLB","SYC","SDN","SSD","SWE","SGP","SHN","SVN","SJM","SVK","SLE","SMR","SEN","SOM","SUR","STP","SLV","SXM","SYR","SWZ","TCA","TCD","ATF","TGO","THA","TJK","TKL","TLS","TKM","TUN","TON","TUR","TTO","TUV","TWN","TZA","UKR","UGA","UMI","USA","URY","UZB","VAT","VCT","VEN","VGB","VIR","VNM","VUT","WLF","WSM","YEM","MYT","ZAF","ZMB","ZWE","SCG","ANT"]},
-		"paths":         {"title":"Paths","type":"string","enum":["A","B","C","D","E","F","G","H","R","?"], "readonly": false},
-		"payprovsmngr":  {"title":"Payment Providers Manager","type":"object","options":{"hidden":false},"properties":{"spectype":{"title":"Specific Type","type":"integer","minimum":0,"maximum":1,"options":{"infoText":"Options:\n'0' = Not Present,\n'1' = Present"}}, "sharedpath":{"title":"Import From","type":"string", "options": { "infoText": "The path from where the object will be imported\neg. 'application/services/paymentservice/payprovsmngr'"},"default": ""},"providers":{"title":"Providers List","type":"array","options":{"collapsed":true,"disable_array_add":true,"disable_array_delete":true,"disable_array_reorder":true},"format":"table","items":{"type":"object","properties":{"_idx_":{"type":"integer","readonly":true,"options":{"infoText":"Reserved"}},"spectype":{"title":"Specific Type","type":"integer","minimum":0,"maximum":1,"options":{"infoText":"Options:\n'0' = Not Present,\n'1' = Telepass"}},"communications":{"$ref":"#/definitions/communications"}}},"minItems":0,"maxItems":50}}},
-		"upmedia":       {"title":"Media Type","type":"string","enum":["Barcode","BLE","ProxRD","ProxRDWR","MagnISO2","MagnISO3","Chip","UhfTag","LPR","ExtValidator","Telepass"], "readonly": false, "options":{ "infoText": "The ticketless enabled media type"}}
-	},
 	"properties": {
 		"application": {
 			"type": "object",
             "mergeStrategy":"objectMerge"
-			"title": "Application",
-			"format": "grid",
 			"properties":{
-				"spectype" :{"title":"Specific Type", 	    "type":"integer",	"minimum":1,"maximum":16, "readonly": true, "options": { "infoText": "'1' = AppLe,\n'2' = AppDbLe,\n'3' = AppLx,\n'4' = AppDbLx,\n'5' = AppLs,\n'6' = AppAps,\n'7' = AppApc,\n'8' = AppApl,\n'9' = AppDr,\n'10' = AppOc,\n'11' = AppFc,\n'12' = AppLxPos,\n'13' = AppLxCash,\n'14' = AppOv,\n'15' = AppRdrWtr,\n'16' = AppLePos."}},
-				"sitecode" :{"title":"Site Code",	 	    "type":"integer",	"minimum":1,"maximum":999999,"required":true, "options": { "infoText": "Enter the parking site code."}},
-				"periphid" :{"title":"Peripheral UID",	    "type":"string",	"required":true, "pattern":"^\\S+$", "options": { "infoText": "The unique peripheral ID"}},
-				"runmode"  :{"title":"Running Mode",		"$ref": "#/definitions/runmode" , "options": { "infoText": "The default running mode of the application"}},
-				"dbgsegflt":{"title": "SegFault Debug", "type": "boolean", "readonly": false , "options": { "infoText": "Enable SegFault Debug"}},
-				"logmaxage":{"title":"Max Logging Age (in days)", 	"type":"integer",	"minimum":1,"maximum":365, "options": { "infoText": "The maximum log files retention in days in [1,365]."}},
-				"loglevel" :{"title":"Log Level Verbosity", 		"type":"integer",	"minimum":0,"maximum":4, "options": { "infoText": "Set the log verbosity:\n0=Debug,\n1=Info,\n2=Warning,\n3=Critical,\n4=Fatal."}},
-				"dbglevel" :{"title":"Debug Level Verbosity", 		"type":"integer",	"minimum":0,"maximum":4, "options": { "infoText": "Set the debug verbosity:\n0=Debug,\n1=Info,\n2=Warning,\n3=Critical,\n4=Fatal."}},
-				"tmpscrntm":{"title":"Temp. Screen Duration (ms)", "type":"integer", "minimum":1000,"maximum":5000, "options": { "infoText": " Duration (in ms) of a temporary display screen."}},
-				"fraudalrmtm":{"title":"Fraud Alarm Delay (ms)", "type":"integer", "minimum":0,"maximum":600000, "options": { "infoText": " Time (in ms) required to trigger fraud alarm after a door open event."}},
-				"backtoidletm":{"title":"Back To Idle Timeout (ms)", "type":"integer", "minimum":0,"maximum":600000, "options": { "infoText": " Time (in ms) required to trigger a back to idle action."}},
-				"showfailmediatm":{"title":"Fail Media Sceen Timeout (ms)", "type":"integer", "minimum":0,"maximum":600000, "options": { "infoText": "Timeout show the failed madia type screen"}},
-				"currency" :{"title":"Currency", 			"$ref": "#/definitions/currency", "options": { "infoText": "The default parking currency"}},
-				"amoprecis" :{"title":"Amount Precision", 	"type":"integer",	"minimum":0,"maximum":6, "options": { "infoText": "The minimum decimal precision to be guaranted for amounts."}},
-				"locvalen": {"title": "Local Validation Enable", "type": "boolean", "readonly": false, "options": { "infoText": "Enable/Disable Local Validation"}},
-				"refunden": {"title": "Enable Money Refund", "type": "boolean", "readonly": false, "options": { "infoText": "Enable/Disable Money Refund"}},
-				"iponopen": {"title": "Show Ip On Door Open", "type": "boolean", "readonly": false,  "options": { "infoText": "Shows/Hides IP On Door Opened"}},
-				"opcdloginmd": {"title": "Operator Card Login", 	        "type":"integer",	"minimum":0,"maximum":2, "options": { "infoText": "0 -> 'Disabled',\n1 -> 'Card',\n2 -> 'Card&Pin'"}},
-				"taxpctge" :{"title":"Tax Percentage",	    "type":"integer",	"minimum":0,"maximum":100, "options": { "infoText": "The default tax percentage applyed to the parking price"}},
-				"prntrcptmode":{"title":"Print receipt mode", "type":"integer", "minimum":0,"maximum":2, "options": { "infoText": "Cash receipt printing mode:\n0=Disabled,\n1=Pos Only,\n2=Always All."}},
-				"freetime"  :{"title":"Free Time",		    "type":"integer",	"minimum":1,"maximum":1024, "options": { "infoText": "Maximum parking time without charge"}},
-				"exittime"  :{"title":"Exit Time",		    "type":"integer",	"minimum":1,"maximum":1024, "options": { "infoText": "Maximum payment to exit time without further charge"}},
-				"costtime"  :{"title":"Cost Time",		    "type":"number" ,	"minimum":0.00,"maximum":1000000.0, "options": { "infoText": "Amount/minute used as simple tariffs computation fallback."}},
-				"lostmode"  :{"title":"Lost Mode", 	        "type":"integer",	"minimum":0,"maximum":2, "options": { "infoText": "0 -> 'No Lost',\n1 -> 'Lost On Off Line',\n2 -> 'Lost Always'"}},
-				"loststrttm":{"title":"Lost Start Time", 	"type":"string",    "required":true, "options": { "infoText": "The time of the current day used as start time for lost price computation"}},
-				"lostcosttm":{"title":"Flat Lost Price",	"type":"number" ,	"minimum":0.00,"maximum":1000000.0, "options": { "infoText": "The amount used as flat lost price"}},
-				"prntsnapmode":{"title":"Print snapshot mode", "type":"integer", "minimum":0,"maximum":2, "options": { "infoText": "Cash snapshots printing mode:\n0=Disabled,\n1=Delta Only If Any,\n2=Always All."}},
-				"showextm" :{"title":"Show Exit Time",	    "type":"boolean", "options": { "infoText": "Shows/Hides exit time left after a payment "}},
-				"showposmsg" :{"title":"Show Pos Messages",	    "type":"boolean", "options": { "infoText": "Shows/Hides  the 'pos messages' "}},
-				"showmaxcng": {"title":"Show Max Change Amount","type":"boolean", "options": { "infoText": "Shows/Hides the 'max deliverable change' during a payment"}},
-				"discntmode" :{"title":"Discount support mode",	    "type":"integer", "minimum":0,"maximum":2, "options": { "infoText": "Discunt support mode:\n0=Disabled,\n1=On Pre Pay,\n2=On Armed Pay."}},
-				"paytktgrace" :{"title":"Pay Tickets Within Grace Time",	    "type":"boolean", "options": { "infoText": "Mark tickets as paid in grace(free) period"}},
-				"confirmtktgrace" :{"title":"Confirm Ticket Payment Within Grace Time",	    "type":"boolean", "options": { "infoText": "Enable/disable 'Exit now?'"}},
-				"acceptpaidtkt" :{"title":"Accept Already Paid Tickets",	"type":"boolean", "options": { "infoText": "Enables the payment of already paid tickets", "grid_columns": 6}},
-				"zerorcp" :{"title":"Zero Receipts",	    "type":"boolean", "options": { "infoText": "Enable/Disable the printing of receipts for zero amount", "grid_columns": 6}},
-				"fiscalPolicy" :{"title":"Fiscal Policy", 	    "type":"string", "readonly": true, "options": { "infoText": "Displays the fiscal policy aplicable for the system", "grid_columns": 4}},
+				"spectype" : {"mergeStrategy":"overwrite"},
+				"sitecode" : {"mergeStrategy":"overwrite"},
+				"periphid" : {"mergeStrategy":"overwrite"},
+				"runmode"  : {"mergeStrategy":"overwrite"},
+				"dbgsegflt": {"mergeStrategy":"overwrite"},
+				"logmaxage": {"mergeStrategy":"overwrite"},
+				"loglevel" : {"mergeStrategy":"overwrite"},
+				"dbglevel" : {"mergeStrategy":"overwrite"},
+				"tmpscrntm": {"mergeStrategy":"overwrite"},
+				"fraudalrmtm":{"mergeStrategy":"overwrite"},
+				"backtoidletm":{"mergeStrategy":"overwrite"},
+				"currency" : {"mergeStrategy":"overwrite"},
+				"amoprecis" : {"mergeStrategy":"overwrite"},
+				"locvalen": {"mergeStrategy":"overwrite"},
+				"refunden": {"mergeStrategy":"overwrite"},
+				"iponopen": {"mergeStrategy":"overwrite"},
+				"opcdloginmd": {"mergeStrategy":"overwrite"},
+				"taxpctge" : {"mergeStrategy":"overwrite"},
+				"prntrcptmode": {"mergeStrategy":"overwrite"},
+				"freetime"  : {"mergeStrategy":"overwrite"},
+				"exittime"  : {"mergeStrategy":"overwrite"},
+				"costtime"  : {"mergeStrategy":"overwrite"},
+				"lostmode"  : {"mergeStrategy":"overwrite"},
+				"loststrttm": {"mergeStrategy":"overwrite"},
+				"lostcosttm": {"mergeStrategy":"overwrite"},
+				"prntsnapmode": {"mergeStrategy":"overwrite"},
+				"showextm" : {"mergeStrategy":"overwrite"},
+				"showposmsg" : {"mergeStrategy":"overwrite"},
+				"showmaxcng": {"mergeStrategy":"overwrite"},
+				"discntmode" : {"mergeStrategy":"overwrite"},
+				"paytktgrace" : {"mergeStrategy":"overwrite"},
+				"confirmtktgrace" : {"mergeStrategy":"overwrite"},
+				"acceptpaidtkt" : {"mergeStrategy":"overwrite"},
+				"zerorcp" : {"mergeStrategy":"overwrite"},
+				"fiscalPolicy" : {"mergeStrategy":"overwrite"}
 				"tcktlssmedialst": {
-					"title": "Ticketless Media List",
-					"type": "array",
-					"options": {"collapsed": true,"disable_array_add":true,"disable_array_delete":true,"disable_array_reorder":true}, "format": "table",
-					"description": "Gives the possibility to enable the virtual transient ticket issuing for a given unknown media code",
+                    "type": "array",
+                    "mergeStrategy":"arrayMergeByIndex",
 					"items": {
-						"type": "object",
-						"properties": {
-							"_idx_":    {"type":"integer", "readonly": true},
-							"upmedia": 	{"$ref": "#/definitions/upmedia" },
-							"enabled":  {"title":"Enable/Disable","type":"boolean", "options": { "infoText": "Enables/Disables virtual ticket issuing for this media"}},
-							"offlusg":  {"title":"Offline Usage","type":"boolean", "options":{ "infoText": "Allows/Denies virtual ticket issuing when the MS link is down"}},
-							"inptfrm":  {"title":"Search Input Form","type":"boolean", "options":{ "infoText": "Shows/Hides the input form to manually search the media uid"}}
-						}
-					},
-					"minItems": 0,
-					"maxItems": 10
+                        "mergeStrategy":"overwrite",
+						"type": "object"
+                    }
 				},
 				"ticketdesc": {
-					"title": "Ticket Descriptors",
+					"mergeStrategy":"arrayMergeByIndex",
 					"type": "array",
-					"options": {"collapsed": true,"disable_array_add":true,"disable_array_delete":true,"disable_array_reorder":true}, "format": "table",
-					"description": "Configure the descriptors, printed on the ticket",
 					"items": {
 						"type": "object",
-						"properties": {
-							"_idx_": {"type":"integer", "readonly": true},
-							"name": 	{ "title": "Name", "type": "string" , "readonly": true},
-							"defvalue": { "title": "Value", "type": "string", "readonly": false }
-						}
-					},
-					"minItems": 0,
-					"maxItems": 4
+                        "mergeStrategy":"overwrite"
+					}
+
 				},
 				"receiptdesc": {
-					"title": "Receipt Descriptors",
+                    "mergeStrategy":"arrayMergeByIndex",
 					"type": "array",
-					"options": {"collapsed": true,"disable_array_add":true,"disable_array_delete":true,"disable_array_reorder":true}, "format": "table",
-					"description": " Configure the descriptors (headers), printed on the receipt",
 					"items": {
 						"type": "object",
-						"properties": {
-							"_idx_":    { "type":"integer", "readonly": true},
-							"name": 	{ "title": "Name", "type": "string" , "readonly": true},
-							"defvalue": { "title": "Value", "type": "string", "readonly": false }
+                        "mergeStrategy":"overwrite"
 						}
-					},
-					"minItems": 0,
-					"maxItems": 5
-				},
-				"vendingmngmt": {
-					"title": "Vending Management",
-					"type": "object",
-					"description": " Configure the products vending options",
-					"properties": {
-						"mode": 	 { "title": "Mode",  "type":"integer", "minimum":0, "maximum":2, "options": { "infoText": "Vending Options:\n'0' = Disabled,\n'1' =  Always Enabled,\n'2' =  Based On Parking Time"}},
-						"maxparktm": { "title": "Required Parking Time (in minutes)",  "type":"integer", "minimum":0, "maximum":1440, "options": { "infoText": "The parking time threshold beneath which product vending in not allowed"}}
 					}
 				},
-				"pymtopts":{"title": "Available Recharge Options","type": "array","options": {"collapsed": true}, "description": " Configure the available recharge options", "format": "table", "items": { "type": "number"}, "minItems": 3, "maxItems": 3 },
-				"persistentdata": {
-					"title": "Persistent Data Configurations",
+				"vendingmngmt": {
+                    "mergeStrategy":"objectMerge",
 					"type": "object",
-					"options": {"hidden": true},
 					"properties": {
-						"dbfilename":	{"title":"DB FileName",		  "type":"string"},
-						"dbfilesizekb": {"title":"DB File Size (KB)", "type":"integer","minimum":1,"maximum":1024},
+						"mode": 	 {"mergeStrategy":"overwrite"},
+						"maxparktm": {"mergeStrategy":"overwrite"}
+					}
+				},
+				"pymtopts":{"mergeStrategy":"overwrite"},
+				"persistentdata": {
+                    "mergeStrategy":"objectMerge",
+					"type": "object",
+					"properties": {
+						"dbfilename":	{"mergeStrategy":"overwrite"},
+						"dbfilesizekb": {"mergeStrategy":"overwrite"},
 						"dbtables": {
-							"title": "DB Tables",
+							"mergeStrategy":"arrayMergeByIndex",
 							"type": "array",
-							"options": {"collapsed": true}, "format": "table",
 							"items": {
 								"type": "object",
 								"properties": {
-									"_idx_":     { "type":"integer", "readonly": true},
-									"tablename": { "title": "Table Name", 		   "type": "string" , "readonly": false},
-									"tableid":   { "title": "Table Id",   		   "type": "integer", "readonly": false },
-									"recsz": 	 { "title": "Table Record Size",   "type": "integer", "readonly": false },
-									"recsno": 	 { "title": "Table Record Number", "type": "integer", "readonly": false}
+									"_idx_":     {"mergeStrategy":"overwrite"},
+									"tablename": {"mergeStrategy":"overwrite"},
+									"tableid":   {"mergeStrategy":"overwrite"},
+									"recsz": 	 {"mergeStrategy":"overwrite"},
+									"recsno": 	 {"mergeStrategy":"overwrite"}
 								}
-							},
-							"minItems": 0,
-							"maxItems": 50
+							}
 						}
 					}
 				},
 				"devices": {
-					"title": "Devices",
+                    "mergeStrategy":"objectMerge",
 					"type": "object",
-					"description":"Configurable devices",
 					"properties": {
-						"gpioctrl": {"title": "GpioCtrl", "$ref": "#/definitions/gpioctrl","description": "Here you can set the properties GPIO controller used by the main application"},
+						"gpioctrl": {"mergeStrategy":"overwrite"},
 						"display": {
-							"title": "Display",
+                            "mergeStrategy":"objectMerge",
 							"type": "object",
-							"format": "grid",
-							"description": "Here you can set the properties of the currently used Display controller",
 							"properties": {
-								"spectype":      {"title":"Specific Type","type":"integer","minimum":0,"maximum":3, "options": { "infoText": "Options:\n'0' = Not Present,\n'1' = EGU,\n'2' = ZEGU,\n'3' = GEGU", "grid_columns": 3}},
-								"periphmode":    {"title":"Peripheral Mode","type":"integer","minimum":0,"maximum":3, "options": { "infoText": "Options:\n'0' = DispModeLe,\n'1' = DispModeLx,\n'2' = DispModeAps,\n'3' = DispModeApl", "grid_columns": 3}},
-								"dateformat":    {"title":"Date Format","type":"integer","minimum":0,"maximum":1,"options": { "infoText": "Options:\n'0' = EU,\n'1' = US", "grid_columns": 3}},
-								"multilanguage": {"title":"Multi Language Option","type":"integer","minimum":0,"maximum":1,"options": { "infoText": "Enable/Disable auto language switch", "grid_columns": 3}},
-								"offlinescrst":  {"$ref" : "#/definitions/screenid","options": { "infoText": "Default screen on link off", "grid_columns": 6}},
-								"langsfile":  	 {"title":"Languages File", "type":"string", "options": { "infoText": "Languages file used for localization", "grid_columns": 6}},
+								"spectype":     {"mergeStrategy":"overwrite"},
+								"periphmode":   {"mergeStrategy":"overwrite"},
+								"dateformat":   {"mergeStrategy":"overwrite"},
+								"multilanguage":{"mergeStrategy":"overwrite"},
+								"offlinescrst": {"mergeStrategy":"overwrite"},
+								"langsfile":  	{"mergeStrategy":"overwrite"},
 								"langslist": {
-									"title":"Languages List",
+									"mergeStrategy":"objectMerge",
 									"type": "array",
-									"description": "Enabled languages list",
-									"options": {"collapsed": true}, "format": "table",
 									"items": {
+                                        "mergeStrategy":"objectMerge",
 										"type": "object",
 										"properties": {
-											"_idx_":  { "type":"integer", "readonly": true},
-											"lang":     {"title":"Language", "$ref" : "#/definitions/langcodes"}
+											"_idx_":  {"mergeStrategy":"overwrite"},
+											"lang":   {"mergeStrategy":"overwrite"}
 										}
-									},
-									"minItems": 2,
-									"maxItems": 10
+									}
 								},
 								"runmodests": {
-									"title": "Run Mode Statuses",
+                                    "mergeStrategy":"objectMerge",
 									"type": "array",
-									"description": "Default screen to be shown by current run mode",
-									"options": {"collapsed": true}, "format": "table",
 									"items": {
+                                        "mergeStrategy":"objectMerge",
 										"type": "object",
 										"properties": {
-											"_idx_":  { "type":"integer", "readonly": true},
-											"runmode":{"$ref" : "#/definitions/runmode"},
-											"status": {"$ref" : "#/definitions/screenid"}
+											"_idx_":  {"mergeStrategy":"overwrite"},
+											"runmode":{"mergeStrategy":"overwrite"},
+											"status":{"mergeStrategy":"overwrite"}
 										}
-									},
-									"minItems": 0,
-									"maxItems": 50
+									}
 								},
 								"xtracfgparams": {
-									"title": "Extra Configuration Parameters",
+									"mergeStrategy":"objectMerge",
 									"type": "array",
-									"description": "Low level tunig parameters",
-									"options": {"collapsed": true,"disable_array_add":true,"disable_array_delete":true,"disable_array_reorder":true}, "format": "table",
 									"items": {
+                                        "mergeStrategy":"objectMerge",
 										"type": "object",
 										"properties": {
-											"_idx_":  { "type":"integer", "readonly": true},
-											"key":    {"title":"Key",	  "type":"string", "readonly": true},
-											"value":  {"title":"Value",	  "type":"string"}
+											"_idx_":  {"mergeStrategy":"overwrite"},
+											"key":    {"mergeStrategy":"overwrite"},
+											"value":  {"mergeStrategy":"overwrite"}
 										}
-									},
-									"minItems": 0,
-									"maxItems": 50
+									}
 								},
-								"communication": { "$ref": "#/definitions/communication" },
-								"gpioctrl": {"title": "GpioCtrl", "$ref": "#/definitions/gpioctrl","description": "Here you can set the properties GPIO controller used by the display driver"},
+								"communication": {"mergeStrategy":"overwrite"},
+								"gpioctrl": {"mergeStrategy":"overwrite"},
 								"ctrlpins": {
-									"title": "Ctrl I/O",
+                                    "mergeStrategy":"objectMerge",
 									"type": "array",
-									"description":"Here you can map display related logic control functions to physical gpios",
-									"options": {"collapsed": true}, "format": "table",
 									"items": {
+                                        "mergeStrategy":"objectMerge",
 										"type": "object",
 										"properties": {
-											"_idx_":        {"type":"integer", "readonly": true},
-											"funct":		{"anyOf": [{"title":"Std Function",   "type":"string",  "enum":["DispRegSel", "DispDataRdWr", "DispEnable", "DispDataBus0", "DispDataBus1", "DispDataBus2", "DispDataBus3"], "readonly": false},{"title":"Cstm. Function", "type": "string"}]},
-											"id":			{"title":"Pin ID",					  "type":"integer","minimum":0,"maximum":255},
-											"activest":		{"title":"StartMode",				  "type":"integer","minimum":0,"maximum":1},
-											"lowperiodms":	{"title":"Low Period Duration (ms)",  "type":"integer","minimum":0,"maximum":1000000},
-											"highperiodms":	{"title":"High Period Duration (ms)", "type":"integer","minimum":0,"maximum":1000000},
-											"pulseno":		{"title":"Number of pulses",		  "type":"integer","minimum":0,"maximum":1000000},
-											"vloggtnet":	{"title":"Virtual Logic Gates Net",	  "type":"string"}
+											"_idx_":        {"mergeStrategy":"overwrite"},
+											"funct":		{"mergeStrategy":"overwrite"},
+											"id":			{"mergeStrategy":"overwrite"},
+											"activest":		{"mergeStrategy":"overwrite"},
+											"lowperiodms":	{"mergeStrategy":"overwrite"},
+											"highperiodms":	{"mergeStrategy":"overwrite"},
+											"pulseno":		{"mergeStrategy":"overwrite"},
+											"vloggtnet":	{"mergeStrategy":"overwrite"}
 										}
-									},
-									"minItems": 0,
-									"maxItems": 20
-								}
+									}
+                                }
 							}
 						},
 						"statpins": {
