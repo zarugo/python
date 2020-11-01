@@ -7,7 +7,12 @@ import base64
 from datetime import datetime
 
 now = datetime.now()
-path = "./LPR_images_" + now.strftime("%Y-%m-%d-%H:%M:%S")
+if os.name == "nt":
+    path = os.getcwd() + "\\LPR_images_" + now.strftime("%Y-%m-%d_%H-%M-%S")
+else:
+    path = "./LPR_images_" + now.strftime("%Y-%m-%d-%H:%M:%S")
+
+
 try:
     os.mkdir(path)
 except OSError:
@@ -39,13 +44,18 @@ def create_images():
         for row in cur:
             #print(row[1])
             s = int(row[0]) / 1000
-            date = datetime.fromtimestamp(s).strftime('%Y-%m-%d_%H:%M:%S')
+            date = datetime.fromtimestamp(s).strftime('%Y-%m-%d_%H-%M-%S')
             cur2 = conn.cursor()
             cur2.execute(query_cam, (row[4],))
             camera = cur2.fetchone()
-            with open(row[3] + "_confidence_" + str(row[2]) + "_date_" + date + "_camera_" + str(camera[0]) + ".jpg", "wb" ) as image:
-                #print(result[1])
-                image.write(base64.b64decode(row[1]))
+            filename = row[3] + "_confidence_" + str(row[2]) + "_date_" + date + "_camera_" + str(camera[0]) + ".jpg"
+            try:
+                with open(filename, "wb" ) as image:
+                    #print(result[1])
+                    image.write(base64.b64decode(row[1]))
+            except OSError:
+                print("The file \"" + filename + "\" could not be created (probably unallowed characters on name)") 
+
             cur2.close()
         cur.close()
         conn.close()
