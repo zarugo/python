@@ -41,7 +41,7 @@ def create_images():
                 cur2 = conn.cursor()
                 cur2.execute(query_cam, (row[4],))
                 camera = cur2.fetchone()
-                filename = row[3] + "_confidence_" + str(row[2]) + "_date_" + date + "_camera_" + str(camera[0]) + ".jpg"
+                filename = "confidence_" + str(row[2]) + "_" + row[3] + "_date_" + date + "_camera_" + str(camera[0]) + ".jpg"
                 try:
                     with open(filename, "wb" ) as image:
                         #print(result[1])
