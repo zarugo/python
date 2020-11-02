@@ -3,7 +3,7 @@
 # cardNumber,mediaType,start_validity,end_validity,enabled,accessPolicyId,customerFirstName,CustomerLastName,displayCardNumber
 # 123456,proximity,1559347200000,2556057600000,TRUE,9,Bob,Marley,
 
-import jms, os, csv, json, requests, datetime
+import jms, os, csv, json, requests, datetime, sys
 
 #get the data we need
 now = datetime.datetime.now()
