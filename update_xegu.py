@@ -50,10 +50,10 @@ class XeguDevice:
             client.connect(ip, username='root', password='hubparking', timeout=5)
         except ConnectionRefusedError:
             sys.exit(eg.msgbox(msg='The connection to the device has been refused, please check the IP address. The update has failed!', title='Error!', ok_button='OK',image=None,root=None))
-        except OSError:
-            sys.exit(eg.msgbox(msg='No route to this IP addres, please check that it\'s correct. The update has failed!', title='Error!', ok_button='OK',image=None,root=None))
         except TimeoutError:
             sys.exit(eg.msgbox(msg='The connection has timed out, please check please check the IP address.', title='Error!', ok_button='OK',image=None,root=None))
+        except OSError:
+            sys.exit(eg.msgbox(msg='No route to this IP addres, please check that it\'s correct. The update has failed!', title='Error!', ok_button='OK',image=None,root=None))
         try:
             stdin, stdout, stderr = client.exec_command('fbset | grep \"mode \" | awk \'{print $2}\' | tr -d \"\\"\" | cut -d \"-\" -f1')
             size = str(stdout.read())
