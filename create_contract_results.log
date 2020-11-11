@@ -54,3 +54,7 @@
 2020-07-28 10:10:31  Contract inserted: ZARLY ZAR {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":"Product profile not found in realm"}]} Response Code from JMS was: 404
 2020-07-28 10:20:23  Contract inserted: ZARLY ZAR {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":"Product profile not found in realm"}]} Response Code from JMS was: 404
 2020-07-28 10:21:29  Contract inserted: ZARLY ZAR {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":null}]} Response Code from JMS was: 500
+2020-11-09 18:01:51  Contract inserted: ZARLY ZAR {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":null}]} Response Code from JMS was: 500
+2020-11-09 18:05:01  Contract inserted: ZARLY ZAR {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":"Third party media type not found"}]} Response Code from JMS was: 404
+2020-11-09 18:06:21  Contract inserted: ZARLY ZAR {"status":"ok","item":{"externalcard":{"cardId":17,"cardNumber":"6001234563760","mediaType":"proximity","cardParameters":[{"type":"start_validity","value":"1559347200000"},{"type":"end_validity","value":"2556057600000"},{"type":"enabled","value":"TRUE"}],"subCards":null,"businessUnitId":null,"accessPolicyId":1,"accountId":1,"customerId":15,"customerFirstName":"ZARLY","customerLastName":"ZAR","plates":["AP123BP"],"enabled":true}}} Response Code from JMS was: 200
+2020-11-09 18:07:24  Contract inserted: ZARLY ZAR {"status":"error","errors":[{"type":"RUNTIME","code":null,"message":"Account not found"}]} Response Code from JMS was: 404
