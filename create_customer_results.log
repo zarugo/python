@@ -1,11 +1,5 @@
-2019-12-30 08:55:27  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":54,"customerName":"Kennedy Bob"}}} Response Code from JMS was: 200
-2019-12-30 08:57:23  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":55,"customerName":"Kennedy Bob"}}} Response Code from JMS was: 200
-2019-12-30 09:21:04  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":56,"customerName":"Kennedy Bob"}}} Response Code from JMS was: 200
-2019-12-30 09:28:27  Customer inserted:  Response Code from JMS was: 500
-2019-12-30 10:56:44  Customer inserted:  Response Code from JMS was: 500
-2019-12-30 11:00:15  Customer inserted:  Response Code from JMS was: 500
-2019-12-30 11:06:13  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":57,"customerName":"Kennedy Bob"}}} Response Code from JMS was: 200
-2020-01-02 08:38:27  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":58,"customerName":"Kennedy Bob"}}} Response Code from JMS was: 200
-2020-01-02 14:43:09  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":59,"customerName":"Kennedy Bob"}}} Response Code from JMS was: 200
-2020-01-08 08:05:51  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":60,"customerName":"Kennedy Bob"}}} Response Code from JMS was: 200
-2020-01-08 08:07:19  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":61,"customerName":"Kennedy Bob"}}} Response Code from JMS was: 200
+2020-11-11 12:58:54  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":17,"customerName":"ZAR ZARLY"}}} Response Code from JMS was: 200
+2020-11-11 13:09:31  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":18,"customerName":"ZAR ZARLY"}}} Response Code from JMS was: 200
+2020-11-11 14:12:05  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":19,"customerName":"ZAR ZARLY"}}} Response Code from JMS was: 200
+2020-11-11 14:17:21  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":20,"customerName":"ZAR ZARLY"}}} Response Code from JMS was: 200
+2020-11-11 13:26:14  Customer inserted: {"status":"ok","item":{"externalcustomer":{"customerId":21,"customerName":"ZAR ZARLY"}}} Response Code from JMS was: 200
